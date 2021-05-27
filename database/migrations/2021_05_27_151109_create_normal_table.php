@@ -14,7 +14,14 @@ class CreateNormalTable extends Migration
     public function up()
     {
         Schema::create('normal', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('normal_id')->unique(); 
+            
+            $table->foreign('normal_id')
+            ->references('id')
+            ->on('usuario')
+            ->onDelete('cascade')
+            ->onUpdate('cascade'); //administrador_id es clave foranea y referencia a usuario de la clase usuario.
+            
             $table->timestamps();
         });
     }
