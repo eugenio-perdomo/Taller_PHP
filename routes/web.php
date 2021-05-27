@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', ['middleware' => 'auth', function() {
+    return view('layouts/master');
+}]);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::resource('/jugadores', jugadorController::class);
+
+Route::get('/create', function(){
+    return view('crearJugador');
 });
