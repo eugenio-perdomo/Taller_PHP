@@ -15,6 +15,14 @@ class CreateEstadisticaspartidosTable extends Migration
     {
         Schema::create('estadisticaspartidos', function (Blueprint $table) {
             $table->id();
+            $table->integer("posesion");
+            $table->integer("tirosTotales");
+            $table->integer("tirosPuerta");
+            $table->integer("corner");
+            $table->integer("offside");
+            $table->integer("faltas");
+            $table->integer("amarillas");
+            $table->integer("rojas");
             $table->timestamps();
         });
     }

@@ -15,6 +15,8 @@ class CreateAccionpartidosTable extends Migration
     {
         Schema::create('accionpartidos', function (Blueprint $table) {
             $table->id();
+            $table->string("accion");
+            $table->integer("minuto");
             $table->timestamps();
         });
     }
