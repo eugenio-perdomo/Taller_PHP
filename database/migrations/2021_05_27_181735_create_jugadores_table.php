@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEquiposTable extends Migration
+class CreateJugadoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateEquiposTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('jugadores', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->string("nomCorto");
-            $table->string("tresLetras");
-            // $table->foreignId('jugadores_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string("apellido");
+            $table->string("nacionalidad");
+            $table->date("fnacimiento");
             $table->timestamps();
-
         });
     }
 
@@ -31,6 +30,6 @@ class CreateEquiposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('jugadores');
     }
 }

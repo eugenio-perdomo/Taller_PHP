@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ligas extends Model
 {
     use HasFactory;
+
+    public function roles(){
+        return $this->belongsToMany('App\Models\equipos');
+    }
 }

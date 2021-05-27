@@ -15,6 +15,10 @@ class CreateLigasTable extends Migration
     {
         Schema::create('ligas', function (Blueprint $table) {
             $table->id();
+            $table->string("nombreLiga");
+            $table->integer("participantes");
+            $table->string("sistemaDeJuego");
+            // $table->foreignId('equipos_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
