@@ -15,10 +15,12 @@ class CreateJugadoresTable extends Migration
     {
         Schema::create('jugadores', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("equipo_id")->nullable();
             $table->string("nombre");
             $table->string("apellido");
             $table->string("nacionalidad");
             $table->date("fnacimiento");
+            $table->foreign("equipo_id")->references("id")->on('equipos')->onDelete("set null");
             $table->timestamps();
         });
     }

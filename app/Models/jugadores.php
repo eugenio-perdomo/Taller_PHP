@@ -12,4 +12,8 @@ class jugadores extends Model
     public function roles(){
         return $this->belongsToMany('App\Models\partidos');
     }
+
+    public function eqiopo(){
+        return $this->belongsTo('App\Models\equipos');
+    }
 }

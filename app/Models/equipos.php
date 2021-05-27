@@ -16,4 +16,8 @@ class equipos extends Model
     public function rolespartidos(){
         return $this->belongsToMany('App\Models\partidos');
     }
+
+    public function integrantes(){
+        return $this->hasMany('App\Models\jugadores');
+    }
 }
