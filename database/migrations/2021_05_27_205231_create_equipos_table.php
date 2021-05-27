@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLigasTable extends Migration
+class CreateEquiposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateLigasTable extends Migration
      */
     public function up()
     {
-        Schema::create('ligas', function (Blueprint $table) {
+        Schema::create('equipos', function (Blueprint $table) {
             $table->id();
-            $table->string("nombreLiga");
-            $table->integer("participantes");
-            $table->string("sistemaDeJuego");
-            // $table->foreignId('equipos_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string("nombre");
+            $table->string("nomCorto");
+            $table->string("tresLetras");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateLigasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ligas');
+        Schema::dropIfExists('equipos');
     }
 }

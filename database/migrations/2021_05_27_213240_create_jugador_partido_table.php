@@ -15,10 +15,10 @@ class CreateJugadorPartidoTable extends Migration
     {
         Schema::create('jugador_partido', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("jugador_id");
-            $table->unsignedBigInteger("partido_id");
-            $table->foreign("jugador_id")->references("id")->on("jugadores")->onDelete("cascade");
-            $table->foreign("partido_id")->references("id")->on("partidos")->onDelete("cascade");
+            $table->unsignedBigInteger("jugador_id")->nullable();
+            $table->unsignedBigInteger("partido_id")->nullable();
+            $table->foreign("jugador_id")->references("id")->on("jugadors")->onDelete("set null");
+            $table->foreign("partido_id")->references("id")->on("partidos")->onDelete("set null");
             $table->timestamps();
         });
     }

@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class equipos extends Model
+class Equipo extends Model
 {
     use HasFactory;
 
     public function rolesligas(){
-        return $this->belongsToMany('App\Models\ligas');
+        return $this->belongsToMany('App\Models\Liga');
     }
 
     public function rolespartidos(){
-        return $this->belongsToMany('App\Models\partidos');
+        return $this->belongsToMany('App\Models\Partido');
     }
 
     public function integrantes(){
-        return $this->hasMany('App\Models\jugadores');
+        return $this->hasMany('App\Models\Jugador');
     }
 }

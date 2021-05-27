@@ -15,10 +15,10 @@ class CreateLigaEquipoTable extends Migration
     {
         Schema::create('liga_equipo', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("liga_id");
-            $table->unsignedBigInteger("equipo_id");
-            $table->foreign("liga_id")->references("id")->on("ligas")->onDelete("cascade");
-            $table->foreign("equipo_id")->references("id")->on("equipos")->onDelete("cascade");
+            $table->unsignedBigInteger("liga_id")->nullable();
+            $table->unsignedBigInteger("equipo_id")->nullable();
+            $table->foreign("liga_id")->references("id")->on("ligas")->onDelete("set null");
+            $table->foreign("equipo_id")->references("id")->on("equipos")->onDelete("set null");
             $table->timestamps();
         });
     }

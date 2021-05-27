@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ligas extends Model
+class Liga extends Model
 {
     use HasFactory;
 
     public function roles(){
-        return $this->belongsToMany('App\Models\equipos');
+        return $this->belongsToMany('App\Models\Equipo');
     }
 }
