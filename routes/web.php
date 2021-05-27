@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\jugadorController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-
-/* Solamente si queremos que se verifique el mail*/
-Auth::routes(['verify' => true]);
-Route::get('profile', function () {
-    return '<h1>This is profile page</h1>';
-})->middleware('verified');
-
-
-
-
-
 
 Route::get('/', ['middleware' => 'auth', function() {
     return view('layouts/master');
