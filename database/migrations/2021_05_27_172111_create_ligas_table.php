@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstadisticapartidoTable extends Migration
+class CreateLigasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEstadisticapartidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('estadisticapartido', function (Blueprint $table) {
+        Schema::create('ligas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateEstadisticapartidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estadisticapartido');
+        Schema::dropIfExists('ligas');
     }
 }

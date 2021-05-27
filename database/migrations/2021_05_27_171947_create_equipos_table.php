@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJugadorTable extends Migration
+class CreateEquiposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateJugadorTable extends Migration
      */
     public function up()
     {
-        Schema::create('jugador', function (Blueprint $table) {
+        Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateJugadorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jugador');
+        Schema::dropIfExists('equipos');
     }
 }
