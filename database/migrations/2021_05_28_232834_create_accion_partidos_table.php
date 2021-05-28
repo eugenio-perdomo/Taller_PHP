@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccionpartidosTable extends Migration
+class CreateAccionPartidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAccionpartidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('accionpartidos', function (Blueprint $table) {
+        Schema::create('accion_partidos', function (Blueprint $table) {
             $table->id();
             $table->string("accion");
             $table->integer("minuto");
@@ -32,6 +32,6 @@ class CreateAccionpartidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accionpartidos');
+        Schema::dropIfExists('accion_partidos');
     }
 }
