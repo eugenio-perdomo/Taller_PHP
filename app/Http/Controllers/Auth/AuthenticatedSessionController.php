@@ -15,6 +15,7 @@ class AuthenticatedSessionController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    // otro intento de hacer merge
     public function create()
     {
         return view('auth.login');
