@@ -23,6 +23,10 @@ class CreateEstadisticaspartidosTable extends Migration
             $table->integer("faltas");
             $table->integer("amarillas");
             $table->integer("rojas");
+            $table->unsignedBigInteger("equipo_id");
+            $table->unsignedBigInteger("partido_id");
+            $table->foreign("equipo_id")->references("id")->on("equipos")->onDelete("cascade");
+            $table->foreign("partido_id")->references("id")->on("partidos")->onDelete("cascade");
             $table->timestamps();
         });
     }
