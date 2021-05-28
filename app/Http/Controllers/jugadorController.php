@@ -18,7 +18,7 @@ class jugadorController extends Controller
      {
          //$this->middleware('auth');
      }
-
+        // intento para merge
     public function index()
     {
         $jugadores = $users = DB::table('jugadors')->get();
