@@ -22,7 +22,9 @@ class EquipoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "nombre"=>$this->faker->sentence(1),
+            "nomCorto"=>$this->faker->sentence(1),
+            "tresLetras"=>$this->faker->sentence(1)
         ];
     }
 }

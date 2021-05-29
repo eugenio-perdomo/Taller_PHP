@@ -22,7 +22,10 @@ class JugadorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "nombre"=>$this->faker->sentence(1),
+            "apellido"=>$this->faker->sentence(1),
+            "nacionalidad"=>$this->faker->sentence(1),
+            "fnacimiento"=>$this->faker->date()
         ];
     }
 }
