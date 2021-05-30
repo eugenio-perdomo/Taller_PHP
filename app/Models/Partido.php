@@ -14,6 +14,14 @@ class Partido extends Model
     }
 
     public function rolesequipos(){
-        return $this->belongsToMany('App\Models\Equipo');
+        return $this->belongsToMany(Equipo::class,"estadistica_partido")
+        ->withTimestamps()->withPivot(["posesion",
+        "tirosTotales",
+        "tirosPuerta",
+        "corner",
+        "offside",
+        "faltas",
+        "amarillas",
+        "rojas"]);
     }
 }
