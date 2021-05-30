@@ -24,7 +24,7 @@ class LigaFactory extends Factory
         return [
             "nombreLiga"=>$this->faker->word(),
             "participantes"=>$this->faker->randomDigitNotNull(),
-            "sistemaDeJuego"=>$this->faker->randomElements(["Solo_Ida","Ida_y_Vuelta","Grupos_y_Eliminatoria","Eliminatoria"])
+            "sistemaDeJuego"=>$this->faker->randomElement(["Solo_Ida","Ida_y_Vuelta","Grupos_y_Eliminatoria","Eliminatoria"])
         ];
     }
 }

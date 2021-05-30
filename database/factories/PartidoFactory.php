@@ -24,7 +24,7 @@ class PartidoFactory extends Factory
     {
         return [
             "estadoPartido"=>$this->faker->randomElement(['Programado', 'En_disputa','Finalizado','Aplazado']),
-            "fecha"=>$this->date()
+            "fecha"=>$this->faker->date()
         ];
     }
 }
