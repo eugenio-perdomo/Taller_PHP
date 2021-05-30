@@ -14,7 +14,9 @@ class CreateAdministradorTable extends Migration
     public function up()
     {
         Schema::create('administrador', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('administrador_id')->unique(); 
+            $table->foreign('administrador_id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade'); //usuario id es clave foranea y referencia a usuario de la clase users.
+            $table->boolean('confirmado')->default(false);
             $table->timestamps();
         });
     }
