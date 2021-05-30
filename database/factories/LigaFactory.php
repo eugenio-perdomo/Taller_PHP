@@ -22,7 +22,9 @@ class LigaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "nombreLiga"=>$this->faker->word(),
+            "participantes"=>$this->faker->randomDigitNotNull(),
+            "sistemaDeJuego"=>$this->faker->randomElements(["Solo_Ida","Ida_y_Vuelta","Grupos_y_Eliminatoria","Eliminatoria"])
         ];
     }
 }
