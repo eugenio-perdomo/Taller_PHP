@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Normal extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'normal_id',
+    ];
+
+    protected $table = 'normal';
 }
