@@ -8,6 +8,7 @@ use App\Models\Usuario;
 use App\Models\Normal;
 use App\Models\Editor;
 use App\Models\Administrador;
+use Illuminate\Database\Schema\ForeignKeyDefinition;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -75,18 +76,22 @@ class RegisterController extends Controller
         ]);
 
         if($tipoUsuario == 'normal') {
+            $users = Usuario::where('username', $data['username']);
             $normal = Normal::create([
                 'normal_id' => $user->id,
             ]);
 
         } elseif($tipoUsuario == 'editor') {
+            $users = Usuario::where('username', $data['username']);
             $editor = Editor::create([
                 'editor_id' => $user->id,
             ]);
         } elseif($tipoUsuario == 'admin') {
+            $users = Usuario::where('username', $data['username']);
             $admin = Administrador::create([
-                'admin_id' => $user->id,
+                'administrador_id' => $user->id,
             ]);
         }
+        return($user);
     }
 }
