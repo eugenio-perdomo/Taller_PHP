@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Partido;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use PhpParser\Node\Stmt\Enum_;
 
 class PartidoFactory extends Factory
 {
@@ -22,7 +23,8 @@ class PartidoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "estadoPartido"=>$this->faker->randomElement(['Programado', 'En_disputa','Finalizado','Aplazado']),
+            "fecha"=>$this->faker->date()
         ];
     }
 }

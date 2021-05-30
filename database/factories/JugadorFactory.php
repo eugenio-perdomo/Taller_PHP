@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Equipo;
 use App\Models\Jugador;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,10 +23,11 @@ class JugadorFactory extends Factory
     public function definition()
     {
         return [
-            "nombre"=>$this->faker->sentence(1),
-            "apellido"=>$this->faker->sentence(1),
-            "nacionalidad"=>$this->faker->sentence(1),
-            "fnacimiento"=>$this->faker->date()
+            "nombre"=>$this->faker->word(20),
+            "apellido"=>$this->faker->word(20),
+            "nacionalidad"=>$this->faker->word(20),
+            "fnacimiento"=>$this->faker->date(),
+            "equipo_id"=>Equipo::all()->random()->id
         ];
     }
 }

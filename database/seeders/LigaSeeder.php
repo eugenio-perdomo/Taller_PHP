@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Liga;
 use Illuminate\Database\Seeder;
 
 class LigaSeeder extends Seeder
@@ -13,6 +14,6 @@ class LigaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Liga::factory(10)->create();
     }
 }
