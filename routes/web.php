@@ -29,11 +29,13 @@ require __DIR__.'/auth.php';
 
 Route::resource('/jugadores', JugadorController::class);
 
-Route::get('/create', function(){
-    return view('crearJugador');
-});
+// Route::get('/create/agregar', function(){
+//     return view('jugadores.agregar');
+// });
 
 Route::resource('/equipos', EquipoController::class);
+
+
 
 Route::resource('/ligas', LigaController::class);
 
