@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Equipo;
 use App\Models\Partido;
+use App\Models\Jugador;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class PartidoSeeder extends Seeder
 {
@@ -27,6 +29,12 @@ class PartidoSeeder extends Seeder
                 "faltas"=>rand(0,50),
                 "amarillas"=>rand(0,50),
                 "rojas"=>rand(0,50)
-            ]);}
+            ]);
+            $partido->rolesjugadores()->attach(
+                Jugador::all()->random()->id,[
+                    "accion" => Arr::random(["Amarilla","Roja","Gol","Asistencia","Gol en contra"]),
+                    "minuto" => rand(0,95)
+            ]);
+        }
     }
 }

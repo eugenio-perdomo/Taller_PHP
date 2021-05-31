@@ -10,6 +10,6 @@ class Liga extends Model
     use HasFactory;
 
     public function roles(){
-        return $this->belongsToMany(Equipo::class);
+        return $this->belongsToMany(Equipo::class)->withTimestamps();
     }
 }

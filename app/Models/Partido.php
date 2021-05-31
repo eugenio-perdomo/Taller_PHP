@@ -10,7 +10,10 @@ class Partido extends Model
     use HasFactory;
 
     public function rolesjugadores(){
-        return $this->belongsToMany('App\Models\Jugador');
+        return $this->belongsToMany(Jugador::class,"accion_partido")
+        ->withTimestamps()->withPivot([
+            "accion","minuto"
+        ]);
     }
 
     public function rolesequipos(){

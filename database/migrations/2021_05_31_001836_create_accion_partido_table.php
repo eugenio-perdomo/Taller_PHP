@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccionPartidosTable extends Migration
+class CreateAccionPartidoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class CreateAccionPartidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('accion_partidos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('accion_partido', function (Blueprint $table) {
             $table->string("accion");
             $table->integer("minuto");
             $table->unsignedBigInteger("jugador_id");
@@ -32,6 +31,6 @@ class CreateAccionPartidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accion_partidos');
+        Schema::dropIfExists('accion_partido');
     }
 }

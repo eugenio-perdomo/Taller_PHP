@@ -17,7 +17,8 @@ class LigaSeeder extends Seeder
     {
         $ligas = Liga::factory(10)->create();
         foreach($ligas as $liga){
-            $liga->roles()->attach([Equipo::all()->random()->id, Liga::all()->random()->id]);
+            $liga->roles()
+            ->attach([Equipo::all()->random()->id, Liga::all()->random()->id]);
         }
         
     }
