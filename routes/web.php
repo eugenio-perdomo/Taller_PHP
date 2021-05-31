@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\LigaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +34,8 @@ Route::get('/create', function(){
 });
 
 Route::resource('/equipos', EquipoController::class);
+
+Route::resource('/ligas', LigaController::class);
 
 Auth::routes();
 
