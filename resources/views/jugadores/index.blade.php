@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,41 +9,54 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
+
 <body>
-@include('layouts/master')
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200 pb-5">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="card mt-4 shadow-lg">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h3>Lista de Jugadores</h3>
-                                    <a href="/jugadores/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Apellido</th>
-                                                <th scope="col">Nacimiento</th>
-                                                <th scope="col">Nacionalidad</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($jugadores as $jugador)
-                                            <tr>
-                                                <th scope="row">{{ $jugador->nombre }}</th>
-                                                <td>{{ $jugador->apellido }}</td>
-                                                <td>{{ $jugador->fnacimiento }}</td>
-                                                <td>{{ $jugador->nacionalidad }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+    @include('layouts/master')
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200 pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card mt-4 shadow-lg">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h3>Lista de Jugadores</h3>
+                                        <a href="/jugadores/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">Nacimiento</th>
+                                                    <th scope="col">Nacionalidad</th>
+                                                    <th width="280px">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($jugadores as $jugador)
+                                                <tr>
+                                                    <th scope="row">{{ $jugador->nombre }}</th>
+                                                    <td>{{ $jugador->apellido }}</td>
+                                                    <td>{{ $jugador->fnacimiento }}</td>
+                                                    <td>{{ $jugador->nacionalidad }}</td>
+                                                    <td>
+                                                        <form action="{{ route('jugadores.destroy',$jugador) }}" method="POST">
+                                                            <a class="btn btn-info" href="{{ route('jugadores.show',$jugador) }}">Show</a>
+                                                            <a class="btn btn-primary" href="{{ route('jugadores.edit',$jugador) }}">Edit</a>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,6 +65,6 @@
             </div>
         </div>
     </div>
-</div>
 </body>
+
 </html>
