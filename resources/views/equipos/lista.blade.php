@@ -19,26 +19,24 @@
                         <div class="col-md-8">
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h3>Lista de Jugadores</h3>
-                                    <a href="/jugadores/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
+                                    <h3>Lista de Equipos</h3>
+                                    <a href="/equipos/create" class="btn btn-primary btn-sm">Nuevo Equipo</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Nombre</th>
-                                                <th scope="col">Apellido</th>
-                                                <th scope="col">Nacimiento</th>
-                                                <th scope="col">Nacionalidad</th>
+                                                <th scope="col">Nombre corto</th>
+                                                <th scope="col">Tres letras</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($jugadores as $jugador)
+                                            @foreach ($equipos as $equipo)
                                             <tr>
-                                                <th scope="row">{{ $jugador->nombre }}</th>
-                                                <td>{{ $jugador->apellido }}</td>
-                                                <td>{{ $jugador->fnacimiento }}</td>
-                                                <td>{{ $jugador->nacionalidad }}</td>
+                                                <th scope="row">{{ $equipo->nombre }}</th>
+                                                <td>{{ $equipo->nomCorto }}</td>
+                                                <td>{{ $equipo->tresLetras }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

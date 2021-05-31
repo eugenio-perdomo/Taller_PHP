@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\jugadorController;
+use App\Http\Controllers\JugadorController;
+use App\Http\Controllers\EquipoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,11 +26,13 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('/jugadores', jugadorController::class);
+Route::resource('/jugadores', JugadorController::class);
 
 Route::get('/create', function(){
     return view('crearJugador');
 });
+
+Route::resource('/equipos', EquipoController::class);
 
 Auth::routes();
 

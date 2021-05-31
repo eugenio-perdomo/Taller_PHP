@@ -14,7 +14,8 @@ class JugadorController extends Controller
      */
     public function index()
     {
-        //
+        $jugadores = Jugador::all();
+        return view("jugadores.lista", compact("jugadores"));
     }
 
     /**
