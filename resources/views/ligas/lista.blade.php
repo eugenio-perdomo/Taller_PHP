@@ -19,26 +19,24 @@
                         <div class="col-md-8">
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h3>Lista de Jugadores</h3>
-                                    <a href="/jugadores/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
+                                    <h3>Lista de Ligas</h3>
+                                    <a href="/jugadores/create" class="btn btn-primary btn-sm">Nueva Liga</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Nombre</th>
-                                                <th scope="col">Apellido</th>
-                                                <th scope="col">Nacimiento</th>
-                                                <th scope="col">Nacionalidad</th>
+                                                <th scope="col">Participantes</th>
+                                                <th scope="col">Sistema de juego</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($jugadores as $jugador)
+                                            @foreach ($ligas as $liga)
                                             <tr>
-                                                <th scope="row">{{ $jugador->nombre }}</th>
-                                                <td>{{ $jugador->apellido }}</td>
-                                                <td>{{ $jugador->fNacimiento }}</td>
-                                                <td>{{ $jugador->nacionalidad }}</td>
+                                                <th scope="row">{{ $liga->nombreLiga }}</th>
+                                                <td>{{ $liga->participantes }}</td>
+                                                <td>{{ $liga->sistemaDeJuego }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

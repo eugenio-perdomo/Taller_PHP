@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\jugadorController;
+use App\Http\Controllers\JugadorController;
+use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\LigaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,11 +27,17 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('/jugadores', jugadorController::class);
+Route::resource('/jugadores', JugadorController::class);
 
-Route::get('/create', function(){
-    return view('crearJugador');
-});
+// Route::get('/create/agregar', function(){
+//     return view('jugadores.agregar');
+// });
+
+Route::resource('/equipos', EquipoController::class);
+
+
+
+Route::resource('/ligas', LigaController::class);
 
 Auth::routes();
 

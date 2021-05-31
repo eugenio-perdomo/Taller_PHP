@@ -14,7 +14,8 @@ class JugadorController extends Controller
      */
     public function index()
     {
-        //
+        $jugadores = Jugador::all();
+        return view("jugadores.index", compact("jugadores"));
     }
 
     /**
@@ -24,7 +25,7 @@ class JugadorController extends Controller
      */
     public function create()
     {
-        //
+        return view('jugadores.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class JugadorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'nacionalidad' => 'required',
+            'fnacimiento' => 'required'
+        ]);
+    
+        Jugador::create($request->all());
+     
+        return redirect()->route('jugadores.index')
+                        ->with('success','Se creo con exito el jugador.');
     }
 
     /**
@@ -46,7 +57,7 @@ class JugadorController extends Controller
      */
     public function show(Jugador $jugador)
     {
-        //
+        return view('jugadores.show',compact('jugador'));
     }
 
     /**
@@ -57,7 +68,7 @@ class JugadorController extends Controller
      */
     public function edit(Jugador $jugador)
     {
-        //
+        return view('jugadores.edit',compact('jugador'));
     }
 
     /**
@@ -69,7 +80,17 @@ class JugadorController extends Controller
      */
     public function update(Request $request, Jugador $jugador)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'nacionalidad' => 'required',
+            'fnacimiento' => 'required'
+        ]);
+    
+        $jugador->update($request->all());
+    
+        return redirect()->route('jugadores.index')
+                        ->with('success','Se actualizo correctamente');
     }
 
     /**
@@ -80,6 +101,9 @@ class JugadorController extends Controller
      */
     public function destroy(Jugador $jugador)
     {
-        //
+        $jugador->delete();
+    
+        return redirect()->route('jugadores.index')
+                        ->with('success','Se elimino correctamente');
     }
 }

@@ -14,7 +14,8 @@ class LigaController extends Controller
      */
     public function index()
     {
-        //
+        $ligas = Liga::all();
+        return view("ligas.lista", compact("ligas"));
     }
 
     /**
@@ -24,7 +25,7 @@ class LigaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

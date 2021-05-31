@@ -9,6 +9,13 @@ class Jugador extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'nacionalidad',
+        'fnacimiento'
+    ];
+
     public function roles(){
         return $this->belongsToMany('App\Models\Partido');
     }
