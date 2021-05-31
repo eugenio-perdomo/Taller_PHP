@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use DateTime;
 use App\Providers\RouteServiceProvider;
 use App\Models\Usuario;
 use App\Models\Normal;
 use App\Models\Editor;
 use App\Models\Administrador;
+use Carbon\Carbon;
 use Illuminate\Database\Schema\ForeignKeyDefinition;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -59,6 +61,7 @@ class RegisterController extends Controller
             'apellido' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'fNacimiento ' => ['nulleable', 'date'],
         ]);
     }
 
@@ -74,24 +77,20 @@ class RegisterController extends Controller
             'fNacimiento' => $data['fNacimiento'],
             'password' => Hash::make($data['password']),
         ]);
-
-        if($tipoUsuario == 'normal') {
-            $users = Usuario::where('username', $data['username']);
+        error_log($data['fNacimiento']);
+        if ($tipoUsuario == 'normal') {
             $normal = Normal::create([
                 'normal_id' => $user->id,
             ]);
-
-        } elseif($tipoUsuario == 'editor') {
-            $users = Usuario::where('username', $data['username']);
+        } elseif ($tipoUsuario == 'editor') {
             $editor = Editor::create([
                 'editor_id' => $user->id,
             ]);
-        } elseif($tipoUsuario == 'admin') {
-            $users = Usuario::where('username', $data['username']);
+        } elseif ($tipoUsuario == 'admin') {
             $admin = Administrador::create([
                 'administrador_id' => $user->id,
             ]);
         }
-        return($user);
+        return ($user);
     }
 }
