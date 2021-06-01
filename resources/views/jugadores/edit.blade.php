@@ -9,7 +9,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
-@include('layouts/master')
+@include('layouts/app')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">

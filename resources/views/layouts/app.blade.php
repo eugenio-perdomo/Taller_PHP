@@ -65,7 +65,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ url('/logout') }}">
-                                    {{ __('Log out') }}</a></li>
+                                    {{ __('Cerrar Sesión') }}</a></li>
                         </ul>
                     </li>
                     </form>
