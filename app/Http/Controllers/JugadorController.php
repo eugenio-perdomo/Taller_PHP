@@ -103,7 +103,6 @@ class JugadorController extends Controller
     public function destroy(Jugador $jugador)
     {
         $jugador->delete();
-    
         return redirect()->route('jugadores.index')
                         ->with('success','Se elimino correctamente');
     }

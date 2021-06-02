@@ -43,9 +43,9 @@
                                                     <td>{{ $jugador->fnacimiento }}</td>
                                                     <td>{{ $jugador->nacionalidad }}</td>
                                                     <td>
-                                                        <form action="{{ route('jugadores.destroy',$jugador) }}" method="POST">
-                                                            <a class="btn btn-info" href="{{ route('jugadores.show',$jugador) }}">Show</a>
-                                                            <a class="btn btn-primary" href="{{ route('jugadores.edit',$jugador) }}">Edit</a>
+                                                        <form action="{{ route('jugadores.destroy',$jugador->id) }}" method="POST">
+                                                            <a class="btn btn-info" href="{{ route('jugadores.show',$jugador->id) }}">Show</a>
+                                                            <a class="btn btn-primary" href="{{ route('jugadores.edit',$jugador->id) }}">Edit</a>
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Delete</button>
