@@ -35,8 +35,6 @@ Route::resource('/jugadores', JugadorController::class);
 
 Route::resource('/equipos', EquipoController::class);
 
-
-
 Route::resource('/ligas', LigaController::class);
 
 Auth::routes();

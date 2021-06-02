@@ -9,6 +9,13 @@ class Liga extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombreLiga',
+        'participantes',
+        'sistemaDeJuego'
+    ];
+
+
     public function roles(){
         return $this->belongsToMany(Equipo::class)->withTimestamps();
     }

@@ -25,7 +25,7 @@ class LigaController extends Controller
      */
     public function create()
     {
-        
+        return view('administrador.crearLiga');
     }
 
     /**
@@ -36,7 +36,16 @@ class LigaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombreLiga' => 'required',
+            'participantes' => 'required'
+            // 'sistemaDeJuego' => 'required'
+        ]);
+    
+        Liga::create($request->all());
+     
+        return redirect()->route('ligas.index')
+                        ->with('success','Se creo con exito la liga.');
     }
 
     /**

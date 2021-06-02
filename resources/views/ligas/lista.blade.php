@@ -20,7 +20,7 @@
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h3>Lista de Ligas</h3>
-                                    <a href="/jugadores/create" class="btn btn-primary btn-sm">Nueva Liga</a>
+                                    <a href="/ligas/create" class="btn btn-primary btn-sm">Nueva Liga</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">

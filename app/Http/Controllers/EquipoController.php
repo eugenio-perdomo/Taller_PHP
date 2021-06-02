@@ -25,7 +25,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        return view('administrador.crearEquipo');
     }
 
     /**
@@ -36,7 +36,16 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'nomCorto' => 'required',
+            'tresLetras' => 'required'
+        ]);
+    
+        Equipo::create($request->all());
+     
+        return redirect()->route('equipos.index')
+                        ->with('success','Se creo con exito el equipo.');
     }
 
     /**

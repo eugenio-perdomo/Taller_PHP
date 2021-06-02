@@ -5,7 +5,7 @@
             <div class="p-6 pb-3 bg-white border-b border-gray-200">
                 <div class="container mt-5 bg-light rounded">
                     <h2 class="text-center pt-4">Agregar nueva liga</h2>
-                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/liga">
+                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/ligas">
                         @csrf
                         @error('nombre')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -44,12 +44,12 @@
                                     Sistema de Juego
                                 </button>
 
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#" value="Solo_Ida">Solo Ida</a>
-                                    <a class="dropdown-item" href="#" value="Ida_y_Vuelta">Ida y Vuelta</a>
-                                    <a class="dropdown-item" href="#" value="Grupos_y_Eliminatoria">Grupos y Eliminatoria</a>
-                                    <a class="dropdown-item" href="#" value="Eliminatoria">Eliminatoria</a>
-                                </div>
+                                <select name="sistemaDeJuego">
+                                    <option class="dropdown-item" value="Ida_y_Vuelta">Ida y Vuelta</option>
+                                    <option class="dropdown-item" value="Solo_Ida">Solo Ida</option>
+                                    <option class="dropdown-item" value="Grupos_y_Eliminatoria">Grupos y Eliminatoria</option>
+                                    <option class="dropdown-item" value="Eliminatoria">Eliminatoria</option>
+                                </select>
                             </div>
                         </label>
 
