@@ -30,7 +30,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        return view('administrador.crearEquipo');
+        return view('administrador.equipos.crearEquipo');
     }
 
     /**
@@ -72,7 +72,7 @@ class EquipoController extends Controller
      */
     public function edit(Equipo $equipo)
     {
-        return view('equipo.edit',compact('equipo'));
+        return view('administrador.equipos.edit',compact('equipo'));
     }
 
     /**

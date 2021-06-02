@@ -30,7 +30,7 @@ class JugadorController extends Controller
      */
     public function create()
     {
-        return view('administrador.crearJugador');
+        return view('administrador.jugadors.crearJugador');
     }
 
     /**
@@ -63,7 +63,7 @@ class JugadorController extends Controller
      */
     public function show(Jugador $jugador)
     {
-        return view('jugadors.show',compact('jugador'));
+        return view('administrador.jugadors.show',compact('jugador'));
     }
 
     /**
@@ -74,7 +74,7 @@ class JugadorController extends Controller
      */
     public function edit(Jugador $jugador)
     {
-        return view('jugadors.edit',compact('jugador'));
+        return view('administrador.jugadors.edit',compact('jugador'));
     }
 
     /**

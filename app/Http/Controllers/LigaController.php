@@ -31,7 +31,7 @@ class LigaController extends Controller
      */
     public function create()
     {
-        return view('administrador.crearLiga');
+        return view('administrador.ligas.crearLiga');
     }
 
     /**
@@ -73,7 +73,7 @@ class LigaController extends Controller
      */
     public function edit(Liga $liga)
     {
-        return view('ligas.edit',compact('liga'));
+        return view('administrador.ligas.edit',compact('liga'));
     }
 
     /**
