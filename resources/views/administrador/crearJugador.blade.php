@@ -21,11 +21,26 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        @enderror @if ($errors->has('fnacimiento'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Fecha de nacimiento es requerida
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @enderror @if ($errors->has('nacionalidad'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            El nacionalidad es requerido
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         @endif
-                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Nombre</p><input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" value="{{old('nombre')}}"></label>
+
+                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Nombre de jugador</p><input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" value="{{old('nombre')}}"></label>
                         <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Apellido</p><input type="text" name="apellido" placeholder="Apellido" class="form-control mb-2" value="{{old('apellido')}}"></label>
-                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Fecha de Nacimiento</p><input type="date" name="fNacimiento" placeholder="Fecha de Nacimiento" class="form-control mb-2" value="{{old('fNacimiento')}}"></label>
-                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Nacionalidad</p><input type="text" name="nacionalidad" placeholder="País de Nacimiento" class="form-control mb-2" id=""></label>
+                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Fecha de Nacimiento</p><input type="date" name="fnacimiento" placeholder="Fecha de Nacimiento" class="form-control mb-2" value="{{old('fNacimiento')}}"></label>
+                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Nacionalidad</p><input type="text" name="nacionalidad" placeholder="País de Nacimiento" class="form-control mb-2" value="{{old('nacionalidad')}}"></label>
                         <button type="submit" href="/jugadores/create" class="btn btn-primary ms-3"> Agregar Jugador </button>
                     </form>
                 </div>

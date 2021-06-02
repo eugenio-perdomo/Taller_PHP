@@ -12,8 +12,9 @@ class Jugador extends Model
     protected $fillable = [
         'nombre',
         'apellido',
-        'nacionalidad',
-        'fnacimiento'
+        'fnacimiento',
+        'nacionalidad'
+        
     ];
 
     public function roles(){

@@ -15,7 +15,7 @@ class JugadorController extends Controller
     public function index()
     {
         $jugadores = Jugador::all();
-        return view("jugadores.index", compact("jugadores"));
+        return view("jugadores.lista", compact("jugadores"));
     }
 
     /**
@@ -39,8 +39,9 @@ class JugadorController extends Controller
         $request->validate([
             'nombre' => 'required',
             'apellido' => 'required',
-            'nacionalidad' => 'required',
-            'fnacimiento' => 'required'
+            'fnacimiento' => 'required',
+            'nacionalidad' => 'required'
+            
         ]);
     
         Jugador::create($request->all());
