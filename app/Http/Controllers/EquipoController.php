@@ -15,6 +15,11 @@ class EquipoController extends Controller
     public function index()
     {
         $equipos = Equipo::all();
+        return view("administrador.equipos.lista",compact("equipos"));
+    }
+
+    public function listaEquipos(){
+        $equipos = Equipo::all();
         return view("equipos.lista",compact("equipos"));
     }
 

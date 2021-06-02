@@ -20,7 +20,6 @@
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h3>Lista de Equipos</h3>
-                                    <a href="/equipos/create" class="btn btn-primary btn-sm">Nuevo Equipo</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
@@ -29,7 +28,6 @@
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">Nombre corto</th>
                                                 <th scope="col">Tres letras</th>
-                                                <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -38,15 +36,6 @@
                                                 <th scope="row">{{ $equipo->nombre }}</th>
                                                 <td>{{ $equipo->nomCorto }}</td>
                                                 <td>{{ $equipo->tresLetras }}</td>
-                                                <td>
-                                                    <form action="{{ route('equipos.destroy',$equipo->id) }}" method="POST">
-                                                        <a class="btn btn-info" href="{{ route('equipos.show',$equipo->id) }}">Show</a>
-                                                        <a class="btn btn-primary" href="{{ route('equipos.edit',$equipo->id) }}">Edit</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

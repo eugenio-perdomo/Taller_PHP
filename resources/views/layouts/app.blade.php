@@ -23,13 +23,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="/jugadors">Jugadores</a>
+                        <a class="nav-link text-light" aria-current="page" href="/jugadors/lista">Jugadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/equipos">Equipos</a>
+                        <a class="nav-link text-light" href="/equipos/lista">Equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/ligas">Ligas</a>
+                        <a class="nav-link text-light" href="/ligas/lista">Ligas</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,8 +46,9 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/jugadores/create">Crear Jugador</a></li>
-                            <li><a class="dropdown-item" href="/jugadores/create">Crear Equipo</a></li>
+                            <li><a class="dropdown-item" href="/jugadors">Administrar Jugadores</a></li>
+                            <li><a class="dropdown-item" href="/equipos">Administrar Equipos</a></li>
+                            <li><a class="dropdown-item" href="/ligas">Administrar Ligas</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -22,6 +22,7 @@
                                 <div class="card mt-4 shadow-lg">
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h3>Lista de Jugadores</h3>
+                                        <a href="/jugadors/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
                                     </div>
                                     <div class="card-body">
                                         <table class="table">
@@ -31,6 +32,7 @@
                                                     <th scope="col">Apellido</th>
                                                     <th scope="col">Nacimiento</th>
                                                     <th scope="col">Nacionalidad</th>
+                                                    <th width="280px">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -40,7 +42,17 @@
                                                     <td>{{ $jugador->apellido }}</td>
                                                     <td>{{ $jugador->fnacimiento }}</td>
                                                     <td>{{ $jugador->nacionalidad }}</td>
+                                                    <td>
+                                                        <form action="{{ route('jugadors.destroy',$jugador->id) }}" method="POST">
+                                                            <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Show</a>
+                                                            <a class="btn btn-primary" href="{{ route('jugadors.edit',$jugador->id) }}">Edit</a>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
+
                                                 @endforeach
                                             </tbody>
                                         </table>

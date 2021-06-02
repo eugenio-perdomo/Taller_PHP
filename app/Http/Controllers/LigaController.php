@@ -15,6 +15,12 @@ class LigaController extends Controller
     public function index()
     {
         $ligas = Liga::all();
+        return view("administrador.ligas.lista", compact("ligas"));
+    }
+
+    public function listaLigas()
+    {
+        $ligas = Liga::all();
         return view("ligas.lista", compact("ligas"));
     }
 
