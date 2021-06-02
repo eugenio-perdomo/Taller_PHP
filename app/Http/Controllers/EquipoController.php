@@ -56,7 +56,7 @@ class EquipoController extends Controller
      */
     public function show(Equipo $equipo)
     {
-        //
+        return view('equipos.show',compact('equipo'));
     }
 
     /**
@@ -67,7 +67,7 @@ class EquipoController extends Controller
      */
     public function edit(Equipo $equipo)
     {
-        //
+        return view('equipo.edit',compact('equipo'));
     }
 
     /**
@@ -79,7 +79,16 @@ class EquipoController extends Controller
      */
     public function update(Request $request, Equipo $equipo)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'nomCorto' => 'required',
+            'tresLetras' => 'required'
+        ]);
+    
+        $equipo->update($request->all());
+    
+        return redirect()->route('equipos.index')
+                        ->with('success','Se actualizo correctamente');
     }
 
     /**
@@ -90,6 +99,8 @@ class EquipoController extends Controller
      */
     public function destroy(Equipo $equipo)
     {
-        //
+        $equipo->delete();
+        return redirect()->route('equipos.index')
+                        ->with('success','Se elimino correctamente');
     }
 }

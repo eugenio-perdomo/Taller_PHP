@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('/jugadores', JugadorController::class);
+Route::resource('/jugadors', JugadorController::class);
 
 // Route::get('/create/agregar', function(){
 //     return view('jugadores.agregar');

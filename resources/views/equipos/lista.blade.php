@@ -29,6 +29,7 @@
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">Nombre corto</th>
                                                 <th scope="col">Tres letras</th>
+                                                <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -37,6 +38,15 @@
                                                 <th scope="row">{{ $equipo->nombre }}</th>
                                                 <td>{{ $equipo->nomCorto }}</td>
                                                 <td>{{ $equipo->tresLetras }}</td>
+                                                <td>
+                                                    <form action="{{ route('equipos.destroy',$equipo->id) }}" method="POST">
+                                                        <a class="btn btn-info" href="{{ route('equipos.show',$equipo->id) }}">Show</a>
+                                                        <a class="btn btn-primary" href="{{ route('equipos.edit',$equipo->id) }}">Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

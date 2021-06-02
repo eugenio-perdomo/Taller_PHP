@@ -22,7 +22,7 @@
                                 <div class="card mt-4 shadow-lg">
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h3>Lista de Jugadores</h3>
-                                        <a href="/jugadores/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
+                                        <a href="/jugadors/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
                                     </div>
                                     <div class="card-body">
                                         <table class="table">
@@ -43,9 +43,9 @@
                                                     <td>{{ $jugador->fnacimiento }}</td>
                                                     <td>{{ $jugador->nacionalidad }}</td>
                                                     <td>
-                                                        <form action="{{ route('jugadores.destroy',$jugador->id) }}" method="POST">
-                                                            <a class="btn btn-info" href="{{ route('jugadores.show',$jugador->id) }}">Show</a>
-                                                            <a class="btn btn-primary" href="{{ route('jugadores.edit',$jugador->id) }}">Edit</a>
+                                                        <form action="{{ route('jugadors.destroy',$jugador->id) }}" method="POST">
+                                                            <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Show</a>
+                                                            <a class="btn btn-primary" href="{{ route('jugadors.edit',$jugador->id) }}">Edit</a>
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Delete</button>

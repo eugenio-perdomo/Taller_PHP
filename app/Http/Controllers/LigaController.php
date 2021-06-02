@@ -56,7 +56,7 @@ class LigaController extends Controller
      */
     public function show(Liga $liga)
     {
-        //
+        return view('ligas.show',compact('liga'));
     }
 
     /**
@@ -67,7 +67,7 @@ class LigaController extends Controller
      */
     public function edit(Liga $liga)
     {
-        //
+        return view('ligas.edit',compact('liga'));
     }
 
     /**
@@ -79,7 +79,16 @@ class LigaController extends Controller
      */
     public function update(Request $request, Liga $liga)
     {
-        //
+        $request->validate([
+            'nombreLiga' => 'required',
+            'participantes' => 'required'
+            // 'sistemaDeJuego' => 'required'
+        ]);
+    
+        $liga->update($request->all());
+    
+        return redirect()->route('ligas.index')
+                        ->with('success','Se actualizo correctamente');
     }
 
     /**
@@ -90,6 +99,8 @@ class LigaController extends Controller
      */
     public function destroy(Liga $liga)
     {
-        //
+        $liga->delete();
+        return redirect()->route('ligas.index')
+                        ->with('success','Se elimino correctamente');
     }
 }

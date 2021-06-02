@@ -29,6 +29,7 @@
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">Participantes</th>
                                                 <th scope="col">Sistema de juego</th>
+                                                <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -37,6 +38,15 @@
                                                 <th scope="row">{{ $liga->nombreLiga }}</th>
                                                 <td>{{ $liga->participantes }}</td>
                                                 <td>{{ $liga->sistemaDeJuego }}</td>
+                                                <td>
+                                                    <form action="{{ route('ligas.destroy',$liga->id) }}" method="POST">
+                                                        <a class="btn btn-info" href="{{ route('ligas.show',$liga->id) }}">Show</a>
+                                                        <a class="btn btn-primary" href="{{ route('ligas.edit',$liga->id) }}">Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
