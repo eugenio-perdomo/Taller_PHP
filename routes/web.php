@@ -16,11 +16,11 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('/jugadores', JugadorController::class);
+Route::get('/jugadors/lista', [JugadorController::class,'listaJugadores']);
+Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
+Route::get('/equipos/lista', [EquipoController::class,'listaEquipos']);
 
-// Route::get('/create/agregar', function(){
-//     return view('jugadores.agregar');
-// });
+Route::resource('/jugadors', JugadorController::class);
 
 Route::resource('/equipos', EquipoController::class);
 

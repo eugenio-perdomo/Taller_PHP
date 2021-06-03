@@ -15,6 +15,11 @@ class EquipoController extends Controller
     public function index()
     {
         $equipos = Equipo::all();
+        return view("administrador.equipos.lista",compact("equipos"));
+    }
+
+    public function listaEquipos(){
+        $equipos = Equipo::all();
         return view("equipos.lista",compact("equipos"));
     }
 
@@ -25,7 +30,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        return view('administrador.crearEquipo');
+        return view('administrador.equipos.crearEquipo');
     }
 
     /**
@@ -56,7 +61,7 @@ class EquipoController extends Controller
      */
     public function show(Equipo $equipo)
     {
-        //
+        return view('equipos.show',compact('equipo'));
     }
 
     /**
@@ -67,7 +72,7 @@ class EquipoController extends Controller
      */
     public function edit(Equipo $equipo)
     {
-        //
+        return view('administrador.equipos.edit',compact('equipo'));
     }
 
     /**
@@ -79,7 +84,16 @@ class EquipoController extends Controller
      */
     public function update(Request $request, Equipo $equipo)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'nomCorto' => 'required',
+            'tresLetras' => 'required'
+        ]);
+    
+        $equipo->update($request->all());
+    
+        return redirect()->route('equipos.index')
+                        ->with('success','Se actualizo correctamente');
     }
 
     /**
@@ -90,6 +104,8 @@ class EquipoController extends Controller
      */
     public function destroy(Equipo $equipo)
     {
-        //
+        $equipo->delete();
+        return redirect()->route('equipos.index')
+                        ->with('success','Se elimino correctamente');
     }
 }

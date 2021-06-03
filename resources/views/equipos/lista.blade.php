@@ -20,7 +20,6 @@
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h3>Lista de Equipos</h3>
-                                    <a href="/equipos/create" class="btn btn-primary btn-sm">Nuevo Equipo</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
