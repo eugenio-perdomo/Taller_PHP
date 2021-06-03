@@ -1,11 +1,11 @@
-@include("layouts/app")
+@include("layouts/master")
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 pb-3 bg-white border-b border-gray-200">
                 <div class="container mt-5 bg-light rounded">
                     <h2 class="text-center pt-4">Agregar estadisticas de un partido</h2>
-                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/equipos">
+                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/estadisticas">
                         <!-- @csrf
                         @error('nombre')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -22,14 +22,8 @@
                             </button>
                         </div>
                         @endif -->
-                        - posesion : int
-                        - tirosTotales : int
-                        - tirosPuerta : int
-                        - corner : int
-                        - offside : int
-                        - faltas : int
-                        - amarillas : int
-                        - rojas : int
+
+                        <!-- No olvidarse de cambiar las rutas en el formulario y el boton del final -->
                         <p class="text-center p-1 text-light" style="background-color: #002766;">Para cada entrada escriba un número</p>
                         <br>
                         <label for="posesion">
