@@ -16,14 +16,8 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        $noticia = Noticia::create([
-            'username' => 'pablo.suarez',
-            'nombre' => 'Pablo',
-            'apellido' => 'Suárez',
-            'fNacimiento' => '1996-02-15',
-            'email' => 'pablo.suarez.urrutia@gmail.com',
-            'id_creador' => '1',
-        ]);
+        $noticias = Noticia::all();
+        return view("noticias.index",compact("noticias"));
     }
 
     /**

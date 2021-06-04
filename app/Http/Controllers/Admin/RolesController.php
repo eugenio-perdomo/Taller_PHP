@@ -8,8 +8,6 @@ use App\Models\Editor;
 use App\Models\Usuario;
 use App\Models\Normal;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class RolesController extends Controller

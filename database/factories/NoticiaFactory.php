@@ -23,8 +23,8 @@ class NoticiaFactory extends Factory
     {
         return [
             "tituloNoticia"=>$this->faker->word(20),
-            'copeteNoticia' => $this->faker->word(50),
-            'cuerpoNoticia' => $this->faker->word(500),
+            'copeteNoticia' => $this->faker->sentence(2),
+            'cuerpoNoticia' => $this->faker->text(255),
             'cantVisual' => $this->faker->numberBetween($min = 10, $max = 1000),
             'tipoNoticia' => $this->faker->randomElement(['Analisis', 'DatoColor','Fichaje','Información']),
             'id_creador' => '1',
