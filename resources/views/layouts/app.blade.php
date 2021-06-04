@@ -32,15 +32,15 @@
                         <a class="nav-link text-light" href="/ligas/lista">Ligas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{route('noticias.index')}}">Noticias</a>
+                        <a class="nav-link text-light" href="/noticia/index">Noticias</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Administración
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Crear Notas</a></li>
-                            <li><a class="dropdown-item" href="#">Modificar Notas</a></li>
+                            <li><a class="dropdown-item" href="/noticias/create">Crear Notas</a></li>
+                            <li><a class="dropdown-item" href="/noticias/edit">Modificar Notas</a></li>
                             <li><a class="dropdown-item" href="#">Eliminar Notas</a></li>
                             <li>
                                 <hr class="dropdown-divider">
