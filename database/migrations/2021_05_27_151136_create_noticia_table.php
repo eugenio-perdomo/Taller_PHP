@@ -15,6 +15,13 @@ class CreateNoticiaTable extends Migration
     {
         Schema::create('noticia', function (Blueprint $table) {
             $table->id();
+            $table->string('tituloNoticia');
+            $table->string('copeteNoticia');
+            $table->string('cuerpoNoticia');
+            $table->integer('cantVisual');
+            $table->string('tipoNoticia');
+            $table->unsignedBigInteger('id_creador'); 
+            $table->foreign('id_creador')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

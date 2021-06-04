@@ -31,6 +31,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/ligas/lista">Ligas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{{route('noticias.index')}}">Noticias</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Administración

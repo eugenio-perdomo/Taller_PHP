@@ -28,18 +28,19 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::resource('/jugadores', JugadorController::class)->names('jugadores');
-
 Route::resource('/roles', RolesController::class)->names('roles');
-Route::get('/jugadors/lista', [JugadorController::class,'listaJugadores']);
-Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
-Route::get('/equipos/lista', [EquipoController::class,'listaEquipos']);
 
+Route::resource('/noticias', NoticiaController::class)->names('noticias');
+
+Route::resource('/jugadores', JugadorController::class)->names('jugadores');
+Route::get('/jugadors/lista', [JugadorController::class,'listaJugadores']);
 Route::resource('/jugadors', JugadorController::class);
 
-Route::resource('/equipos', EquipoController::class);
-
+Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
 Route::resource('/ligas', LigaController::class);
+
+Route::get('/equipos/lista', [EquipoController::class,'listaEquipos']);
+Route::resource('/equipos', EquipoController::class);
 
 Auth::routes();
 
