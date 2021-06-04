@@ -32,8 +32,8 @@ Route::resource('/roles', RolesController::class)->names('roles');
 
 Route::resource('/noticias', NoticiaController::class)->names('noticias');
 
-Route::resource('/jugadores', JugadorController::class)->names('jugadores');
 Route::get('/jugadors/lista', [JugadorController::class,'listaJugadores']);
+Route::resource('/jugadores', JugadorController::class)->names('jugadores');
 Route::resource('/jugadors', JugadorController::class);
 
 Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
