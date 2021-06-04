@@ -42,10 +42,13 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Solicitudes de Administrador</a></li>
+                            @can('roles.index')
+                            <li><a class="dropdown-item" href="{{route('roles.index')}}">Solicitudes de Roles</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            @endcan
+
                             <li><a class="dropdown-item" href="/jugadores/create">Crear Jugador</a></li>
                             <li><a class="dropdown-item" href="/jugadores/create">Crear Equipo</a></li>
                         </ul>

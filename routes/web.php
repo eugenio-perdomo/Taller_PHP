@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\rolesController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', ['middleware' => 'auth', function() {
+Route::get('/', ['middleware' => 'auth', function () {
     return view('home');
 }]);
 
@@ -25,17 +26,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::resource('/jugadores', JugadorController::class);
+Route::resource('/jugadores', JugadorController::class)->names('jugadores');
+
+Route::resource('/roles', RolesController::class)->names('roles');
 
 // Route::get('/create/agregar', function(){
 //     return view('jugadores.agregar');
 // });
 
 Route::resource('/equipos', EquipoController::class);
-
-
 
 Route::resource('/ligas', LigaController::class);
 
