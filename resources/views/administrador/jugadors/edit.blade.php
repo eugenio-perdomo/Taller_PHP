@@ -40,7 +40,7 @@
                 <input type="text" name="nombre" class="form-control" value="{{$jugador->nombre}}" placeholder="Ingrese nombre">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-mdñ-12">
             <div class="form-group">
                 <strong>Apellido:</strong>
                 <input type="text" name="apellido" class="form-control"value="{{$jugador->apellido}}" placeholder="Ingrese apellido">

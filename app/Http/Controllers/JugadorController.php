@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class JugadorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:jugadores.index')->only('index');
+        $this->middleware('can:jugadores.create')->only('create', 'update', 'destroy');
+    }
+
     public function index()
     {
         $jugadores = Jugador::all();

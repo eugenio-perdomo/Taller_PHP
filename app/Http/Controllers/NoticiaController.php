@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Administrador;
+use App\Models\Editor;
 use App\Models\Noticias;
 
 class NoticiaController extends Controller
@@ -17,6 +19,24 @@ class NoticiaController extends Controller
         return view('noticias.create');
     }
 
+    /*
+    public function index()
+    {
+        $noticia = Noticia::create([
+            'username' => 'pablo.suarez',
+            'nombre' => 'Pablo',
+            'apellido' => 'Suárez',
+            'fNacimiento' => '1996-02-15',
+            'email' => 'pablo.suarez.urrutia@gmail.com',
+            'id_creador' => '1',
+        ]);
+    }
+
+    public function create()
+    {
+        //
+    }
+*/
     public function store(Request $request)
     {
         //

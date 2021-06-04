@@ -77,7 +77,6 @@ class RegisterController extends Controller
             'fNacimiento' => $data['fNacimiento'],
             'password' => Hash::make($data['password']),
         ]);
-        error_log($data['fNacimiento']);
         if ($tipoUsuario == 'normal') {
             $normal = Normal::create([
                 'normal_id' => $user->id,
@@ -91,6 +90,7 @@ class RegisterController extends Controller
                 'administrador_id' => $user->id,
             ]);
         }
+        $user->assignRole('Normal');
         return ($user);
     }
 }

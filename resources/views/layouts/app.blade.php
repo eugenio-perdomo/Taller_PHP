@@ -31,6 +31,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/ligas/lista">Ligas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{{route('noticias.index')}}">Noticias</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Administración
@@ -42,10 +45,14 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Solicitudes de Administrador</a></li>
+                            @can('roles.index')
+                            <li><a class="dropdown-item" href="{{route('roles.index')}}">Solicitudes de Roles</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            @endcan
+                            <li><a class="dropdown-item" href="/jugadores/create">Crear Jugador</a></li>
+                            <li><a class="dropdown-item" href="/jugadores/create">Crear Equipo</a></li>
                             <li><a class="dropdown-item" href="/jugadors">Administrar Jugadores</a></li>
                             <li><a class="dropdown-item" href="/equipos">Administrar Equipos</a></li>
                             <li><a class="dropdown-item" href="/ligas">Administrar Ligas</a></li>
