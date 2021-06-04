@@ -21,7 +21,6 @@ class RolesController extends Controller
 
     public function index()
     {
-
         $editores = Editor::where('confirmado', false)->get();
         $administradores = Administrador::where('confirmado', false)->get();;
         if ($editores->count() > 0) {

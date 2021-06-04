@@ -26,11 +26,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'jugadores.edit'])->assignRole($role1);
         Permission::create(['name' => 'jugadores.destroy'])->assignRole($role1);
 
-        Permission::create(['name' => 'roles.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'roles.index'])->syncRoles($role1);
         Permission::create(['name' => 'roles.update'])->assignRole($role1);
         Permission::create(['name' => 'roles.destroy'])->assignRole($role1);
-
-
 
         /*$role->revokePermissionTo($permission); opciones para revocar permisos
         $permission->removeRole($role);*/
