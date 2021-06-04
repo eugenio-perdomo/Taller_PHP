@@ -9,12 +9,12 @@ class NoticiaController extends Controller
 {
     public function index()
     {
-        //
+        return view('noticias.index');
     }
 
     public function create()
     {
-        //
+        return view('noticias.create');
     }
 
     public function store(Request $request)
@@ -24,12 +24,12 @@ class NoticiaController extends Controller
 
     public function show(Noticias $noticia)
     {
-        //
+        return view('noticias.show', compact('noticia'));
     }
 
     public function edit(Noticias $noticia)
     {
-        //
+        return view('noticias.edit', compact('noticia'));
     }
 
     public function update(Request $request, Noticias $noticia)

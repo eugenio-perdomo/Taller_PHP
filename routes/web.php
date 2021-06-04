@@ -32,6 +32,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-// Esta puede ir un nuevo archivo admin.php
 Route::resource('/noticia', NoticiaController::class)->names('web.noticia');
 
