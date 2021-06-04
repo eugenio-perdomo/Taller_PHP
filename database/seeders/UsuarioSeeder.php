@@ -28,6 +28,7 @@ class UsuarioSeeder extends Seeder
         ])->assignRole('Admin');
         Administrador::create([
             'administrador_id' => $user->id,
+            'confirmado' => true,
         ]);
 
         /*$role->revokePermissionTo($permission); opciones para revocar permisos

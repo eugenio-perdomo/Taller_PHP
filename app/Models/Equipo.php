@@ -9,6 +9,12 @@ class Equipo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'nomCorto',
+        'tresLetras'
+    ];
+
     public function rolesligas(){
         return $this->belongsToMany('App\Models\Liga');
     }

@@ -12,11 +12,8 @@
 @include('layouts/app')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Agregar jugador</h2>
-        </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('jugadores.index') }}"> Regresar</a>
+            <a class="btn btn-primary" href="{{ route('jugadors.index') }}"> Regresar</a>
         </div>
     </div>
 </div>
@@ -32,32 +29,33 @@
     </div>
 @endif
    
-<form action="{{ route('jugadores.store') }}" method="POST">
+<form action="{{ route('jugadors.update',$jugador->id) }}" method="POST">
     @csrf
-  
+    @method('PUT')
+
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-                <input type="text" name="nombre" class="form-control" placeholder="Ingrese nombre">
+                <input type="text" name="nombre" class="form-control" value="{{$jugador->nombre}}" placeholder="Ingrese nombre">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Apellido:</strong>
-                <input type="text" name="apellido" class="form-control" placeholder="Ingrese apellido">
+                <input type="text" name="apellido" class="form-control"value="{{$jugador->apellido}}" placeholder="Ingrese apellido">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nacionalidad:</strong>
-                <input type="text" name="nacionalidad" class="form-control" placeholder="Ingrese nacionalidad">
+                <input type="text" name="nacionalidad" class="form-control" value="{{$jugador->nacionalidad}}" placeholder="Ingrese nacionalidad">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Fecha de nacimiento:</strong>
-                <input type="date" name="fnacimiento" class="form-control" placeholder="Ingrese fecha nacimiento">
+                <input type="date" name="fnacimiento" class="form-control" value="{{$jugador->fnacimiento}}" placeholder="Ingrese fecha nacimiento">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -19,23 +19,34 @@
                         <div class="col-md-8">
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h3>Lista de Ligas</h3>
+                                    <h3>Lista de Equipos</h3>
+                                    <a href="/equipos/create" class="btn btn-primary btn-sm">Nuevo Equipo</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Nombre</th>
-                                                <th scope="col">Participantes</th>
-                                                <th scope="col">Sistema de juego</th>
+                                                <th scope="col">Nombre corto</th>
+                                                <th scope="col">Tres letras</th>
+                                                <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($ligas as $liga)
+                                            @foreach ($equipos as $equipo)
                                             <tr>
-                                                <th scope="row">{{ $liga->nombreLiga }}</th>
-                                                <td>{{ $liga->participantes }}</td>
-                                                <td>{{ $liga->sistemaDeJuego }}</td>
+                                                <th scope="row">{{ $equipo->nombre }}</th>
+                                                <td>{{ $equipo->nomCorto }}</td>
+                                                <td>{{ $equipo->tresLetras }}</td>
+                                                <td>
+                                                    <form action="{{ route('equipos.destroy',$equipo->id) }}" method="POST">
+                                                        <a class="btn btn-info" href="{{ route('equipos.show',$equipo->id) }}">Show</a>
+                                                        <a class="btn btn-primary" href="{{ route('equipos.edit',$equipo->id) }}">Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
