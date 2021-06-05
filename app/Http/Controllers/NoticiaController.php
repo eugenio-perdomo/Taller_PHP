@@ -25,7 +25,7 @@ class NoticiaController extends Controller
     public function listaNoticias()
     {
         $equipos = Noticias::all();
-        return view("noticias.lista",compact("noticia"));
+        return view("noticias.show",compact("noticia"));
     }
 
     public function create()

@@ -32,7 +32,7 @@
                         <a class="nav-link text-light" href="/ligas/lista">Ligas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/noticia/lista">Noticias</a>
+                        <a class="nav-link text-light" href="/lista">Noticias</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
