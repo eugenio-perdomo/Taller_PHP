@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\rolesController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
+use App\Http\Controllers\Admin\RolesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NoticiaController;
@@ -40,4 +40,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::resource('/noticias', NoticiaController::class)->names('noticias.index');
+Route::resource('/noticia', NoticiaController::class)->names('noticias.index');

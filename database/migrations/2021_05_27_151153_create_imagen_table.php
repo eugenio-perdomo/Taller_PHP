@@ -15,6 +15,8 @@ class CreateImagenTable extends Migration
     {
         Schema::create('imagen', function (Blueprint $table) {
             $table->id();
+            //$table->string('titulo'); //titulo descriptivo, ¿lo agregamos?
+            $table->string('direccion');
             $table->timestamps();
         });
     }
