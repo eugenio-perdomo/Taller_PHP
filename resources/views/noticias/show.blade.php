@@ -19,13 +19,13 @@
 				<div class="card col-3 m-2 text-center">
 					<div class="card-header">
 						<h1><a class="text-reset text-decoration-none" href="#">
-								{{$nota->tituloNoticia}}
+								{{ $nota ->tituloNoticia }}
 							</a>
 						</h1>
 					</div><a class="text-reset text-decoration-none mt-1" href="#">
 						<div class="card-body w-full h-80">
 							<h1>
-								{{$nota->copeteNoticia}}
+								{{ $nota->copeteNoticia }}
 							</h1>
 						</div>
 					</a>

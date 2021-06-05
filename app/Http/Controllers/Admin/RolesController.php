@@ -23,10 +23,6 @@ class RolesController extends Controller
     {
         $editores = Editor::where('confirmado', false)->get();
         $administradores = Administrador::where('confirmado', false)->get();;
-        if ($editores->count() > 0) {
-        }
-        if ($administradores->count() > 0) {
-        }
 
         return view("roles.index", compact(["editores", "administradores"]));
     }
@@ -118,16 +114,14 @@ class RolesController extends Controller
         if ($editor->count() > 0) {
             $editor->delete();
             $user = Usuario::where('id', $id)->first();
-            $user->assignRole('Normal');
-            $normal = Normal::create([
+            Normal::create([
                 'normal_id' => $user->id,
             ]);
         } else {
             if ($administrador->count() > 0) {
                 $administrador->delete();
                 $user = Usuario::where('id', $id)->first();
-                $user->assignRole('Normal');
-                $normal = Normal::create([
+                Normal::create([
                     'normal_id' => $user->id,
                 ]);
             }

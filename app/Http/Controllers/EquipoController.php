@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipo;
+use App\Models\Jugador;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
@@ -31,6 +32,11 @@ class EquipoController extends Controller
     public function create()
     {
         return view('administrador.equipos.crearEquipo');
+    }
+
+    public function jugadoresByEquipo(Equipo $equipo){
+        $jugadores = Jugador::where('equipo_id', $equipo->id);
+        return view('equipos.mostrarEquipo', compact(['jugadores', 'equipo']));
     }
 
     /**
