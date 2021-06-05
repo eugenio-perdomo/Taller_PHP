@@ -40,11 +40,8 @@
 
                         <label for="sistemaDeJuego">
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" style="background-color: #002766;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Sistema de Juego
-                                </button>
 
-                                <select name="sistemaDeJuego">
+                                <select class="btn text-white" style="background-color: #002766;" name="sistemaDeJuego">
                                     <option class="dropdown-item" value="Ida_y_Vuelta">Ida y Vuelta</option>
                                     <option class="dropdown-item" value="Solo_Ida">Solo Ida</option>
                                     <option class="dropdown-item" value="Grupos_y_Eliminatoria">Grupos y Eliminatoria</option>

@@ -11,8 +11,14 @@ class NoticiaController extends Controller
 {
     public function index()
     {
+        $noticias = Noticias::all();
+        return view('noticias.index',compact("noticias"));
+    }
+
+    public function listaNoticias()
+    {
         $noticias = Noticias::paginate(20);
-        return view('noticias.index', compact("noticias"));
+        return view('noticias.lista',compact("noticias"));
     }
 
     public function create()
@@ -20,18 +26,6 @@ class NoticiaController extends Controller
         return view('noticias.create');
     }
 
-    /*
-    public function index()
-    {
-        $noticias = Noticia::all();
-        return view("noticias.index",compact("noticias"));
-    }
-
-    public function create()
-    {
-        //
-    }
-*/
     public function store(Request $request)
     {
         //

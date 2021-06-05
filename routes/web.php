@@ -32,6 +32,7 @@ Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
 Route::resource('/ligas', LigaController::class);
 
 Route::get('/equipos/lista', [EquipoController::class,'listaEquipos']);
+Route::get('/equipos/mostrar/{id}', [EquipoController::class,'jugadoresByEquipo']);
 Route::resource('/equipos', EquipoController::class);
 
 Auth::routes();
@@ -40,4 +41,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::resource('/noticia', NoticiaController::class)->names('noticias.index');
+Route::get('/noticia/lista', [NoticiaController::class, 'listaNoticias']);
+Route::resource('/noticia', NoticiaController::class)->names('noticias');
