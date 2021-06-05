@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Noticia as ModelsNoticia;
+use App\Models\Noticias as ModelsNoticia;
 
 use Ramsey\Uuid\Type\Integer;
 

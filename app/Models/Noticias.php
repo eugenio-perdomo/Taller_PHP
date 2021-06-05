@@ -5,9 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Noticia extends Model
+class Noticias extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+    'tituloNoticia',
+    'copeteNoticia',
+    'cuerpoNoticia',
+    'tipoNoticia'
+    ];
 
     protected $table = 'noticia';
 }

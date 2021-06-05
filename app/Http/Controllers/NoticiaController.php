@@ -5,13 +5,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Administrador;
 use App\Models\Editor;
-use App\Models\Noticia;
+use App\Models\Noticias;
 
 class NoticiaController extends Controller
 {
     public function index()
     {
-        $noticia = Noticia::create([
+        $noticia = Noticias::create([
             'username' => 'pablo.suarez',
             'nombre' => 'Pablo',
             'apellido' => 'Suárez',
@@ -20,6 +20,12 @@ class NoticiaController extends Controller
             'id_creador' => '1',
         ]);
         return view('noticias.index');
+    }
+
+    public function listaNoticias()
+    {
+        $equipos = Noticias::all();
+        return view("noticias.lista",compact("noticia"));
     }
 
     public function create()
@@ -32,22 +38,22 @@ class NoticiaController extends Controller
         //
     }
 
-    public function show(Noticia $noticia)
+    public function show(Noticias $noticia)
     {
         return view('noticias.show', compact('noticia'));
     }
 
-    public function edit(Noticia $noticia)
+    public function edit(Noticias $noticia)
     {
         return view('noticias.edit', compact('noticia'));
     }
 
-    public function update(Request $request, Noticia $noticia)
+    public function update(Request $request, Noticias $noticia)
     {
         //
     }
 
-    public function destroy(Noticia $noticia)
+    public function destroy(Noticias $noticia)
     {
         //
     }
