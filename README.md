@@ -42,3 +42,10 @@
 `1. git fetch --all`
 
 `2. git reset --hard origin/main`
+
+-----------------------------------------------------------
+
+php artisan make:model perro -m // modelo y migracion
+php artisan migrate // crea la bd, mirar que .env este bien escrito
+php artisan migrate:rollback
+php artisan migrate:fresh --seed
