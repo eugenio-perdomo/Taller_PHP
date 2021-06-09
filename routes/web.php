@@ -32,8 +32,8 @@ Route::resource('/jugadors', JugadorController::class);
 Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
 Route::resource('/ligas', LigaController::class);
 
-Route::get('/equipos/agregar', [EquipoController::class,'listarJugadores'])->name('equipos.agregar');
-Route::get('/equipos/vincular', [EquipoController::class,'vincularJugador'])->name('equipo.vincular');
+Route::get('/equipos/{idequipo}/agregar', [EquipoController::class,'listarJugadores'])->name('equipos.agregar');
+Route::get('/equipos/{idEquipo}/vincular/{idJugador}', [EquipoController::class,'vincularJugador'])->name('equipo.vincular');
 Route::get('/equipos/lista', [EquipoController::class,'listaEquipos']);
 Route::resource('/equipos', EquipoController::class);
 

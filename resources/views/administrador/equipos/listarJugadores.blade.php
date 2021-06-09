@@ -45,7 +45,7 @@
                                                     <td>{{ $jugadorLibre->fnacimiento }}</td>
                                                     <td>{{ $jugadorLibre->nacionalidad }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('equipo.vincular', $equipo->id) }}" class="btn btn-primary">Agregar</a>
+                                                        <a href="{{ route('equipo.vincular', ["idEquipo"=>$equipo->id, "idJugador"=>$jugadorLibre->id]) }}" class="btn btn-primary">Agregar</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

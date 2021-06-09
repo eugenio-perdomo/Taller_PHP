@@ -36,14 +36,14 @@ class EquipoController extends Controller
         return view('administrador.equipos.crearEquipo');
     }
 
-    public function listarJugadores(Equipo $equipo)
+    public function listarJugadores($idequipo)
     {
-        echo 'Hola: ' . $equipo;
+        echo 'Hola: ' . $idequipo;
         $jugadoresLibres = Jugador::whereNull('equipo_id')->get();
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
             ->select('jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
             ->WhereNotNull('equipo_id')->get();
-
+        $equipo = Equipo::where("id",$idequipo)->first();
         return view("administrador.equipos.listarJugadores", compact(["jugadoresLibres", "jugadores", "equipo"]));
     }
 
@@ -52,10 +52,12 @@ class EquipoController extends Controller
         $jugador = Jugador::where('id', $idJugador)->first();
         if ($jugador->equipo_id == null) {
             $jugador->equipo_id = $idEquipo;
+            return "equipo";
         } else {
             $equipo = Equipo::where('id', $idEquipo)->first();
-            return redirect()->route('administrador.equipo.vincularJugador')
-                ->with($equipo->nombre);
+            // return redirect()->route('administrador.equipo.vincularJugador')
+                // ->with($equipo->nombre);
+            return "else";
         }
     }
 
