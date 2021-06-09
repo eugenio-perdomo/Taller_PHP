@@ -62,7 +62,7 @@ class LigaController extends Controller
      */
     public function show(Liga $liga)
     {
-        return view('ligas.show',compact('liga'));
+        return view('administrador.ligas.show',compact('liga'));
     }
 
     /**
