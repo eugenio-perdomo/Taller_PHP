@@ -33,10 +33,11 @@
                                             <tbody>
                                                 <h3>Editor</h3>
                                                 <hr>
+                                                @if($editores->count() > 0)
                                                 @foreach ($editores as $editor)
                                                 <tr>
                                                     <th scope="row">{{ $editor->editor_id }}</th>
-                                                    <th scope="row">{{ $editor->editor_id }}</th>
+                                                    <th scope="row">{{ $editor->nombre }}</th>
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -57,6 +58,9 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                @else
+                                                <td class="fw-bold pt-3 alert text-center">No hay solicitudes pendientes</td>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -72,10 +76,11 @@
                                             <tbody>
                                                 <h3>Administrador</h3>
                                                 <hr>
+                                                @if($administradores->count() > 0)
                                                 @foreach ($administradores as $administrador)
                                                 <tr>
                                                     <th scope="row">{{ $administrador->administrador_id }}</th>
-                                                    <th scope="row">{{ $administrador->administrador_id }}</th>
+                                                    <th scope="row">{{ $administrador->nombre }}</th>
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -96,6 +101,9 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                @else
+                                                <td class="fw-bold pt-3 alert text-center">No hay solicitudes pendientes</td>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

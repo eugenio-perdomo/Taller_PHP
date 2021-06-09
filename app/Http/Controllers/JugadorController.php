@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Jugador;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
+
 class JugadorController extends Controller
 {
     public function __construct()
@@ -19,7 +22,8 @@ class JugadorController extends Controller
         return view("administrador.jugadors.lista", compact("jugadores"));
     }
 
-    public function listaJugadores(){
+    public function listaJugadores()
+    {
         $jugadores = Jugador::all();
         return view("jugadors.lista", compact("jugadores"));
     }
@@ -47,13 +51,13 @@ class JugadorController extends Controller
             'apellido' => 'required',
             'fnacimiento' => 'required',
             'nacionalidad' => 'required'
-            
+
         ]);
-    
+
         Jugador::create($request->all());
-     
+
         return redirect()->route('jugadors.index')
-                        ->with('success','Se creo con exito el jugador.');
+            ->with('success', 'Se creo con exito el jugador.');
     }
 
     /**
@@ -64,7 +68,7 @@ class JugadorController extends Controller
      */
     public function show(Jugador $jugador)
     {
-        return view('administrador.jugadors.show',compact('jugador'));
+        return view('administrador.jugadors.show', compact('jugador'));
     }
 
     /**
@@ -75,7 +79,7 @@ class JugadorController extends Controller
      */
     public function edit(Jugador $jugador)
     {
-        return view('administrador.jugadors.edit',compact('jugador'));
+        return view('administrador.jugadors.edit', compact('jugador'));
     }
 
     /**
@@ -93,11 +97,11 @@ class JugadorController extends Controller
             'nacionalidad' => 'required',
             'fnacimiento' => 'required'
         ]);
-    
+
         $jugador->update($request->all());
-    
+
         return redirect()->route('jugadors.index')
-                        ->with('success','Se actualizo correctamente');
+            ->with('success', 'Se actualizo correctamente');
     }
 
     /**
@@ -110,6 +114,6 @@ class JugadorController extends Controller
     {
         $jugador->delete();
         return redirect()->route('jugadors.index')
-                        ->with('success','Se elimino correctamente');
+            ->with('success', 'Se elimino correctamente');
     }
 }
