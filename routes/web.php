@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RolesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NoticiaController;
+use App\Models\Jugador;
 
 Route::get('/', ['middleware' => 'auth', function () {
     return view('home');
@@ -31,8 +32,9 @@ Route::resource('/jugadors', JugadorController::class);
 Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
 Route::resource('/ligas', LigaController::class);
 
+Route::get('/equipos/agregar', [EquipoController::class,'listarJugadores'])->name('equipos.agregar');
+Route::get('/equipos/vincular', [EquipoController::class,'vincularJugador'])->name('equipo.vincular');
 Route::get('/equipos/lista', [EquipoController::class,'listaEquipos']);
-Route::get('/equipos/mostrar/{id}', [EquipoController::class,'jugadoresByEquipo']);
 Route::resource('/equipos', EquipoController::class);
 
 Auth::routes();

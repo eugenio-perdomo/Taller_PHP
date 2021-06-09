@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 class RolesController extends Controller
 {
     use HasRoles;
-    
+
     public function __construct()
     {
         $this->middleware('can:roles.index');
@@ -21,8 +21,13 @@ class RolesController extends Controller
 
     public function index()
     {
-        $editores = Editor::where('confirmado', false)->get();
-        $administradores = Administrador::where('confirmado', false)->get();;
+        $editores = Editor::join('usuarios', 'editor.editor_id', '=', 'usuarios.id')
+            ->select('editor.editor_id', 'usuarios.nombre')
+            ->where('confirmado', false)->get();
+
+        $administradores = Administrador::join('usuarios', 'administrador.administrador_id', '=', 'usuarios.id')
+            ->select('administrador.administrador_id', 'usuarios.nombre')
+            ->where('confirmado', false)->get();
 
         return view("roles.index", compact(["editores", "administradores"]));
     }
