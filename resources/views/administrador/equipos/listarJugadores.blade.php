@@ -81,7 +81,7 @@
                                                         <form action="#" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-warning">Agregar</button>
+                                                            <a href="{{ route('equipo.vincular', ["idEquipo"=>$equipo->id, "idJugador"=>$jugadorLibre->id]) }}" class="btn btn-warning">Agregar</a>
                                                         </form>
                                                     </td>
                                                 </tr>

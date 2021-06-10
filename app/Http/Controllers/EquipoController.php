@@ -7,6 +7,8 @@ use App\Models\Jugador;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isNull;
+
 class EquipoController extends Controller
 {
     /**
@@ -36,27 +38,34 @@ class EquipoController extends Controller
         return view('administrador.equipos.crearEquipo');
     }
 
-    public function listarJugadores($idequipo)
+    public function listarJugadores($idEquipo)
     {
-        echo 'Hola: ' . $idequipo;
+        echo 'Hola: ' . $idEquipo;
         $jugadoresLibres = Jugador::whereNull('equipo_id')->get();
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
             ->select('jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
-            ->WhereNotNull('equipo_id')->get();
-        $equipo = Equipo::where("id",$idequipo)->first();
+            ->WhereNotNull('equipo_id')
+            ->where('equipo_id', '!=', $idEquipo)
+            ->get();
+        $equipo = Equipo::where("id", $idEquipo)->first();
         return view("administrador.equipos.listarJugadores", compact(["jugadoresLibres", "jugadores", "equipo"]));
     }
 
     public function vincularJugador($idEquipo, $idJugador)
     {
+        echo "Equipo: " . $idEquipo."<br>";
+        echo "Jugador: " . $idJugador."<br>";
         $jugador = Jugador::where('id', $idJugador)->first();
-        if ($jugador->equipo_id == null) {
+        if (isNull($jugador->equipo_id)) {
             $jugador->equipo_id = $idEquipo;
+            $jugador->save();
+            echo "JugadorEquipo: " . $jugador->equipo_id."<br>";
+
             return "equipo";
         } else {
             $equipo = Equipo::where('id', $idEquipo)->first();
             // return redirect()->route('administrador.equipo.vincularJugador')
-                // ->with($equipo->nombre);
+            // ->with($equipo->nombre);
             return "else";
         }
     }
