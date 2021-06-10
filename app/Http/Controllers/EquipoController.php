@@ -43,7 +43,7 @@ class EquipoController extends Controller
         echo 'Hola: ' . $idEquipo;
         $jugadoresLibres = Jugador::whereNull('equipo_id')->get();
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
-            ->select('jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
+            ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
             ->WhereNotNull('equipo_id')
             ->where('equipo_id', '!=', $idEquipo)
             ->get();
@@ -53,19 +53,20 @@ class EquipoController extends Controller
 
     public function vincularJugador($idEquipo, $idJugador)
     {
-        echo "Equipo: " . $idEquipo."<br>";
-        echo "Jugador: " . $idJugador."<br>";
+        echo "Equipo: " . $idEquipo . "<br>";
+        echo "Jugador: " . $idJugador . "<br>";
+
         $jugador = Jugador::where('id', $idJugador)->first();
-        if (isNull($jugador->equipo_id)) {
+        echo "JugadorEquipo: " . $jugador->equipo_id . "<br>";
+        if ($jugador->equipo_id == null) {
             $jugador->equipo_id = $idEquipo;
             $jugador->save();
-            echo "JugadorEquipo: " . $jugador->equipo_id."<br>";
+            echo "JugadorEquipo: " . $jugador->equipo_id . "<br>";
 
             return "equipo";
         } else {
-            $equipo = Equipo::where('id', $idEquipo)->first();
-            // return redirect()->route('administrador.equipo.vincularJugador')
-            // ->with($equipo->nombre);
+            $jugador->equipo_id = $idEquipo;
+            $jugador->save();
             return "else";
         }
     }
