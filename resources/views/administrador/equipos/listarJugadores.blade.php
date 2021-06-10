@@ -47,7 +47,7 @@
                                                             <td>{{ $jugadorLibre->nacionalidad }}</td>
                                                             <td class="text-center">
                                                                 <a href="{{ route('equipo.vincular', ['idEquipo' => $equipo->id, 'idJugador' => $jugadorLibre->id]) }}"
-                                                                    onclick="return confirm('Are you sure?')"
+                                                                    onclick="return confirm('Desea agregar el jugador: {{$jugadorLibre->nombre}} al equipo: {{$equipo->nombre}}')"
                                                                     class="btn btn-primary">Agregar</a>
                                                             </td>
                                                         </tr>

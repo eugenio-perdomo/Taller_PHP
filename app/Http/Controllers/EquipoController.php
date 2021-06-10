@@ -40,7 +40,6 @@ class EquipoController extends Controller
 
     public function listarJugadores($idEquipo)
     {
-        echo 'Hola: ' . $idEquipo;
         $jugadoresLibres = Jugador::whereNull('equipo_id')->get();
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
             ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
@@ -53,22 +52,17 @@ class EquipoController extends Controller
 
     public function vincularJugador($idEquipo, $idJugador)
     {
-        echo "Equipo: " . $idEquipo . "<br>";
-        echo "Jugador: " . $idJugador . "<br>";
-
         $jugador = Jugador::where('id', $idJugador)->first();
-        echo "JugadorEquipo: " . $jugador->equipo_id . "<br>";
-        if ($jugador->equipo_id == null) {
+        /* if ($jugador->equipo_id == null) { */
             $jugador->equipo_id = $idEquipo;
             $jugador->save();
-            echo "JugadorEquipo: " . $jugador->equipo_id . "<br>";
 
-            return "equipo";
-        } else {
+            return view("administrador.equipos.vincularJugador", compact(["jugador","idEquipo"]));
+        /*} else {
             $jugador->equipo_id = $idEquipo;
             $jugador->save();
             return "else";
-        }
+        }*/
     }
 
     /**
@@ -100,7 +94,6 @@ class EquipoController extends Controller
     public function show(Equipo $equipo)
     {
         $jugadores = Jugador::where('equipo_id', $equipo->id)->get();
-        echo 'Hola: ' . $equipo;
         return view('equipos.mostrarEquipo', compact(['jugadores', 'equipo']));
     }
 

@@ -11,7 +11,7 @@
 <body>
 @include('layouts/app')
 <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-7 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200 pb-5">
                 <div class="container">
@@ -40,11 +40,11 @@
                                                 <td>{{ $equipo->tresLetras }}</td>
                                                 <td>
                                                     <form action="{{ route('equipos.destroy',$equipo->id) }}" method="POST">
-                                                        <a class="btn btn-info" href="{{ route('equipos.show',$equipo->id) }}">Show</a>
-                                                        <a class="btn btn-primary" href="{{ route('equipos.edit',$equipo) }}">Edit</a>
+                                                        <a class="btn btn-info" href="{{ route('equipos.show',$equipo->id) }}">Mostrar</a>
+                                                        <a class="btn btn-primary" href="{{ route('equipos.edit',$equipo) }}">Editar</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar el equipo: {{$equipo->nombre}}?')" >Eliminar</button>
                                                     </form>
                                                 </td>
                                             </tr>
