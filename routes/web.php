@@ -33,9 +33,11 @@ Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
 Route::resource('/ligas', LigaController::class);
 
 Route::get('/equipos/{idequipo}/agregar', [EquipoController::class,'listarJugadores'])->name('equipos.agregar');
+Route::get('/equipos/{idEquipo}/quitar/{idJugador}', [EquipoController::class,'quitarJugador'])->name('equipos.quitar');
 Route::get('/equipos/{idEquipo}/vincular/{idJugador}', [EquipoController::class,'vincularJugador'])->name('equipo.vincular');
-Route::get('/equipos/lista', [EquipoController::class,'listaEquipos']);
-Route::resource('/equipos', EquipoController::class);
+Route::get('/equipos/{idEquipo}/listar/{idJugador}', [EquipoController::class,'listarOpciones'])->name('equipo.listarOpciones');
+Route::get('/equipos/lista', [EquipoController::class,'listaEquipos'])->name('equipo.lista');
+Route::resource('/equipos', EquipoController::class)->names('equipos');
 
 Auth::routes();
 

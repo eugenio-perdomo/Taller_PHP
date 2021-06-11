@@ -43,7 +43,7 @@
                                                     <td>{{ $jugador->apellido }}</td>
                                                     <td>{{ $jugador->fnacimiento }}</td>
                                                     <td>{{ $jugador->nacionalidad }}</td>
-                                                    <td>{{ $jugador->equipo_id }}</td>
+                                                    <td>{{ $jugador->teamName }}</td>
                                                     <td>
                                                         <form action="{{ route('jugadors.destroy',$jugador->id) }}" method="POST">
                                                             <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Show</a>

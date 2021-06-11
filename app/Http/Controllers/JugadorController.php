@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
 use App\Models\Jugador;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,9 @@ class JugadorController extends Controller
 
     public function index()
     {
-        $jugadores = Jugador::all();
+        $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
+        ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
+        ->get();
         return view("administrador.jugadors.lista", compact("jugadores"));
     }
 
@@ -68,7 +71,13 @@ class JugadorController extends Controller
      */
     public function show(Jugador $jugador)
     {
-        return view('administrador.jugadors.show', compact('jugador'));
+        if($jugador->equipo_id != null){
+            $equipo = Equipo::where('id', $jugador->equipo_id)->first();
+        }
+        else {
+            $equipo = null;
+        }
+        return view('administrador.jugadors.show', compact(['jugador', 'equipo']));
     }
 
     /**

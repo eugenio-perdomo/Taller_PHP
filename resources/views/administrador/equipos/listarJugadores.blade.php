@@ -23,6 +23,7 @@
                             <div class="col-md-8">
                                 <div class="card mt-4 shadow-lg">
                                     <div class="card-header d-flex justify-content-between align-items-center">
+                                        <a href="{{ route('equipos.show', $equipo->id) }}" class="btn btn-primary btn-sm">Volver al equipo</a>
                                         <h3>Jugadores Libres</h3>
                                         <a href="/jugadors/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
                                     </div>
@@ -47,7 +48,6 @@
                                                             <td>{{ $jugadorLibre->nacionalidad }}</td>
                                                             <td class="text-center">
                                                                 <a href="{{ route('equipo.vincular', ['idEquipo' => $equipo->id, 'idJugador' => $jugadorLibre->id]) }}"
-                                                                    onclick="return confirm('Are you sure?')"
                                                                     class="btn btn-primary">Agregar</a>
                                                             </td>
                                                         </tr>
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="card mt-4 shadow-lg">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                    <div class="card-header text-center">
                                         <h3>Jugadores con Equipo</h3>
                                     </div>
                                     <div class="card-body text-center">

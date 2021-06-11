@@ -37,6 +37,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/noticia/lista">Noticias</a>
                     </li>
+                    @can('panel.administracion')
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,6 +73,7 @@
                             @endcan
                         </ul>
                     </li>
+                    @endcan
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
