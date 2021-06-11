@@ -46,11 +46,11 @@
                                                     <td>{{ $jugador->teamName }}</td>
                                                     <td>
                                                         <form action="{{ route('jugadors.destroy',$jugador->id) }}" method="POST">
-                                                            <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Show</a>
-                                                            <a class="btn btn-primary" href="{{ route('jugadors.edit',$jugador->id) }}">Edit</a>
+                                                            <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Mostrar</a>
+                                                            <a class="btn btn-primary" href="{{ route('jugadors.edit',$jugador->id) }}">Editar</a>
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar el jugador: {{$jugador->nombre}}?')">Eliminar</button>
                                                         </form>
                                                     </td>
                                                 </tr>

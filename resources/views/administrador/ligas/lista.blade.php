@@ -40,11 +40,11 @@
                                                 <td>{{ $liga->sistemaDeJuego }}</td>
                                                 <td>
                                                     <form action="{{ route('ligas.destroy',$liga->id) }}" method="POST">
-                                                        <a class="btn btn-info" href="{{ route('ligas.show',$liga->id) }}">Show</a>
-                                                        <a class="btn btn-primary" href="{{ route('ligas.edit',$liga->id) }}">Edit</a>
+                                                        <a class="btn btn-info" href="{{ route('ligas.show',$liga->id) }}">Mostrar</a>
+                                                        <a class="btn btn-primary" href="{{ route('ligas.edit',$liga->id) }}">Editar</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar la liga: {{$liga->nombreLiga}}?')">Eliminar</button>
                                                     </form>
                                                 </td>
                                             </tr>

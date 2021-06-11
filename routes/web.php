@@ -21,10 +21,6 @@ require __DIR__ . '/auth.php';
 
 Route::resource('/roles', RolesController::class)->names('roles');
 
-/**
- * Probar lo de jugadors y jugadores
- */
-
 Route::resource('/jugadores', JugadorController::class)->names('jugadores');
 Route::get('/jugadors/lista', [JugadorController::class,'listaJugadores']);
 Route::resource('/jugadors', JugadorController::class);
