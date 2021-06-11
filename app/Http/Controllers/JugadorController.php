@@ -22,7 +22,8 @@ class JugadorController extends Controller
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
         ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
         ->get();
-        return view("administrador.jugadors.lista", compact("jugadores"));
+        $jugadoresLibres = Jugador::whereNull('equipo_id')->get();
+        return view("administrador.jugadors.lista", compact(["jugadores", "jugadoresLibres"]));
     }
 
     public function listaJugadores()

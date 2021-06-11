@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RolesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\PartidoController;
 use App\Models\Jugador;
 
 Route::get('/', ['middleware' => 'auth', function () {
@@ -43,3 +44,6 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/noticia/lista', [NoticiaController::class, 'listaNoticias']);
 Route::resource('/noticia', NoticiaController::class)->names('noticias');
+
+Route::get('/partidos/cargarEstadisiticas', [PartidoController::class, 'cargarEstadisticas'])->name('cargarEstadisticas');
+Route::resource('/partidos', PartidoController::class)->names('partidos');

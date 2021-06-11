@@ -39,7 +39,6 @@
                                                 <td>{{ $equipo->nomCorto }}</td>
                                                 <td>{{ $equipo->tresLetras }}</td>
                                                 <td>
-                                                    <h3>Id: {{$jugador->id}}</h3>
                                                     <a href="{{ route('equipo.vincular', ['idEquipo' => $equipo->id, 'idJugador' => $jugador->id]) }}"
                                                         onclick="return confirm('El jugador pertenece al equipo {{ $jugador->teamName }}, ¿Seguro desea cambiarlo?')"
                                                         class="btn btn-primary">Agregar</a>
