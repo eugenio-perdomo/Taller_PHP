@@ -14,6 +14,7 @@ class CreateEstadisticaPartidoTable extends Migration
     public function up()
     {
         Schema::create('estadistica_partido', function (Blueprint $table) {
+            $table->integer("resultado")->nullable();
             $table->integer("posesion")->nullable();
             $table->integer("tirosTotales")->nullable();
             $table->integer("tirosPuerta")->nullable();
