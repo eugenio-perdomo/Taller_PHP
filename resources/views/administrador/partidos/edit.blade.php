@@ -37,7 +37,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Estado del Partido:</strong>
-                <input type="text" name="estadoPartido" class="form-control" value="{{$partido->estadoPartido}}" placeholder="Ingrese estado">
+                <select  name="estadoPartido">
+                    <option value="Programado">Programado</option>
+                    <option value="En_disputa">En disputa</option>
+                    <option value="Finalizado">Finalizado</option>
+                    <option value="Aplazado">Aplazado</option>
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
