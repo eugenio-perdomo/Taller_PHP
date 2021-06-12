@@ -5,23 +5,16 @@
             <div class="p-6 pb-3 bg-white border-b border-gray-200">
                 <div class="container mt-5 bg-light rounded">
                     <h2 class="text-center pt-4">Agregar nuevo partido</h2>
-                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/ligas">
+                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/partidos">
                         @csrf
-                        @error('nombre')
+                        @error('estadoPartido')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            El nombre de la liga es requerido
+                            El estadoPartido es requerido
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        @enderror @if ($errors->has('estadoPartido'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            Los estado de partido es requerido
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif
+                        @enderror 
                         @error('fecha')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             Fecha es requerido
@@ -31,7 +24,13 @@
                         </div>
                         @enderror
                         <label for="estadoPartido">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Estado de Partido</p><input type="text" name="estadoPartido" placeholder="Estado del partido" class="form-control mb-2" value="{{old('estadoPartido')}}">
+                            <p class="text-center p-1 text-light" style="background-color: #002766;">Estado de Partido</p>
+                            <select  name="estadoPartido">
+                                <option value="Programado">Programado</option>
+                                <option value="En_disputa">En disputa</option>
+                                <option value="Finalizado">Finalizado</option>
+                                <option value="Aplazado">Aplazado</option>
+                            </select>
                         </label>
 
                         <label for="fecha">
