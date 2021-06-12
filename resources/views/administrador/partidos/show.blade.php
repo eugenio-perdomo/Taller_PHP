@@ -11,13 +11,15 @@
 <body>
 @include('layouts/app')
 <section class="d-flex flex-column align-items-start">
-    <div class="p-3 mt-3">
-        <h1>  {{ $partido->id }}</h1>
-    </div>
-    
     <div class="p-4 mb-3">
-        <div class="">
-            <div class="">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Id del Partido:</strong>
+                {{ $partido->id }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Estado del Partido:</strong>
                 {{ $partido->estadoPartido  }}
             </div>
@@ -28,9 +30,9 @@
                 {{ $partido->fecha  }}
             </div>
         </div>
-    </div>
-    <div class="p-3">
-        <a class="btn btn-primary" href="{{ route('partidos.index') }}" title="Go back"> Regresar </a>
+        <div class="p-3">
+            <a class="btn btn-primary" href="{{ route('partidos.index') }}" title="Go back"> Regresar </a>
+        </div>
     </div>
 </section>
 
