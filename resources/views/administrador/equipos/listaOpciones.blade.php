@@ -19,33 +19,29 @@
                         <div class="col-md-8">
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h3>Lista de Ligas</h3>
-                                    <a href="/ligas/create" class="btn btn-primary btn-sm">Nueva Liga</a>
+                                    <h3>Lista de Equipos</h3>
+                                    <a href="/equipos/create" class="btn btn-primary btn-sm">Nuevo Equipo</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Nombre</th>
-                                                <th scope="col">Participantes</th>
-                                                <th scope="col">Sistema de juego</th>
-                                                <th width="280px">Action</th>
+                                                <th scope="col">Nombre corto</th>
+                                                <th scope="col">Tres letras</th>
+                                                <th width="280px"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($ligas as $liga)
+                                            @foreach ($equipos as $equipo)
                                             <tr>
-                                                <th scope="row">{{ $liga->nombreLiga }}</th>
-                                                <td>{{ $liga->participantes }}</td>
-                                                <td>{{ $liga->sistemaDeJuego }}</td>
+                                                <th scope="row">{{ $equipo->nombre }}</th>
+                                                <td>{{ $equipo->nomCorto }}</td>
+                                                <td>{{ $equipo->tresLetras }}</td>
                                                 <td>
-                                                    <form action="{{ route('ligas.destroy',$liga->id) }}" method="POST">
-                                                        <a class="btn btn-info" href="{{ route('ligas.show',$liga->id) }}">Mostrar</a>
-                                                        <a class="btn btn-primary" href="{{ route('ligas.edit',$liga->id) }}">Editar</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar la liga: {{$liga->nombreLiga}}?')">Eliminar</button>
-                                                    </form>
+                                                    <a href="{{ route('equipo.vincular', ['idEquipo' => $equipo->id, 'idJugador' => $jugador->id]) }}"
+                                                        onclick="return confirm('El jugador pertenece al equipo {{ $jugador->teamName }}, ¿Seguro desea cambiarlo?')"
+                                                        class="btn btn-primary">Agregar</a>
                                                 </td>
                                             </tr>
                                             @endforeach

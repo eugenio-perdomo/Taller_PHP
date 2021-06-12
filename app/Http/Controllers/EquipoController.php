@@ -7,6 +7,8 @@ use App\Models\Jugador;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isNull;
+
 class EquipoController extends Controller
 {
     /**
@@ -36,14 +38,15 @@ class EquipoController extends Controller
         return view('administrador.equipos.crearEquipo');
     }
 
-    public function listarJugadores(Equipo $equipo)
+    public function listarJugadores($idEquipo)
     {
-        echo 'Hola: ' . $equipo;
         $jugadoresLibres = Jugador::whereNull('equipo_id')->get();
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
-            ->select('jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
-            ->WhereNotNull('equipo_id')->get();
-
+            ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
+            ->WhereNotNull('equipo_id')
+            ->where('equipo_id', '!=', $idEquipo)
+            ->get();
+        $equipo = Equipo::where("id", $idEquipo)->first();
         return view("administrador.equipos.listarJugadores", compact(["jugadoresLibres", "jugadores", "equipo"]));
     }
 
@@ -52,11 +55,36 @@ class EquipoController extends Controller
         $jugador = Jugador::where('id', $idJugador)->first();
         if ($jugador->equipo_id == null) {
             $jugador->equipo_id = $idEquipo;
+            $jugador->save();
+
+            return redirect()->route('equipos.show', ['equipo' => $idEquipo])
+            ->with('success', 'Se agregó el jugador al equipo correctamente');
         } else {
-            $equipo = Equipo::where('id', $idEquipo)->first();
-            return redirect()->route('administrador.equipo.vincularJugador')
-                ->with($equipo->nombre);
+            $jugador->equipo_id = $idEquipo;
+            $jugador->save();
+            return redirect()->route('equipos.show', ['equipo' => $idEquipo])
+            ->with('success', 'Se cambió al jugador de equipo correctamente');
         }
+    }
+
+    public function listarOpciones($idEquipo, $idJugador){
+        $jugador = Jugador::where('id', $idJugador)->first();
+        if ($jugador->equipo_id == null) {
+            $equipos = Equipo::all();
+        } else {
+            $equipos = Equipo::where('id', '!=', $idEquipo)->get();
+        }
+        return view("administrador.equipos.listaOpciones", compact(["equipos", "jugador"]));
+    }
+
+    public function quitarJugador($idEquipo, $idJugador){
+        echo "Hola: ".$idEquipo;
+        echo "Hola2: ".$idJugador;
+        $jugador = Jugador::where('id', $idJugador)->first();
+        $jugador->equipo_id = null;
+        $jugador->save();
+        return redirect()->route('equipos.show', ['equipo' => $idEquipo])
+            ->with('quitar', 'Se quitó al jugador del equipo correctamente');
     }
 
     /**
@@ -88,7 +116,6 @@ class EquipoController extends Controller
     public function show(Equipo $equipo)
     {
         $jugadores = Jugador::where('equipo_id', $equipo->id)->get();
-        echo 'Hola: ' . $equipo;
         return view('equipos.mostrarEquipo', compact(['jugadores', 'equipo']));
     }
 

@@ -30,6 +30,23 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'roles.update'])->assignRole($role1);
         Permission::create(['name' => 'roles.destroy'])->assignRole($role1);
 
+        Permission::create(['name' => 'equipos.index'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'equipos.update'])->assignRole($role1);
+        Permission::create(['name' => 'equipos.create'])->assignRole($role1);
+        Permission::create(['name' => 'equipos.destroy'])->assignRole($role1);
+
+        Permission::create(['name' => 'noticias.index'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'noticias.update'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'noticias.create'])->syncRoles($role1, $role2);
+        Permission::create(['name' => 'noticias.destroy'])->syncRoles($role1, $role2);
+
+        Permission::create(['name' => 'ligas.index'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'ligas.update'])->assignRole($role1);
+        Permission::create(['name' => 'ligas.create'])->assignRole($role1);
+        Permission::create(['name' => 'ligas.destroy'])->assignRole($role1);
+
+        Permission::create(['name' => 'panel.administracion'])->syncRoles([$role1, $role2]);
+
         /*$role->revokePermissionTo($permission); opciones para revocar permisos
         $permission->removeRole($role);*/
     }

@@ -12,21 +12,27 @@
 @include('layouts/app')
 <section class="d-flex flex-column align-items-start">
     <div class="p-4 mb-3">
-        <div class="">
-            <div class="">
-                <strong>Nombre del Jugador:</strong>
-                {{ $jugador->nombre }}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Id del Partido:</strong>
+                {{ $partido->id }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Id del equipo:</strong>
-                {{ $jugador->equipo_id }}
+                <strong>Estado del Partido:</strong>
+                {{ $partido->estadoPartido  }}
             </div>
         </div>
-    </div>
-    <div class="p-3">
-        <a class="btn btn-primary" href="{{ route('equipos.index') }}" title="Regresar"> Regresar </a>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Fecha:</strong>
+                {{ $partido->fecha  }}
+            </div>
+        </div>
+        <div class="p-3">
+            <a class="btn btn-primary" href="{{ route('partidos.index') }}" title="Go back"> Regresar </a>
+        </div>
     </div>
 </section>
 

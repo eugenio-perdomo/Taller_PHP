@@ -9,6 +9,12 @@ class Partido extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'estadoPartido',
+        'fecha'
+    ];
+
+
     public function rolesjugadores(){
         return $this->belongsToMany(Jugador::class,"accion_partido")
         ->withTimestamps()->withPivot([

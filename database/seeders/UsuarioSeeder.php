@@ -31,7 +31,29 @@ class UsuarioSeeder extends Seeder
             'confirmado' => true,
         ]);
 
-        /*$role->revokePermissionTo($permission); opciones para revocar permisos
-        $permission->removeRole($role);*/
+        $user = Usuario::create([
+            'username' => 'carlos.guerra',
+            'nombre' => 'Carlos',
+            'apellido' => 'Guerra',
+            'fNacimiento' => '1998-08-26',
+            'email' => 'carlos.guerra@gmail.com',
+            'password' => Hash::make('123456789'),
+        ])->assignRole('Editor');
+        Editor::create([
+            'editor_id' => $user->id,
+            'confirmado' => true,
+        ]);
+
+        $user = Usuario::create([
+            'username' => 'eugenio.perdomo',
+            'nombre' => 'Eugenio',
+            'apellido' => 'Perdomo',
+            'fNacimiento' => '1999-04-16',
+            'email' => 'eugenio.perdomo@gmail.com',
+            'password' => Hash::make('123456789'),
+        ])->assignRole('Normal');
+        Normal::create([
+            'normal_id' => $user->id,
+        ]);
     }
 }

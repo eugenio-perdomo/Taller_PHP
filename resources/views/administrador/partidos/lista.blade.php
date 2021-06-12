@@ -19,32 +19,32 @@
                         <div class="col-md-8">
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h3>Lista de Ligas</h3>
-                                    <a href="/ligas/create" class="btn btn-primary btn-sm">Nueva Liga</a>
+                                    <h3>Lista de Partidos</h3>
+                                    <a href="/partidos/create" class="btn btn-primary btn-sm">Nuevo Partido</a>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Participantes</th>
-                                                <th scope="col">Sistema de juego</th>
+                                                <th scope="col">Id Partido</th>
+                                                <th scope="col">Estado del Partido</th>
+                                                <th scope="col">Fecha</th>
                                                 <th width="280px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($ligas as $liga)
+                                            @foreach ($partidos as $partido)
                                             <tr>
-                                                <th scope="row">{{ $liga->nombreLiga }}</th>
-                                                <td>{{ $liga->participantes }}</td>
-                                                <td>{{ $liga->sistemaDeJuego }}</td>
+                                                <th scope="row">{{ $partido->id }}</th>
+                                                <th scope="row">{{ $partido->estadoPartido }}</th>
+                                                <td>{{ $partido->fecha }}</td>
                                                 <td>
-                                                    <form action="{{ route('ligas.destroy',$liga->id) }}" method="POST">
-                                                        <a class="btn btn-info" href="{{ route('ligas.show',$liga->id) }}">Mostrar</a>
-                                                        <a class="btn btn-primary" href="{{ route('ligas.edit',$liga->id) }}">Editar</a>
+                                                    <form action="{{ route('partidos.destroy',$partido->id) }}" method="POST">
+                                                        <a class="btn btn-info" href="{{ route('partidos.show',$partido->id) }}">Mostrar</a>
+                                                        <a class="btn btn-primary" href="{{ route('partidos.edit',$partido->id) }}">Editar</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar la liga: {{$liga->nombreLiga}}?')">Eliminar</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar la liga: {{$partido->id}}?')">Eliminar</button>
                                                     </form>
                                                 </td>
                                             </tr>

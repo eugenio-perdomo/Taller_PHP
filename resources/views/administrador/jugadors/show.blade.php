@@ -38,11 +38,20 @@
             <div class="form-group">
                 <strong>Nacionalidad:</strong>
                 {{ $jugador->nacionalidad  }}
+                {{ $jugador->teamName }}
             </div>
         </div>
     </div>
     <div class="p-3">
-        <a class="btn btn-primary" href="{{ route('jugadors.index') }}" title="Go back"> Regresar </a>
+        @if($equipo != null)
+            <span class="display-6">Equipo actual: <strong> {{$equipo->nombre}} </strong></span>
+            <a href="{{ route('equipo.listarOpciones', ['idEquipo' => $equipo->id, 'idJugador' => $jugador->id]) }}"
+            onclick="return confirm('El jugador pertenece al equipo {{ $equipo->nombre }}, ¿Seguro desea cambiarlo?')"
+            class="btn btn-primary">Cambiar equipo</a>
+            <a class="btn btn-primary" href="{{ route('jugadors.index') }}" > Volver </a>
+        @endif  
+        <a href="{{ route('equipo.listarOpciones', ['idEquipo' => 'null', 'idJugador' => $jugador->id]) }}"
+            class="btn btn-primary">Asignar equipo</a>
     </div>
 </section>
 

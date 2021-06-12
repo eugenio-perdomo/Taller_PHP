@@ -21,7 +21,7 @@
                             <div class="col-md-8">
                                 <div class="card mt-4 shadow-lg">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h3>Lista de Jugadores</h3>
+                                        <h3>Jugadores</h3>
                                         <a href="/jugadors/create" class="btn btn-primary btn-sm">Nuevo Jugador</a>
                                     </div>
                                     <div class="card-body">
@@ -33,7 +33,7 @@
                                                     <th scope="col">Nacimiento</th>
                                                     <th scope="col">Nacionalidad</th>
                                                     <th scope="col">Equipo</th>
-                                                    <th width="280px">Action</th>
+                                                    <th width="280px"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -43,14 +43,52 @@
                                                     <td>{{ $jugador->apellido }}</td>
                                                     <td>{{ $jugador->fnacimiento }}</td>
                                                     <td>{{ $jugador->nacionalidad }}</td>
-                                                    <td>{{ $jugador->equipo_id }}</td>
+                                                    <td>{{ $jugador->teamName }}</td>
                                                     <td>
                                                         <form action="{{ route('jugadors.destroy',$jugador->id) }}" method="POST">
-                                                            <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Show</a>
-                                                            <a class="btn btn-primary" href="{{ route('jugadors.edit',$jugador->id) }}">Edit</a>
+                                                            <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Mostrar</a>
+                                                            <a class="btn btn-primary" href="{{ route('jugadors.edit',$jugador->id) }}">Editar</a>
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar el jugador: {{$jugador->nombre}}?')">Eliminar</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card mt-4 shadow-lg">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h3>Jugadores Libres</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">Nacimiento</th>
+                                                    <th scope="col">Nacionalidad</th>
+                                                    <th width="280px"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($jugadoresLibres as $jugadorLibre)
+                                                <tr>
+                                                    <th scope="row">{{ $jugadorLibre->nombre }}</th>
+                                                    <td>{{ $jugadorLibre->apellido }}</td>
+                                                    <td>{{ $jugadorLibre->fnacimiento }}</td>
+                                                    <td>{{ $jugadorLibre->nacionalidad }}</td>
+                                                    <td>
+                                                        <form action="{{ route('jugadors.destroy',$jugadorLibre->id) }}" method="POST">
+                                                            <a class="btn btn-info" href="{{ route('jugadors.show',$jugadorLibre->id) }}">Mostrar</a>
+                                                            <a class="btn btn-primary" href="{{ route('jugadors.edit',$jugadorLibre->id) }}">Editar</a>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar el jugador: {{$jugadorLibre->nombre}}?')">Eliminar</button>
                                                         </form>
                                                     </td>
                                                 </tr>
