@@ -3,11 +3,11 @@
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
+use App\Http\Controllers\PartidoController;
 use App\Http\Controllers\Admin\RolesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NoticiaController;
-use App\Http\Controllers\PartidoController;
 use App\Models\Jugador;
 
 Route::get('/', ['middleware' => 'auth', function () {
@@ -28,6 +28,9 @@ Route::resource('/jugadors', JugadorController::class);
 
 Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
 Route::resource('/ligas', LigaController::class);
+
+Route::get('/partidos/lista', [PartidoController::class,'listaPartidos']);
+Route::resource('/partidos', PartidoController::class);
 
 Route::get('/equipos/{idequipo}/agregar', [EquipoController::class,'listarJugadores'])->name('equipos.agregar');
 Route::get('/equipos/{idEquipo}/quitar/{idJugador}', [EquipoController::class,'quitarJugador'])->name('equipos.quitar');
