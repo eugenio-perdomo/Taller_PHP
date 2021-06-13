@@ -21,6 +21,7 @@ class PartidoSeeder extends Seeder
         foreach($partidos as $partido){
             
             $partido->rolesequipos()->attach(Equipo::all()->random()->id,[
+                "goles"=>rand(0,5),
                 "posesion"=>rand(0,50),
                 "tirosTotales"=>rand(0,50),
                 "tirosPuerta"=>rand(0,50),
@@ -28,8 +29,10 @@ class PartidoSeeder extends Seeder
                 "offside"=>rand(0,50),
                 "faltas"=>rand(0,50),
                 "amarillas"=>rand(0,50),
-                "rojas"=>rand(0,50)
+                "rojas"=>rand(0,50),
+                "estado" => "Local"
             ]);
+
             $partido->rolesjugadores()->attach(
                 Jugador::all()->random()->id,[
                     "accion" => Arr::random(["Amarilla","Roja","Gol","Asistencia","Gol en contra"]),

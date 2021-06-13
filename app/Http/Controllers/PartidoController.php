@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
+use App\Models\estadistica_partido;
 use App\Models\Partido;
 use Illuminate\Http\Request;
 
@@ -15,6 +17,8 @@ class PartidoController extends Controller
     public function index()
     {
         $partidos = Partido::all();
+        foreach($partidos as $partido){
+        }
         return view("administrador.partidos.lista", compact("partidos"));
     }
 
@@ -30,7 +34,8 @@ class PartidoController extends Controller
      */
     public function create()
     {
-        return view('administrador.partidos.crearPartido');
+        $equipos = Equipo::all();
+        return view('administrador.partidos.crearPartido', compact('equipos'));
     }
 
     /**
@@ -39,15 +44,30 @@ class PartidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
         $request->validate([
-            'estadoPartido' => 'required',
             'fecha' => 'required'
         ]);
-    
-        Partido::create($request->all());
-     
+
+        $partido = new partido;
+        $partido->fecha = $request->input('fecha');
+        $partido->estadoPartido = "Programado";
+        $partido->save();
+
+        $partidoestadistica = new estadistica_partido;
+        $partidoestadistica->equipo_id = $request->input('local');
+        $partidoestadistica->estado = "Local"; 
+        $partidoestadistica->partido_id = $partido->id; 
+        $partidoestadistica->save(); 
+
+        $partidoestadistica = new estadistica_partido;
+        $partidoestadistica->equipo_id = $request->input('visitante'); 
+        $partidoestadistica->estado = "Visitante"; 
+        $partidoestadistica->partido_id = $partido->id; 
+        $partidoestadistica->save(); 
+
         return redirect()->route('partidos.index')
                         ->with('success','Se creo con exito el partido.');
     }
@@ -92,6 +112,10 @@ class PartidoController extends Controller
     
         return redirect()->route('partidos.index')
                         ->with('success','Se actualizo correctamente');
+    }
+
+    public function cargarEstadisticas($idPartido){
+        return redirect()->route('estadisticas.create', $idPartido);
     }
 
     /**

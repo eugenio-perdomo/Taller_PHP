@@ -14,6 +14,7 @@ class CreateEstadisticaPartidoTable extends Migration
     public function up()
     {
         Schema::create('estadistica_partido', function (Blueprint $table) {
+            $table->id();
             $table->integer("goles")->nullable();
             $table->integer("posesion")->nullable();
             $table->integer("tirosTotales")->nullable();
@@ -26,7 +27,6 @@ class CreateEstadisticaPartidoTable extends Migration
             $table->string("estado");
             $table->unsignedBigInteger("equipo_id");
             $table->unsignedBigInteger("partido_id");
-            $table->primary(["equipo_id", "partido_id"]);
             $table->foreign("equipo_id")->references("id")->on("equipos");
             $table->foreign("partido_id")->references("id")->on("partidos");
             $table->timestamps();
