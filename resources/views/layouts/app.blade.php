@@ -32,7 +32,7 @@
 						<a class="nav-link text-light" href="/ligas/lista">Ligas</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link text-light" href="/noticia/lista">Noticias</a>
+						<a class="nav-link text-light" href="/noticia/">Noticias</a>
 					</li>
 					@can('panel.administracion')
 					<li class="nav-item dropdown">
@@ -41,12 +41,6 @@
 							Administración
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/noticia/create">Crear Notas</a></li>
-							<li><a class="dropdown-item" href="/noticia/edit">Modificar Notas</a></li>
-							<li><a class="dropdown-item" href="#">Eliminar Notas</a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
 							@can('roles.index')
 							<li><a class="dropdown-item" href="{{ route('roles.index') }}">Solicitudes de Roles</a></li>
 							<li>
@@ -71,6 +65,9 @@
 							{{-- @can('partidos.create') --}}
 							<li><a class="dropdown-item" href="/partidos">Administrar Partidos</a></li>
 							{{-- @endcan --}}
+							@can('noticias.create')
+							<li><a class="dropdown-item" href="/noticia/lista">Administrar Noticias</a></li>
+							@endcan
 						</ul>
 					</li>
 					@endcan

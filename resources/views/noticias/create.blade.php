@@ -36,12 +36,6 @@
 								value="{{old('copeteNoticia')}}">
 						</label>
 						<br>
-						<label for="">
-							<p class="text-center p-1 text-light" style="background-color: #002766;">Cuerpo</p>
-							<input type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2"
-								id="{{old('cuerpoNoticia')}}">
-						</label>
-						<br>
 						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="form-group">
 								<strong>Tipo de la noticia:</strong>
@@ -53,6 +47,20 @@
 								</select>
 							</div>
 						</div>
+						<br>
+						<!-- <div class="form-group">
+							!! Form::label('cuerpoNoticia', 'Cuerpo:')!!}
+							!! Form::textarea('cuerpoNoticia', null, ['class' => 'form-control'])!!}
+							@error('cuerpoNoticia')
+								<small class="text-danger">Porfavor complete el cuerpo</small>
+							@enderror
+						</div> -->
+						<label for="">
+							<p class="text-center p-1 text-light" style="background-color: #002766;">Cuerpo</p>
+							<input type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2"
+								id="{{old('cuerpoNoticia')}}">
+						</label>
+						
 						<br>
 						<button type="submit" href="/noticias/create" class="btn btn-primary ms-3"> Agregar Noticia </button>
 					</form>
