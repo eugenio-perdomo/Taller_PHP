@@ -28,7 +28,15 @@ class NoticiaController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tituloNoticia' => 'required',
+            'copeteNoticia' => 'required',
+            'cuerpoNoticia' => 'required',
+            'tipoNoticia' => 'required'
+        ]);
+        Noticias::create($request->all());
+        return redirect()->route('noticias.index')
+            ->with('success', 'Se creo la noticia con exito.');
     }
 
     public function show(Noticias $noticia)
@@ -41,13 +49,25 @@ class NoticiaController extends Controller
         return view('noticias.edit', compact('noticia'));
     }
 
-    public function update(Request $request, Noticias $noticia)
+    public function update(Request $request, Noticias $noticias)
     {
-        //
+        $request->validate([
+            'tituloNoticia' => 'required',
+            'copeteNoticia' => 'required',
+            'cuerpoNoticia' => 'required',
+            'tipoNoticia' => 'required'
+        ]);
+
+        $noticias->update($request->all());
+
+        return redirect()->route('noticias.index')
+            ->with('success', 'Se actualizo correctamente');
     }
 
-    public function destroy(Noticias $noticia)
+    public function destroy(Noticias $noticias)
     {
-        //
+        $noticias->delete();
+        return redirect()->route('noticias.index')
+            ->with('success', 'Se elimino correctamente');
     }
 }
