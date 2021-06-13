@@ -4,112 +4,169 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 pb-3 bg-white border-b border-gray-200">
                 <div class="container mt-5 bg-light rounded">
+                    @if(session()->has('posesion'))
+                    <div class="alert alert-danger alert-dismissible fade show shadow-lg rounded" role="alert">
+                        <strong>{{ session()->get('posesion') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                     <h2 class="text-center pt-4">Agregar estadisticas de un partido</h2>
-                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/estadisticas">
-                        <!-- @csrf
-                        @error('nombre')
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            El nombre es requerido
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @enderror @if ($errors->has('apellido'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            El nombre corto es requerido
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif -->
-
-                        <!-- No olvidarse de cambiar las rutas en el formulario y el boton del final -->
-                        <p class="text-center p-1 text-light" style="background-color: #002766;">Para cada entrada escriba un número</p>
-                        <br>
+                    <form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5"
+                        method="POST"
+                        action="{{ route('cargarEstadisticas', ['idPartido' => $partido->id, 'idLocal' => $equipoLocal->id, 'idVisitante' => $equipoVisitante->id])}}">
+                        @csrf
                         <div class="container d-flex">
-                        <div class="col-4">
-                            <article>
-                                Fecha del Partido: {{ $partido->fecha}}
-                            </article>
-                            <article>
-                                Equipo rival: {{ $equipo->nombre }}
-                            </article>
+                            <div class="col-4">
+                                <article>
+                                    Fecha del Partido: {{ $partido->fecha }}
+                                </article>
+                            </div>
+                            <div class="col-4">
+                                <h3 class="mb-4"><ins><strong>Local</strong></ins></h3>
+                                <h3>{{ $equipoLocal->nombre }}</h3>
+                                <label for="golesL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Goles</p>
+                                    <input type="number" name="golesL" placeholder="Goles" class="form-control mb-2"
+                                        value="{{old('golesL')}}">
+                                </label>
+                                <br>
+
+                                <label for="posesionL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Posesion
+                                    </p>
+                                    <input type="number" name="posesionL" placeholder="Posesion"
+                                        class="form-control mb-2" value="{{old('posesionL')}}">
+                                </label>
+                                <br>
+
+                                <label for="tirosTotalesL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
+                                        Totales</p>
+                                    <input type="number" name="tirosTotalesL" placeholder="Tiros Totales"
+                                        class="form-control mb-2" value="{{old('tirosTotalesL')}}">
+                                </label>
+                                <br>
+
+                                <label for="tirosPuertaL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
+                                        Puerta</p>
+                                    <input type="number" name="tirosPuertaL" placeholder="Tiros Puerta"
+                                        class="form-control mb-2" value="{{old('tirosPuertaL')}}">
+                                </label>
+                                <br>
+
+                                <label for="cornerL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Corner</p>
+                                    <input type="number" name="cornerL" placeholder="Corner" class="form-control mb-2"
+                                        value="{{old('cornerL')}}">
+                                </label>
+                                <br>
+                                <label for="offsideL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Offside</p>
+                                    <input type="number" name="offsideL" placeholder="Offside" class="form-control mb-2"
+                                        value="{{old('offsideL')}}">
+                                </label>
+                                <br>
+
+                                <label for="faltasL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Faltas</p>
+                                    <input type="number" name="faltasL" placeholder="Faltas" class="form-control mb-2"
+                                        value="{{old('faltasL')}}">
+                                </label>
+                                <br>
+
+                                <label for="amarillasL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Amarillas
+                                    </p>
+                                    <input type="number" name="amarillasL" placeholder="Amarillas"
+                                        class="form-control mb-2" value="{{old('amarillasL')}}">
+                                </label>
+                                <br>
+
+                                <label for="rojasL">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Rojas</p>
+                                    <input type="number" name="rojasL" placeholder="Rojas" class="form-control mb-2"
+                                        value="{{old('rojasL')}}">
+                                </label>
+                                <br>
+                            </div>
+                            <div class="col-4">
+                                <h3 class="mb-4"><ins><strong>Visitante</strong></ins></h3>
+                                <h3> {{ $equipoVisitante->nombre }}</h3>
+                                <label for="golesV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Goles</p>
+                                    <input type="number" name="golesV" placeholder="Goles" class="form-control mb-2"
+                                        value="{{old('golesV')}}">
+                                </label>
+                                <br>
+
+                                <label for="posesionV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Posesion
+                                    </p>
+                                    <input type="number" name="posesionV" placeholder="Posesion"
+                                        class="form-control mb-2" value="{{old('posesionV')}}">
+                                </label>
+                                <br>
+
+                                <label for="tirosTotalesV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
+                                        Totales</p>
+                                    <input type="number" name="tirosTotalesV" placeholder="Tiros Totales"
+                                        class="form-control mb-2" value="{{old('tirosTotalesV')}}">
+                                </label>
+                                <br>
+
+                                <label for="tirosPuertaV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
+                                        Puerta</p>
+                                    <input type="number" name="tirosPuertaV" placeholder="Tiros Puerta"
+                                        class="form-control mb-2" value="{{old('tirosPuertaV')}}">
+                                </label>
+                                <br>
+
+                                <label for="cornerV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Corner</p>
+                                    <input type="number" name="cornerV" placeholder="Corner" class="form-control mb-2"
+                                        value="{{old('cornerV')}}">
+                                </label>
+                                <br>
+                                <label for="offsideV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Offside</p>
+                                    <input type="number" name="offsideV" placeholder="Offside" class="form-control mb-2"
+                                        value="{{old('offsideV')}}">
+                                </label>
+                                <br>
+
+                                <label for="faltasV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Faltas</p>
+                                    <input type="number" name="faltasV" placeholder="Faltas" class="form-control mb-2"
+                                        value="{{old('faltasV')}}">
+                                </label>
+                                <br>
+
+                                <label for="amarillasV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Amarillas
+                                    </p>
+                                    <input type="number" name="amarillasV" placeholder="Amarillas"
+                                        class="form-control mb-2" value="{{old('amarillasV')}}">
+                                </label>
+                                <br>
+
+                                <label for="rojasV">
+                                    <p class="text-center p-1 text-light" style="background-color: #002766;">Rojas</p>
+                                    <input type="number" name="rojasV" placeholder="Rojas" class="form-control mb-2"
+                                        value="{{old('rojasV')}}">
+                                </label>
+                                <br>
+
+                                <button type="submit" class="btn btn-primary mt-4"> Agregar las
+                                    estadisticas </button>
+                            </div>
                         </div>
-                        <div class="col-4">
-                        <label for="goles">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Goles</p>
-                            <input type="number" name="goles" placeholder="Goles" class="form-control mb-2" value="{{old('posesion')}}">
-                        </label>
-                        <br>
-
-                        <label for="posesion">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Posesion</p>
-                            <input type="number" name="posesion" placeholder="Posesion" class="form-control mb-2" value="{{old('posesion')}}">
-                        </label>
-                        <br>
-
-                        <label for="tirosTotales">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros Totales</p>
-                            <input type="number" name="tirosTotales" placeholder="Tiros Totales" class="form-control mb-2" value="{{old('tirosTotales')}}">
-                        </label>
-                        <br>
-
-                        <label for="tirosPuerta">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros Puerta</p>
-                            <input type="number" name="tirosPuerta" placeholder="Tiros Puerta" class="form-control mb-2" value="{{old('tirosPuerta')}}">
-                        </label>
-                        <br>
-                    
-                        <label for="corner">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Corner</p>
-                            <input type="number" name="corner" placeholder="Corner" class="form-control mb-2" value="{{old('corner')}}">
-                        </label>
-                        <br>
-                    </div>
-                    <div class="col-4">
-                        <label for="offside">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Offside</p>
-                            <input type="number" name="offside" placeholder="Offside" class="form-control mb-2" value="{{old('offside')}}">
-                        </label>
-                        <br>
-
-                        <label for="faltas">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Faltas</p>
-                            <input type="number" name="faltas" placeholder="Faltas" class="form-control mb-2" value="{{old('faltas')}}">
-                        </label>
-                        <br>
-
-                        <label for="amarillas">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Amarillas</p>
-                            <input type="number" name="amarillas" placeholder="Amarillas" class="form-control mb-2" value="{{old('amarillas')}}">
-                        </label>
-                        <br>
-
-                        <label for="rojas">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Rojas</p>
-                            <input type="number" name="rojas" placeholder="Rojas" class="form-control mb-2" value="{{old('rojas')}}">
-                        </label>
-                        <br>
-
-                        <label for="estado">
-                            <p class="text-center p-1 text-light" style="background-color: #002766;">Estado</p>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Local</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input mb-4" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Visitante</label>
-                            </div>
-                        </label>
-                        <br>
-
-                        <button type="submit" href="/estadistica/create" class="btn btn-primary"> Agregar las estadisticas </button>
-                    </div>
-                </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

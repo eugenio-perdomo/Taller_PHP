@@ -71,9 +71,9 @@
                             @can('ligas.create')
                                 <li><a class="dropdown-item" href="/ligas">Administrar Ligas</a></li>
                             @endcan
-                            {{-- @can('partidos.create') --}}
+                            @can('partidos.create')
                                  <li><a class="dropdown-item" href="/partidos">Administrar Partidos</a></li>
-                            {{-- @endcan --}}
+                            @endcan
                         </ul>
                     </li>
                     @endcan
