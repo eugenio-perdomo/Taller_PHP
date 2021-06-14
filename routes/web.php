@@ -4,6 +4,7 @@ use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
 use App\Http\Controllers\PartidoController;
+use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\Admin\RolesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -48,5 +49,8 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/noticia/lista', [NoticiaController::class, 'listaNoticias']);
 Route::resource('/noticia', NoticiaController::class)->names('noticias');
 
-Route::get('/partidos/cargarEstadisiticas', [PartidoController::class, 'cargarEstadisticas'])->name('cargarEstadisticas');
 Route::resource('/partidos', PartidoController::class)->names('partidos');
+
+Route::post('estadisticas/cargar/{idPartido}/{idLocal}/{idVisitante}', [EstadisticaController::class, 'cargarEstadisticas'])->name('cargarEstadisticas');
+Route::get('/estadisticas/create/{idPartido}', [EstadisticaController::class, 'create'])->name('crearEstadistica');
+Route::resource('/estadisticas', EstadisticaController::class);
