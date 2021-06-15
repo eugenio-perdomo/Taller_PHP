@@ -10,7 +10,7 @@
 								<div class="card-header d-flex justify-content-between align-items-center">
 									<h3>Lista de Noticias</h3>
 									@can('noticias.create')
-									<a href="/noticia/create" class="btn btn-primary btn-sm">Nueva Noticia</a>
+										<a href="/noticia/create" class="btn btn-primary btn-sm">Nueva Noticia</a>
 									@endcan
 								</div>
 								<div class="card-body">

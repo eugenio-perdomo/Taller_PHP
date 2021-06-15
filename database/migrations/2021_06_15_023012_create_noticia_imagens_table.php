@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNoticiaImagensTable extends Migration
 {
+    // Si se saca la id del autor por el auth, talvez no se precisen estas referencias
     public function up()
     {
         Schema::create('noticia_imagens', function (Blueprint $table) {
@@ -18,11 +19,6 @@ class CreateNoticiaImagensTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('noticia_imagens');

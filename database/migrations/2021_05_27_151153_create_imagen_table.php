@@ -6,25 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateImagenTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('imagen', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE imagen ADD direccion MEDIUMBLOB");
+        // Esta es para dejarlo como base64 envez de una direccion en el servidor
+        // DB::statement("ALTER TABLE noticia ADD direccion MEDIUMBLOB");
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('imagen');
