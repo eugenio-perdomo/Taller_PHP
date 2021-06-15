@@ -46,7 +46,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/noticia/lista', [NoticiaController::class, 'listaNoticias']);
+Route::get('/noticia/lista', [NoticiaController::class, 'listaNoticias'])->name('noticia.lista');
 Route::resource('/noticia', NoticiaController::class)->names('noticias');
 
 Route::resource('/partidos', PartidoController::class)->names('partidos');

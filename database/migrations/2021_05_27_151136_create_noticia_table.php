@@ -15,9 +15,6 @@ class CreateNoticiaTable extends Migration
             $table->string('cuerpoNoticia');
             $table->integer('cantVisual')->default(0);
             $table->string('tipoNoticia');
-            $table->unsignedBigInteger('id_creador'); 
-            $table->foreign('id_creador')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
-            //$table->foreign('id_imagen')->references('id')->on('imagen')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

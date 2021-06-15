@@ -41,6 +41,7 @@ class NoticiaController extends Controller
 
     public function show(Noticias $noticia)
     {
+        echo $noticia;
         return view('noticias.show', compact('noticia'));
     }
 
