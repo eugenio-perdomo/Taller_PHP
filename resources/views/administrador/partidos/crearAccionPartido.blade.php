@@ -7,6 +7,50 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+<div class="col-5 mx-auto">
+    <a class="btn btn-primary" href="{{ route('partidos.show',$partido->id) }}">Volver al Partido</a>
+    <div class="card mx-auto mt-3 shadow-lg">
+        <div class="card-header mt-4 text-light badge rounded-pill shadow-lg" style="background-color: #002766;">
+            <h2 class="text-center text-uppercase pt-4"> Acciones </h2>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                @if($partido->estadoPartido == "Finalizado")
+                <div class="row">
+                    @foreach ($acciones as $accion)
+                    @if ($accion->accion != "Asistencia")
+                    <div class="mt-3 border-bottom">
+                        @if($accion->accion == 'Gol')
+                        <i class="fas fa-futbol"></i>
+                        @else
+                        @if ($accion->accion == 'Gol en contra')
+                        <i class="fas fa-futbol" style="color: red"></i>
+                        @else
+                        @if ($accion->accion == 'Amarilla')
+                        <i class="fas fa-square" style="color: yellow"></i>
+                        @else
+                        @if ($accion->accion == 'Roja')
+                        <i class="fas fa-square" style="color: red"></i>
+                        @endif
+                        @endif
+                        @endif
+                        @endif
+                        {{$accion->minuto}}'
+                        {{$accion->nombre}} {{$accion->apellido}}
+                    </div>
+                    <br>
+                    @endif
+                    @endforeach
+                </div>
+                @else
+                <h5 class="text-center mt-5">No hay acciones
+                </h5>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <div class="container d-flex justify-content-between mx-auto mt-5">
     <div class="col-5">
         <div class="card">

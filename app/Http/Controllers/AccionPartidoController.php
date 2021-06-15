@@ -56,7 +56,18 @@ class AccionPartidoController extends Controller
 
         $partido = Partido::where('id', $idPartido)->first();
 
-        return view('administrador/partidos/crearAccionPartido', compact(['jugadoresLocales', 'jugadoresVisitantes', 'equipoLocal', 'equipoVisitante', 'partido']));
+        $acciones = Jugador::join('accion_partido', 'jugadors.id', '=', 'accion_partido.jugador_id')
+            ->join('partidos', 'accion_partido.partido_id', '=', 'partidos.id')
+            ->select('accion_partido.*', 'jugadors.nombre', 'jugadors.apellido')
+            ->where('accion_partido.partido_id', $partido->id)
+            ->orderBy('minuto', 'asc')
+            ->get();
+
+        if($acciones == null) {
+            return view('administrador/partidos/crearAccionPartido', compact(['jugadoresLocales', 'jugadoresVisitantes', 'equipoLocal', 'equipoVisitante', 'partido']));
+        } else {
+            return view('administrador/partidos/crearAccionPartido', compact(['jugadoresLocales', 'jugadoresVisitantes', 'equipoLocal', 'equipoVisitante', 'partido', 'acciones']));
+        }
     }
 
     /**
@@ -107,15 +118,10 @@ class AccionPartidoController extends Controller
             'minuto' => 'required',
             'accion' => 'required',
         ]);
-        error_log("Antes");
         if ($estado == 'Local') {
-            error_log("IF");
             $accion = new accion_partido;
-            error_log($request->input('jugador'));
             $accion->jugador_id = $request->input('jugador');
-            error_log($request->input('minuto'));
             $accion->minuto = $request->input('minuto');
-            error_log($request->input('accion'));
             $accion->accion = $request->input('accion');
             $accion->partido_id = $idPartido;
             $accion->save();
@@ -123,13 +129,9 @@ class AccionPartidoController extends Controller
             return redirect()->route('crearAcciones', $idPartido)
                 ->with('accion', '¡Acción agregada con éxito!');
         } else {
-            error_log("Else");
             $accion = new accion_partido;
-            error_log($request->input('jugador'));
             $accion->jugador_id = $request->input('jugador');
-            error_log($request->input('minuto'));
             $accion->minuto = $request->input('minuto');
-            error_log($request->input('accion'));
             $accion->accion = $request->input('accion');
             $accion->partido_id = $idPartido;
             $accion->save();
