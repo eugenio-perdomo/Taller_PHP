@@ -120,9 +120,15 @@ class PartidoController extends Controller
             ->orderBy('minuto', 'asc')
             ->get();
 
+            // dd($acciones);
+            if($acciones == null) {
+                return view('administrador.partidos.show', compact('partido', 'estadisticaLocal', 'estadisticaVisitante'));
+            } else {
                 return view('administrador.partidos.show', compact('partido', 'estadisticaLocal', 'estadisticaVisitante', 'acciones'));
+            }
+        } else {
+            return view('administrador.partidos.show', compact('partido'));
         }
-        return view('administrador.partidos.show', compact('partido'));
     }
 
     /**
