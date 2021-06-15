@@ -15,10 +15,12 @@ class LigaSeeder extends Seeder
      */
     public function run()
     {
-        $ligas = Liga::factory(2)->create();
+        $ligas = Liga::factory(3)->create();
+        $equipos = Equipo::all();
         foreach($ligas as $liga){
-            $liga->roles()
-            ->attach([Equipo::all()->random()->id, Liga::all()->random()->id]);
+            foreach($equipos as $equipo){
+                $liga->roles()->attach([$equipo->id]);
+            }
         }
         
     }
