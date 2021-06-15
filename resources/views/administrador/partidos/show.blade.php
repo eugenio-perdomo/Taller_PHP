@@ -26,7 +26,7 @@
                                         <h3 class="pt-3">Fecha del Partido</h3>
                                     </div>
                                     <div class="div card-body">
-                                        <p class="fs-3 fw-bolder text-center">{{ $partido->fecha->format('d/m/Y') }}</p>
+                                        <p class="fs-3 fw-bolder text-center">{{ $partido->fecha->format('d - m - Y') }}</p>
                                     </div>
                                 </div>
                                 <div class="card">

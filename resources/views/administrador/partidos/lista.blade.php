@@ -37,7 +37,7 @@
                                             <tr>
                                                 <th scope="row">{{ $partido->id }}</th>
                                                 <th scope="row">{{ $partido->estadoPartido }}</th>
-                                                <td>{{ $partido->fecha }}</td>
+                                                <td>{{ $partido->fecha->format('d-m-Y') }}</td>
                                                 <td>
                                                     <form action="{{ route('partidos.destroy',$partido->id) }}" method="POST">
                                                         <a class="btn btn-info" href="{{ route('partidos.show',$partido->id) }}">Mostrar</a>
