@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
 use App\Models\Liga;
 use Illuminate\Http\Request;
 
@@ -60,9 +61,13 @@ class LigaController extends Controller
      * @param  \App\Models\Liga  $liga
      * @return \Illuminate\Http\Response
      */
-    public function show(Liga $liga)
+    public function show($id)
     {
-        return view('administrador.ligas.show',compact('liga'));
+        $ligas = Liga::join("equipo_liga as tabla1","tabla1.liga_id","=","id")
+        ->join("equipos","tabla1.equipo_id","=","equipos.id")
+        ->select("nombreLiga","participantes","sistemaDeJuego","equipo_id","nombre")->where("tabla1.liga_id","=",$id)->get();
+        $liga=Liga::where("id",$id)->first();
+        return view('administrador.ligas.show',compact(['liga',"ligas"]));
     }
 
     /**

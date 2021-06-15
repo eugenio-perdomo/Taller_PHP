@@ -34,6 +34,14 @@
                 {{ $liga->sistemaDeJuego  }}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Equipos:</strong>
+                @foreach($ligas as $equipo)
+                    <a href="/equipos/{{$equipo->equipo_id}}" >{{$equipo->nombre}}</a>
+                @endforeach
+            </div>
+        </div>
     </div>
     <div class="p-3">
         <a class="btn btn-primary" href="{{ route('ligas.index') }}" title="Go back"> Regresar </a>
