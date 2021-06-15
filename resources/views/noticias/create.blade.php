@@ -5,8 +5,7 @@
 			<div class="p-6 pb-3 bg-white border-b border-gray-200">
 				<div class="container mt-5 bg-light rounded">
 					<h2 class="text-center pt-4">Agregar nueva noticia</h2>
-					<form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST"
-						action="/noticia">
+					<form class="container pb-4 text-uppercase font-monospace fs-6 fst-italic fw-bolder mt-5" method="POST" action="/noticia" enctype="multipart/form-data">
 						@csrf
 						@error('tituloNoticia')
 						<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -48,20 +47,27 @@
 							</div>
 						</div>
 						<br>
-						<!-- <div class="form-group">
-							!! Form::label('cuerpoNoticia', 'Cuerpo:')!!}
-							!! Form::textarea('cuerpoNoticia', null, ['class' => 'form-control'])!!}
-							@error('cuerpoNoticia')
-								<small class="text-danger">Porfavor complete el cuerpo</small>
-							@enderror
-						</div> -->
-						<label for="">
-							<p class="text-center p-1 text-light" style="background-color: #002766;">Cuerpo</p>
-							<input type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2"
-								id="{{old('cuerpoNoticia')}}">
-						</label>
 						
+						
+						<div class="form-group mb-5">
+							<label for="exampleFormControlTextarea1">Cuerpo de la noticia</label>
+							<textarea class="form-control rounded-0" id="{{old('cuerpoNoticia')}}" name="cuerpoNoticia" rows="10"></textarea>
+						</div>
+
+						<div class="row mb-3">
+							<div class="col">
+								<div class="image-wrapper">
+									<img id="picture" src="https://3.bp.blogspot.com/-q11rITGRRag/WMDnW8qFiSI/AAAAAAAAD90/9fvxhkfRHNMAK6cjmFf3yqvnj6M8BpgQQCK4B/s1600/canchas-de-futbol-14.jpg" alt="">
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<input type="file" name="direccion" id="direccion" accept="image/*">
+								</div>
+							</div>
+						</div>
 						<br>
+						<input id="id_creador" name="id_creador" type="hidden" value="{{ Auth::user()->id }}">
 						<button type="submit" href="/noticias/create" class="btn btn-primary ms-3"> Agregar Noticia </button>
 					</form>
 				</div>
@@ -69,3 +75,26 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.image-wrapper{
+		position: relative;
+		padding-bottom: 56.25%;
+	}
+
+	.image-wrapper img{
+		position: absolute;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<script>
+	document.getElementById("direccion").addEventListener('change', cambiarImagen);
+	function cambiarImagen(event){
+		var file = event.target.files[0];
+		var reader = new FileReader();
+		reader.onload = (event) => { document.getElementById("picture").setAttribute('src', event.target.result);};
+		reader.readAsDataURL(file);
+	}
+</script>

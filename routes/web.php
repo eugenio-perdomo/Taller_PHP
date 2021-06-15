@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccionPartidoController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
@@ -46,7 +47,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/noticia/lista', [NoticiaController::class, 'listaNoticias']);
+Route::get('/noticia/lista', [NoticiaController::class, 'listaNoticias'])->name('noticia.lista');
 Route::resource('/noticia', NoticiaController::class)->names('noticias');
 
 Route::resource('/partidos', PartidoController::class)->names('partidos');
@@ -54,3 +55,6 @@ Route::resource('/partidos', PartidoController::class)->names('partidos');
 Route::post('estadisticas/cargar/{idPartido}/{idLocal}/{idVisitante}', [EstadisticaController::class, 'cargarEstadisticas'])->name('cargarEstadisticas');
 Route::get('/estadisticas/create/{idPartido}', [EstadisticaController::class, 'create'])->name('crearEstadistica');
 Route::resource('/estadisticas', EstadisticaController::class);
+
+Route::post('acciones/cargar/{idPartido}/{estado}', [AccionPartidoController::class, 'cargarAccion'])->name('cargarAccion');
+Route::get('acciones/create/{idPartido}', [AccionPartidoController::class, 'create'])->name('crearAcciones');
