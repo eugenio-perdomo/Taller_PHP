@@ -58,14 +58,18 @@ class NoticiaController extends Controller
             ->with('success', 'Se creo la noticia con exito.');
     }
 
-    public function show(Noticias $noticia)
+    public function show($id)
     {
-        echo $noticia;
+        $noticia = Noticias::where('id',$id)->first();
+        /*var_dump( $noticia);
+        dd( $noticia);*/
         return view('noticias.show', compact('noticia'));
     }
 
-    public function edit(Noticias $noticia)
+    public function edit($id)
     {
+        $noticia = Noticias::where('id',$id)->first();
+
         return view('noticias.edit', compact('noticia'));
     }
 

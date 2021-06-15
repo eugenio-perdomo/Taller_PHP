@@ -30,6 +30,7 @@
 												<td>{{ $noticia->copeteNoticia }}</td>
 												<td>{{ $noticia->tipoNoticia }}</td>
 												<td>
+												{{ $noticia->id}}
 													<form action="{{ route('noticias.destroy',$noticia->id) }}" method="POST">
 														<a class="btn btn-info" href="{{ route('noticias.show',$noticia->id) }}">Mostrar</a>
 														<a class="btn btn-primary" href="{{ route('noticias.edit',$noticia) }}">Editar</a>
