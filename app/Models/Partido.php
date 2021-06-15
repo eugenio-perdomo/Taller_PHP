@@ -14,6 +14,11 @@ class Partido extends Model
         'fecha'
     ];
 
+    // Hay que agregar esto a todos los modelos que usen fechas para poder tratar como separado dias, mes, año, etc.cle
+    protected $dates = [
+        'fecha',
+    ];
+
 
     public function rolesjugadores(){
         return $this->belongsToMany(Jugador::class,"accion_partido")

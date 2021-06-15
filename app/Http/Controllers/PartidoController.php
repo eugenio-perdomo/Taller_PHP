@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Equipo;
 use App\Models\estadistica_partido;
 use App\Models\Partido;
+use App\Models\Jugador;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PartidoController extends Controller
 {
@@ -14,11 +16,15 @@ class PartidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+        Carbon::setLocale('es');
+     }
+
     public function index()
     {
-        $partidos = Partido::all();
-        foreach($partidos as $partido){
-        }
+        $partidos = Partido::orderBy('fecha', 'asc')->get();
         return view("administrador.partidos.lista", compact("partidos"));
     }
 
@@ -44,7 +50,7 @@ class PartidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -58,18 +64,18 @@ class PartidoController extends Controller
 
         $partidoestadistica = new estadistica_partido;
         $partidoestadistica->equipo_id = $request->input('local');
-        $partidoestadistica->estado = "Local"; 
-        $partidoestadistica->partido_id = $partido->id; 
-        $partidoestadistica->save(); 
+        $partidoestadistica->estado = "Local";
+        $partidoestadistica->partido_id = $partido->id;
+        $partidoestadistica->save();
 
         $partidoestadistica = new estadistica_partido;
-        $partidoestadistica->equipo_id = $request->input('visitante'); 
-        $partidoestadistica->estado = "Visitante"; 
-        $partidoestadistica->partido_id = $partido->id; 
-        $partidoestadistica->save(); 
+        $partidoestadistica->equipo_id = $request->input('visitante');
+        $partidoestadistica->estado = "Visitante";
+        $partidoestadistica->partido_id = $partido->id;
+        $partidoestadistica->save();
 
         return redirect()->route('partidos.index')
-                        ->with('success','Se creo con exito el partido.');
+            ->with('success', 'Se creo con exito el partido.');
     }
 
     /**
@@ -80,7 +86,43 @@ class PartidoController extends Controller
      */
     public function show(Partido $partido)
     {
-        return view('administrador.partidos.show',compact('partido'));
+        if ($partido->estadoPartido == "Finalizado") {
+            $estadisticaLocal = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
+                ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
+                ->select(
+                    'estadistica_partido.*',
+                    'equipos.id as idEq',
+                    'equipos.nombre',
+                    'partidos.id as idPar',
+                    'partidos.estadoPartido',
+                    'partidos.fecha'
+                )
+                ->where('estadistica_partido.partido_id', $partido->id)
+                ->where('estadistica_partido.estado', "Local")->first();
+
+            $estadisticaVisitante = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
+                ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
+                ->select(
+                    'estadistica_partido.*',
+                    'equipos.id as idEq',
+                    'equipos.nombre',
+                    'partidos.id as idPar',
+                    'partidos.estadoPartido',
+                    'partidos.fecha'
+                )
+                ->where('estadistica_partido.partido_id', $partido->id)
+                ->where('estadistica_partido.estado', "Visitante")->first();
+            
+            $acciones = Jugador::join('accion_partido', 'jugadors.id', '=', 'accion_partido.jugador_id')
+            ->join('partidos', 'accion_partido.partido_id', '=', 'partidos.id')
+            ->select('accion_partido.*', 'jugadors.nombre', 'jugadors.apellido')
+            ->where('accion_partido.partido_id', $partido->id)
+            ->orderBy('minuto', 'asc')
+            ->get();
+
+                return view('administrador.partidos.show', compact('partido', 'estadisticaLocal', 'estadisticaVisitante', 'acciones'));
+        }
+        return view('administrador.partidos.show', compact('partido'));
     }
 
     /**
@@ -91,7 +133,7 @@ class PartidoController extends Controller
      */
     public function edit(Partido $partido)
     {
-        return view('administrador.partidos.edit',compact('partido'));
+        return view('administrador.partidos.edit', compact('partido'));
     }
 
     /**
@@ -101,20 +143,21 @@ class PartidoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Partido $partido)
+    public function update(Request $request, Partido $partido)
     {
         $request->validate([
             'estadoPartido' => 'required',
             'fecha' => 'required'
         ]);
-    
+
         $partido->update($request->all());
-    
+
         return redirect()->route('partidos.index')
-                        ->with('success','Se actualizo correctamente');
+            ->with('success', 'Se actualizo correctamente');
     }
 
-    public function cargarEstadisticas($idPartido){
+    public function cargarEstadisticas($idPartido)
+    {
         return redirect()->route('estadisticas.create', $idPartido);
     }
 
@@ -128,6 +171,6 @@ class PartidoController extends Controller
     {
         $partido->delete();
         return redirect()->route('partidos.index')
-                        ->with('success','Se elimino correctamente');
+            ->with('success', 'Se elimino correctamente');
     }
 }

@@ -32,6 +32,9 @@
 						<a class="nav-link text-light" href="/ligas/lista">Ligas</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link text-light" href="/partidos/">Partidos</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link text-light" href="/noticia/">Noticias</a>
 					</li>
 					@can('panel.administracion')

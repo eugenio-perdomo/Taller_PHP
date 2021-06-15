@@ -14,6 +14,7 @@ class CreateAccionPartidoTable extends Migration
     public function up()
     {
         Schema::create('accion_partido', function (Blueprint $table) {
+            $table->id();
             $table->string("accion");
             $table->integer("minuto");
             $table->unsignedBigInteger("jugador_id");

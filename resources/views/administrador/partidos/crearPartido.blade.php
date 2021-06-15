@@ -32,7 +32,7 @@
 
                         <label for="visitante">
                             <p class="text-center p-1 text-light" style="background-color: #002766;">Visitante</p>
-                            <select class="form-select" name="visitante" aria-label="Default select example">
+                            <select class="form-select" name="visitante">
                                 @foreach ($equipos as $equipo)
                                 <option value="{{ $equipo->id }}"> {{ $equipo->nombre }} </option>
                                 @endforeach

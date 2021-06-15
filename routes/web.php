@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccionPartidoController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
@@ -54,3 +55,6 @@ Route::resource('/partidos', PartidoController::class)->names('partidos');
 Route::post('estadisticas/cargar/{idPartido}/{idLocal}/{idVisitante}', [EstadisticaController::class, 'cargarEstadisticas'])->name('cargarEstadisticas');
 Route::get('/estadisticas/create/{idPartido}', [EstadisticaController::class, 'create'])->name('crearEstadistica');
 Route::resource('/estadisticas', EstadisticaController::class);
+
+Route::post('acciones/cargar/{idPartido}/{estado}', [AccionPartidoController::class, 'cargarAccion'])->name('cargarAccion');
+Route::get('acciones/create/{idPartido}', [AccionPartidoController::class, 'create'])->name('crearAcciones');

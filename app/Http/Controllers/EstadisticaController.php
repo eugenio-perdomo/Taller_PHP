@@ -43,21 +43,6 @@ class EstadisticaController extends Controller
 
         return view('administrador/partidos/crearEstadisticaPartido', compact(['equipoLocal', 'equipoVisitante', 'partido']));
 
-        // Esto me va servir para el de mostrar estadísticas.
-        // $estadisticaLocal = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
-        // ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
-        // ->select('estadistica_partido.*', 'equipos.id as idEq', 'equipos.nombre', 'partidos.id as idPar', 'partidos.estadoPartido', 
-        // 'partidos.fecha')
-        // ->where('estadistica_partido.partido_id', $idPartido)
-        // ->where('estadistica_partido.estado', "Local")->first();
-
-        // $estadisticaVisitante = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
-        // ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
-        // ->select('estadistica_partido.*', 'equipos.id as idEq', 'equipos.nombre', 'partidos.id as idPar', 'partidos.estadoPartido', 
-        // 'partidos.fecha')
-        // ->where('estadistica_partido.partido_id', $idPartido)
-        // ->where('estadistica_partido.estado', "Visitante")->first();
-
     }
 
     /**
@@ -77,7 +62,7 @@ class EstadisticaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idPartido)
     {
         //
     }
@@ -131,7 +116,6 @@ class EstadisticaController extends Controller
             $equipoEstadisticaL->rojas = $request->Input('rojasL');
             $equipoEstadisticaL->save();
 
-
             $equipoEstadisticaV->goles = $request->Input('golesV');
             $equipoEstadisticaV->posesion = $request->Input('posesionV');
             $equipoEstadisticaV->tirosTotales = $request->Input('tirosTotalesV');
@@ -142,6 +126,10 @@ class EstadisticaController extends Controller
             $equipoEstadisticaV->amarillas = $request->Input('amarillasV');
             $equipoEstadisticaV->rojas = $request->Input('rojasV');
             $equipoEstadisticaV->save();
+
+            $partido = Partido::where('id', $idPartido)->first();
+            $partido->estadoPartido = "Finalizado";
+            $partido->save();
 
             return redirect()->route('partidos.show', $idPartido)
             ->with('estadistica', 'Estadística creada con éxito');
