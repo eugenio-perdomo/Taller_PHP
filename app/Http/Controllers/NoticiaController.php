@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Administrador;
 use App\Models\Editor;
 use App\Models\Noticias;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiaController extends Controller
 {
@@ -28,24 +29,47 @@ class NoticiaController extends Controller
 
     public function store(Request $request)
     {
+        //return Storage::put('noticia', $request->file('direccion'));
+        
+        //Noticias::create($request->all());
+        
+        $nota = new Noticias;
+        $nota->tituloNoticia = $request->input('tituloNoticia');
+        $nota->copeteNoticia = $request->input('copeteNoticia');
+        $nota->cuerpoNoticia = $request->input('cuerpoNoticia');
+        $nota->tipoNoticia = $request->input('tipoNoticia');
+        $nota->id_creador = $request->input('id_creador');
+
+        if ($request->file('direccion')) {
+            $url = Storage::put('noticia', $request->file('direccion'));
+            $nota->direccion = $url;
+
+        }
+        
         $request->validate([
             'tituloNoticia' => 'required',
             'copeteNoticia' => 'required',
             'cuerpoNoticia' => 'required',
             'tipoNoticia' => 'required'
         ]);
-        Noticias::create($request->all());
+
+        $nota->save();
         return redirect()->route('noticias.index')
             ->with('success', 'Se creo la noticia con exito.');
     }
 
-    public function show(Noticias $noticia)
+    public function show($id)
     {
+        $noticia = Noticias::where('id',$id)->first();
+        /*var_dump( $noticia);
+        dd( $noticia);*/
         return view('noticias.show', compact('noticia'));
     }
 
-    public function edit(Noticias $noticia)
+    public function edit($id)
     {
+        $noticia = Noticias::where('id',$id)->first();
+
         return view('noticias.edit', compact('noticia'));
     }
 

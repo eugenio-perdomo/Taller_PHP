@@ -10,7 +10,7 @@
 								<div class="card-header d-flex justify-content-between align-items-center">
 									<h3>Lista de Noticias</h3>
 									@can('noticias.create')
-									<a href="/noticia/create" class="btn btn-primary btn-sm">Nueva Noticia</a>
+										<a href="/noticia/create" class="btn btn-primary btn-sm">Nueva Noticia</a>
 									@endcan
 								</div>
 								<div class="card-body">
@@ -30,6 +30,7 @@
 												<td>{{ $noticia->copeteNoticia }}</td>
 												<td>{{ $noticia->tipoNoticia }}</td>
 												<td>
+												{{ $noticia->id}}
 													<form action="{{ route('noticias.destroy',$noticia->id) }}" method="POST">
 														<a class="btn btn-info" href="{{ route('noticias.show',$noticia->id) }}">Mostrar</a>
 														<a class="btn btn-primary" href="{{ route('noticias.edit',$noticia) }}">Editar</a>

@@ -27,6 +27,7 @@ class NoticiasFactory extends Factory
             'cuerpoNoticia' => $this->faker->text(255),
             'cantVisual' => $this->faker->numberBetween($min = 10, $max = 1000),
             'tipoNoticia' => $this->faker->randomElement(['Analisis', 'DatoColor','Fichaje','Información']),
+            //'direccion' => 'hardcodeo la url a la carpeta public/posts/',
             'id_creador' => '1',
         ];
     }

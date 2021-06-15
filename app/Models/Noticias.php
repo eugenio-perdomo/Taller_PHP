@@ -13,7 +13,8 @@ class Noticias extends Model
     'tituloNoticia',
     'copeteNoticia',
     'cuerpoNoticia',
-    'tipoNoticia'
+    'tipoNoticia',
+    'direccion'
     ];
 
     protected $table = 'noticia';

@@ -1,21 +1,24 @@
 @include('layouts/app')
-<div class="container py-5">
-	<div class="row flex flex-row justify-content-center">
-		@foreach ($noticia as $nota)
-		<div class="card col-3 m-2 text-center">
-			<div class="card-header">
-				<h1><a class="text-reset text-decoration-none" href="#">
-						{{ $nota ->tituloNoticia }}
-					</a>
-				</h1>
-			</div><a class="text-reset text-decoration-none mt-1" href="#">
-				<div class="card-body w-full h-80">
-					<h1>
-						{{ $nota->copeteNoticia }}
-					</h1>
-				</div>
-			</a>
-		</div>
-		@endforeach
+<section class="d-flex flex-column align-items-start">
+	<div class="p-3 mt-3">
+		<h1>{{ $noticia->tituloNoticia }}</h1>
 	</div>
-</div>
+
+	<div class="p-4 mb-3">
+		<div class="">
+			<div class="">
+				{{ $noticia->copeteNoticia }}
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="form-group">
+				{{ $noticia->cuerpoNoticia }}
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="form-group">
+				{{ $noticia->tipoNoticia }}
+			</div>
+		</div>
+	</div>
+</section>
