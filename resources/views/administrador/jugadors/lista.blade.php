@@ -18,7 +18,7 @@
                 <div class="p-6 bg-white border-b border-gray-200 pb-5">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-md-8">
+                            <div class="col-md-10">
                                 <div class="card mt-4 shadow-lg">
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h3>Jugadores</h3>
