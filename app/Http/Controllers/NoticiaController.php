@@ -12,13 +12,15 @@ class NoticiaController extends Controller
 {
     public function index()
     {
-        $noticias = Noticias::all();
+        $noticias = Noticias::orderBy('updated_at', 'desc')->get();
         return view('noticias.index',compact("noticias"));
     }
 
     public function listaNoticias()
     {
-        $noticias = Noticias::paginate(20);
+        $noticias = Noticias::orderBy('updated_at', 'desc')->get();
+        //Son 100 y muestra 20, implementar el mostrado de las otras tambien paginas
+        //$noticias = Noticias::paginate(20);
         return view('noticias.lista',compact("noticias"));
     }
 
@@ -41,7 +43,7 @@ class NoticiaController extends Controller
         $nota->id_creador = $request->input('id_creador');
 
         if ($request->file('direccion')) {
-            $url = Storage::put('noticia', $request->file('direccion'));
+            $url = Storage::put('posts', $request->file('direccion'));
             $nota->direccion = $url;
 
         }
@@ -84,14 +86,15 @@ class NoticiaController extends Controller
 
         $noticias->update($request->all());
 
-        return redirect()->route('noticias.index')
+        return redirect()->route('noticias.lista')
             ->with('success', 'Se actualizo correctamente');
     }
 
     public function destroy(Noticias $noticias)
     {
+        dd($noticias);
         $noticias->delete();
-        return redirect()->route('noticias.index')
+        return redirect()->route('noticias.lista')
             ->with('success', 'Se elimino correctamente');
     }
 }
