@@ -25,6 +25,13 @@ class PartidoController extends Controller
     public function index()
     {
         $partidos = Partido::orderBy('fecha', 'desc')->get();
+        foreach($partidos as $partido){
+            $l=Partido::join("estadistica_partido","partido_id","partidos.id")->where("partido_id",$partido->id)->where("estado","local")->first()->equipo_id; 
+            $v=Partido::join("estadistica_partido","partido_id","partidos.id")->where("partido_id",$partido->id)->where("estado","visitante")->first()->equipo_id; 
+            $partido["local"] = Equipo::where("id",$l)->select("nombre")->first(); 
+            $partido["visitante"] = Equipo::where("id",$v)->select("nombre")->first();
+        }
+    
         return view("administrador.partidos.lista", compact("partidos"));
     }
 

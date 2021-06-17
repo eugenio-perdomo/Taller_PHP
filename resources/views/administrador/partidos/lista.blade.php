@@ -16,7 +16,7 @@
             <div class="p-6 bg-white border-b border-gray-200 pb-5">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card mt-4 shadow-lg">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h3>Lista de Partidos</h3>
@@ -27,6 +27,8 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Id Partido</th>
+                                                <th scope="col">Equipo Local</th>
+                                                <th scope="col">Equipo Visitante</th>
                                                 <th scope="col">Estado del Partido</th>
                                                 <th scope="col">Fecha</th>
                                                 <th width="280px">Action</th>
@@ -36,6 +38,8 @@
                                             @foreach ($partidos as $partido)
                                             <tr>
                                                 <th scope="row">{{ $partido->id }}</th>
+                                                <th scope="row">{{ $partido->local->nombre }}</th>
+                                                <th scope="row">{{ $partido->visitante->nombre }}</th>
                                                 <th scope="row">{{ $partido->estadoPartido }}</th>
                                                 <td>{{ $partido->fecha->format('d-m-Y') }}</td>
                                                 <td>
