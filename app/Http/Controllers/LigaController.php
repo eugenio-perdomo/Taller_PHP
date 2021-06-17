@@ -65,7 +65,7 @@ class LigaController extends Controller
     {
         $ligas = Liga::join("equipo_liga as tabla1","tabla1.liga_id","=","id")
         ->join("equipos","tabla1.equipo_id","=","equipos.id")
-        ->select("nombreLiga","participantes","sistemaDeJuego","equipo_id","nombre")->where("tabla1.liga_id","=",$id)->get();
+        ->select("nombreLiga","participantes","sistemaDeJuego","equipo_id","nombre","nomCorto")->where("tabla1.liga_id","=",$id)->get();
         $liga=Liga::where("id",$id)->first();
         return view('administrador.ligas.show',compact(['liga',"ligas"]));
     }

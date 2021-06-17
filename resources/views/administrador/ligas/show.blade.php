@@ -34,12 +34,25 @@
                 {{ $liga->sistemaDeJuego  }}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Equipos:</strong>
-                @foreach($ligas as $equipo)
-                    <a href="/equipos/{{$equipo->equipo_id}}" >{{$equipo->nombre}}</a>
-                @endforeach
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+            <div class="container">
+                   <div class="row col-12 d-flex justify-content-start p-2">
+                        Equipos Participantes:
+                   </div>
+                   <div class="row">
+                        <div class="col-6 bg-dark text-white">Nombre</div>
+                        <div class="col-6 bg-dark text-white">Nombre Corto</div>
+                    </div>
+                   @foreach($ligas as $equipo)
+                        <div class="row">
+                            <div class=" border border-dark p-1 col-6 d-flex justify-content-center">
+                                <a href="/equipos/{{$equipo->equipo_id}}" >{{$equipo->nombre}}</a>
+                            </div>
+                            <div class=" border border-dark p-1 col-6 d-flex justify-content-center">
+                                <a href="/equipos/{{$equipo->equipo_id}}" >{{$equipo->nomCorto}}</a>
+                            </div>
+                        </div>
+                    @endforeach
             </div>
         </div>
     </div>
