@@ -24,7 +24,7 @@ class PartidoController extends Controller
 
     public function index()
     {
-        $partidos = Partido::orderBy('fecha', 'asc')->get();
+        $partidos = Partido::orderBy('fecha', 'desc')->get();
         return view("administrador.partidos.lista", compact("partidos"));
     }
 

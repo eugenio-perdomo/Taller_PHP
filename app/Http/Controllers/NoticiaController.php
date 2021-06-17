@@ -45,7 +45,6 @@ class NoticiaController extends Controller
         if ($request->file('direccion')) {
             $url = Storage::put('posts', $request->file('direccion'));
             $nota->direccion = $url;
-
         }
         
         $request->validate([
@@ -75,8 +74,8 @@ class NoticiaController extends Controller
         return view('noticias.edit', compact('noticia'));
     }
 
-    public function update(Request $request, Noticias $noticias)
-    {
+    public function update(Request $request, $idNoticias)
+    {   
         $request->validate([
             'tituloNoticia' => 'required',
             'copeteNoticia' => 'required',
@@ -84,15 +83,28 @@ class NoticiaController extends Controller
             'tipoNoticia' => 'required'
         ]);
 
-        $noticias->update($request->all());
+        
+        $nota = Noticias::where('id', $idNoticias)->first();
+        $nota->tituloNoticia = $request->input('tituloNoticia');
+        $nota->copeteNoticia = $request->input('copeteNoticia');
+        $nota->cuerpoNoticia = $request->input('cuerpoNoticia');
+        $nota->tipoNoticia = $request->input('tipoNoticia');
+        
+        if ($request->file('direccion')) {
+            $url = Storage::put('posts', $request->file('direccion'));
+            $nota->direccion = $url;
+            // dd($nota->direccion);
+        }
+
+        $nota->save();
 
         return redirect()->route('noticias.lista')
             ->with('success', 'Se actualizo correctamente');
     }
 
-    public function destroy(Noticias $noticias)
+    public function destroy($idNoticias)
     {
-        dd($noticias);
+        $noticias = Noticias::where('id', $idNoticias)->first();
         $noticias->delete();
         return redirect()->route('noticias.lista')
             ->with('success', 'Se elimino correctamente');

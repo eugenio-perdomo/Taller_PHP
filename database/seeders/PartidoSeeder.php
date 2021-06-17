@@ -17,27 +17,52 @@ class PartidoSeeder extends Seeder
      */
     public function run()
     {
-        $partidos =Partido::factory(23)->create();
-        foreach($partidos as $partido){
-            
-            $partido->rolesequipos()->attach(Equipo::all()->random()->id,[
-                "goles"=>rand(0,5),
-                "posesion"=>rand(0,50),
-                "tirosTotales"=>rand(0,50),
-                "tirosPuerta"=>rand(0,50),
-                "corner"=>rand(0,50),
-                "offside"=>rand(0,50),
-                "faltas"=>rand(0,50),
-                "amarillas"=>rand(0,50),
-                "rojas"=>rand(0,50),
-                "estado" => "Local"
-            ]);
+        $partidos = Partido::factory(23)->create();
+        foreach ($partidos as $partido) {
+            $numero = rand(30, 70);
+            if ($partido->estadoPartido == 'Finalizado') {
+                $partido->rolesequipos()->attach(Equipo::all()->random()->id, [
+                    "goles" => rand(0, 5),
+                    "posesion" => $numero,
+                    "tirosTotales" => rand(0, 50),
+                    "tirosPuerta" => rand(0, 50),
+                    "corner" => rand(0, 50),
+                    "offside" => rand(0, 50),
+                    "faltas" => rand(0, 50),
+                    "amarillas" => rand(0, 50),
+                    "rojas" => rand(0, 50),
+                    "estado" => "Local"
+                ]);
 
-            $partido->rolesjugadores()->attach(
-                Jugador::all()->random()->id,[
-                    "accion" => Arr::random(["Amarilla","Roja","Gol","Asistencia","Gol en contra"]),
-                    "minuto" => rand(0,95)
-            ]);
+                $partido->rolesequipos()->attach(Equipo::all()->random()->id, [
+                    "goles" => rand(0, 5),
+                    "posesion" => 100 - $numero,
+                    "tirosTotales" => rand(0, 50),
+                    "tirosPuerta" => rand(0, 50),
+                    "corner" => rand(0, 50),
+                    "offside" => rand(0, 50),
+                    "faltas" => rand(0, 50),
+                    "amarillas" => rand(0, 50),
+                    "rojas" => rand(0, 50),
+                    "estado" => "Visitante"
+                ]);
+
+                $partido->rolesjugadores()->attach(
+                    Jugador::all()->random()->id,
+                    [
+                        "accion" => Arr::random(["Amarilla", "Roja", "Gol", "Asistencia", "Gol en contra"]),
+                        "minuto" => rand(0, 95)
+                    ]
+                );
+            } else {
+                $partido->rolesequipos()->attach(Equipo::all()->random()->id, [
+                    "estado" => "Local"
+                ]);
+
+                $partido->rolesequipos()->attach(Equipo::all()->random()->id, [
+                    "estado" => "Visitante"
+                ]);
+            }
         }
     }
 }

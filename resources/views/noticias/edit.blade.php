@@ -7,8 +7,8 @@
 			</div>
 		</div>
 	</div>
-		<br>
-		<br>
+	<br>
+	<br>
 	@if ($errors->any())
 	<div class="alert alert-danger">
 		Hubo un problema con la edición.<br><br>
@@ -20,7 +20,7 @@
 	</div>
 	@endif
 
-	<form action="{{ route('noticias.edit',$noticia->id) }}" method="POST">
+	<form action="{{ route('noticias.update',$noticia->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@method('PUT')
 
@@ -33,19 +33,22 @@
 			<div class="col-xs-12 col-sm-12 col-md-10">
 				<div class="form-group">
 					<strong>Tipo de la noticia:</strong>
-					<input type="text" name="tituloNoticia" placeholder="Titulo" class="form-control mb-2" value="{{old('tituloNoticia')}}">
+					<input type="text" name="tituloNoticia" placeholder="Titulo" class="form-control mb-2"
+						value="{{old('tituloNoticia')}}">
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-10">
 				<div class="form-group">
 					<strong>Tipo de la noticia:</strong>
-					<input type="text" name="copeteNoticia" placeholder="Copete" class="form-control mb-2" value="{{old('copeteNoticia')}}">
+					<input type="text" name="copeteNoticia" placeholder="Copete" class="form-control mb-2"
+						value="{{old('copeteNoticia')}}">
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-10">
 				<div class="form-group">
 					<strong>Tipo de la noticia:</strong>
-					<input type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2" id="{{old('cuerpoNoticia')}}">
+					<input type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2"
+						id="{{old('cuerpoNoticia')}}">
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-10">
@@ -63,11 +66,13 @@
 			<div class="row mb-3">
 				<div class="col">
 					<div class="image-wrapper">
-					@if ($noticia->direccion)
+						@if ($noticia->direccion)
 						<img id="picture" src="{{URL::asset('storage/'.$noticia->direccion)}}">
-					@else
-						<img id="picture" src="https://3.bp.blogspot.com/-q11rITGRRag/WMDnW8qFiSI/AAAAAAAAD90/9fvxhkfRHNMAK6cjmFf3yqvnj6M8BpgQQCK4B/s1600/canchas-de-futbol-14.jpg" alt="">
-					@endif
+						@else
+						<img id="picture"
+							src="https://3.bp.blogspot.com/-q11rITGRRag/WMDnW8qFiSI/AAAAAAAAD90/9fvxhkfRHNMAK6cjmFf3yqvnj6M8BpgQQCK4B/s1600/canchas-de-futbol-14.jpg"
+							alt="">
+						@endif
 					</div>
 				</div>
 				<div class="col">
@@ -84,15 +89,16 @@
 </div>
 
 <style>
-	#wrappy{
+	#wrappy {
 		margin-left: 2em;
 	}
-	.image-wrapper{
+
+	.image-wrapper {
 		position: relative;
 		padding-bottom: 56.25%;
 	}
 
-	.image-wrapper img{
+	.image-wrapper img {
 		position: absolute;
 		object-fit: cover;
 		width: 100%;
