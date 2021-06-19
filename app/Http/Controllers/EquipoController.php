@@ -18,13 +18,13 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        $equipos = Equipo::all();
+        $equipos = Equipo::paginate(10);
         return view("administrador.equipos.lista", compact("equipos"));
     }
 
     public function listaEquipos()
     {
-        $equipos = Equipo::all();
+        $equipos = Equipo::paginate(10);
         return view("equipos.lista", compact("equipos"));
     }
 
@@ -72,7 +72,7 @@ class EquipoController extends Controller
         if ($jugador->equipo_id == null) {
             $equipos = Equipo::all();
         } else {
-            $equipos = Equipo::where('id', '!=', $idEquipo)->get();
+            $equipos = Equipo::where('id', '!=', $idEquipo)->paginate(10);
         }
         return view("administrador.equipos.listaOpciones", compact(["equipos", "jugador"]));
     }

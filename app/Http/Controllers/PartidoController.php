@@ -24,12 +24,12 @@ class PartidoController extends Controller
 
     public function index()
     {
-        $partidos = Partido::orderBy('fecha', 'desc')->get();
+        $partidos = Partido::orderBy('fecha', 'desc')->paginate(10);
         foreach($partidos as $partido){
             $l=Partido::join("estadistica_partido","partido_id","partidos.id")->where("partido_id",$partido->id)->where("estado","local")->first()->equipo_id; 
             $v=Partido::join("estadistica_partido","partido_id","partidos.id")->where("partido_id",$partido->id)->where("estado","visitante")->first()->equipo_id; 
-            $partido["local"] = Equipo::where("id",$l)->select("nombre")->first(); 
-            $partido["visitante"] = Equipo::where("id",$v)->select("nombre")->first();
+            $partido["local"] = Equipo::where("id",$l)->select("nombre", "id")->first(); 
+            $partido["visitante"] = Equipo::where("id",$v)->select("nombre", "id")->first();
         }
     
         return view("administrador.partidos.lista", compact("partidos"));
@@ -37,7 +37,7 @@ class PartidoController extends Controller
 
     public function listaPartidos()
     {
-        $partidos = Partido::all();
+        $partidos = Partido::paginate(10);
         return view("administrador.partidos.lista", compact("partidos"));
     }
     /**
@@ -127,7 +127,6 @@ class PartidoController extends Controller
             ->orderBy('minuto', 'asc')
             ->get();
 
-            // dd($acciones);
             if($acciones == null) {
                 return view('administrador.partidos.show', compact('partido', 'estadisticaLocal', 'estadisticaVisitante'));
             } else {

@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
             <div class="container">
-                @if($partido->estadoPartido == "Finalizado")
+                @if($partido->estadoPartido == "Finalizado" || $partido->estadoPartido == "En_disputa")
                 <div class="row">
                     @foreach ($acciones as $accion)
                     @if ($accion->accion != "Asistencia")

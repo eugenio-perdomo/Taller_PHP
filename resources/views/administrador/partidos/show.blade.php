@@ -4,6 +4,12 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 pb-3 bg-white border-b border-gray-200">
                 <div class="container mt-5 bg-light rounded">
+                    @if(session()->has('estadoPartido'))
+                    <div class="alert alert-danger alert-dismissible fade show shadow-lg rounded" role="alert">
+                        <strong>{{ session()->get('estadoPartido') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                     <div class="container d-flex">
                         <div class="col-4 mt-4  pb-4">
                             <div class="card mb-5">

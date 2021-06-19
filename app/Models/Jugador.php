@@ -14,7 +14,10 @@ class Jugador extends Model
         'apellido',
         'fnacimiento',
         'nacionalidad'
-        
+    ];
+
+    protected $dates = [
+        'fnacimiento',
     ];
 
     public function roles(){

@@ -15,13 +15,13 @@ class LigaController extends Controller
      */
     public function index()
     {
-        $ligas = Liga::all();
+        $ligas = Liga::paginate(10);
         return view("administrador.ligas.lista", compact("ligas"));
     }
 
     public function listaLigas()
     {
-        $ligas = Liga::all();
+        $ligas = Liga::paginate(10);
         return view("ligas.lista", compact("ligas"));
     }
 

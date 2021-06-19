@@ -12,13 +12,13 @@ class NoticiaController extends Controller
 {
     public function index()
     {
-        $noticias = Noticias::orderBy('updated_at', 'desc')->get();
+        $noticias = Noticias::orderBy('updated_at', 'desc')->paginate(45);
         return view('noticias.index',compact("noticias"));
     }
 
     public function listaNoticias()
     {
-        $noticias = Noticias::orderBy('updated_at', 'desc')->get();
+        $noticias = Noticias::orderBy('updated_at', 'desc')->paginate(45);
         //Son 100 y muestra 20, implementar el mostrado de las otras tambien paginas
         //$noticias = Noticias::paginate(20);
         return view('noticias.lista',compact("noticias"));

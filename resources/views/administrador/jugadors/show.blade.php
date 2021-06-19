@@ -34,7 +34,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Fecha de Nacimiento:</strong>
-                    {{ $jugador->fnacimiento  }}
+                    {{ $jugador->fnacimiento->format('d-m-Y')  }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
