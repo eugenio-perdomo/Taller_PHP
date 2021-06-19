@@ -25,30 +25,31 @@
 		@method('PUT')
 
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-7">
 				<div class="form-group">
 					<strong>Id de la noticia: {{$noticia->id}}</strong>
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-8">
 				<div class="form-group">
-					<strong>Tipo de la noticia:</strong>
+					<strong>Titulo de la noticia:</strong>
 					<input type="text" name="tituloNoticia" placeholder="Titulo" class="form-control mb-2"
-						value="{{old('tituloNoticia')}}">
+						value="{{$noticia->tituloNoticia}}">
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-8">
 				<div class="form-group">
-					<strong>Tipo de la noticia:</strong>
+					<strong>Copete de la noticia:</strong>
 					<input type="text" name="copeteNoticia" placeholder="Copete" class="form-control mb-2"
-						value="{{old('copeteNoticia')}}">
+						value="{{$noticia->copeteNoticia}}">
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-10">
+			<div class="col-xs-12 col-sm-12 col-md-8">
 				<div class="form-group">
-					<strong>Tipo de la noticia:</strong>
-					<input type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2"
-						id="{{old('cuerpoNoticia')}}">
+					<strong>Cuerpo de la noticia:</strong>
+					<textarea type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2"
+						value="{{$noticia->cuerpoNoticia}}" rows="5">
+					</textarea>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-10">
@@ -62,7 +63,8 @@
 					</select>
 				</div>
 			</div>
-
+			</br>
+			</br>
 			<div class="row mb-3">
 				<div class="col">
 					<div class="image-wrapper">
