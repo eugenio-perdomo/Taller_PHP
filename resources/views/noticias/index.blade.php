@@ -1,5 +1,11 @@
 @include('layouts/app')
 <div class="container py-5">
+	@if(session()->has('login'))
+	<div class="alert alert-success alert-dismissible fade show shadow-lg rounded" role="alert">
+		<strong>{{ session()->get('login') }}</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	@endif
 	<div class="row flex flex-row justify-content-center">
 		@foreach ($noticias as $noticia)
 		<div class="card col-3 m-2 text-center">
@@ -16,9 +22,10 @@
 				</div>
 				<div class="card-body w-full h-80">
 					@if ($noticia->direccion)
-						<img id="imagen" src="{{URL::asset('storage/'.$noticia->direccion)}}">
+					<img id="imagen" src="{{URL::asset('storage/'.$noticia->direccion)}}">
 					@else
-						<img id="imagen" src="https://3.bp.blogspot.com/-q11rITGRRag/WMDnW8qFiSI/AAAAAAAAD90/9fvxhkfRHNMAK6cjmFf3yqvnj6M8BpgQQCK4B/s1600/canchas-de-futbol-14.jpg">
+					<img id="imagen"
+						src="https://3.bp.blogspot.com/-q11rITGRRag/WMDnW8qFiSI/AAAAAAAAD90/9fvxhkfRHNMAK6cjmFf3yqvnj6M8BpgQQCK4B/s1600/canchas-de-futbol-14.jpg">
 					@endif
 				</div>
 			</a>
@@ -29,9 +36,9 @@
 </div>
 
 <style>
-	#imagen{
-		width:12em;
-		height:auto;
+	#imagen {
+		width: 12em;
+		height: auto;
 		border: solid black 1px;
 	}
 </style>

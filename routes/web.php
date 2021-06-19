@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\NoticiaController;
 use App\Models\Jugador;
 
-Route::get('/', ['middleware' => 'auth', function () {
-    return view('home');
-}]);
+Route::get('/', ['middleware' => 'auth', NoticiaController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
