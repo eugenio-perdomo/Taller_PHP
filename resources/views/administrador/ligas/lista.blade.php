@@ -51,6 +51,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $ligas->links() }}
                                 </div>
                             </div>
                         </div>

@@ -26,20 +26,16 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Id Partido</th>
-                                                <th scope="col">Equipo Local</th>
-                                                <th scope="col">Equipo Visitante</th>
+                                                <th scope="col">Participantes</th>
                                                 <th scope="col">Estado del Partido</th>
                                                 <th scope="col">Fecha</th>
-                                                <th width="280px">Action</th>
+                                                <th width="280px"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($partidos as $partido)
                                             <tr>
-                                                <th scope="row">{{ $partido->id }}</th>
-                                                <th scope="row">{{ $partido->local->nombre }}</th>
-                                                <th scope="row">{{ $partido->visitante->nombre }}</th>
+                                                <th scope="row"><a href="{{ route('equipos.show',$partido->local->id) }}">{{ $partido->local->nombre }}</a> vs. <a href="{{ route('equipos.show',$partido->visitante->id) }}">{{ $partido->visitante->nombre }}</a></th>
                                                 <th scope="row">{{ $partido->estadoPartido }}</th>
                                                 <td>{{ $partido->fecha->format('d-m-Y') }}</td>
                                                 <td>
@@ -55,6 +51,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $partidos->links() }}
                                 </div>
                             </div>
                         </div>

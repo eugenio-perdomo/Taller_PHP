@@ -14,9 +14,18 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        @enderror @if ($errors->has('apellido'))
+                        @enderror
+                        @if ($errors->has('nomCorto'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             El nombre corto es requerido
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @enderror
+                        @if ($errors->has('tresLetras'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            El nombre en tres letras es requerido.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

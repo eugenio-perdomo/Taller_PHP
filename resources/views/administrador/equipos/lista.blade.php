@@ -29,7 +29,7 @@
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">Nombre corto</th>
                                                 <th scope="col">Tres letras</th>
-                                                <th width="280px">Action</th>
+                                                <th width="280px"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -51,6 +51,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $equipos->links() }}
                                 </div>
                             </div>
                         </div>

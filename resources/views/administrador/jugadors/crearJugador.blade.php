@@ -40,7 +40,7 @@
                         <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Nombre de jugador</p><input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" value="{{old('nombre')}}"></label>
                         <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Apellido</p><input type="text" name="apellido" placeholder="Apellido" class="form-control mb-2" value="{{old('apellido')}}"></label>
                         <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Fecha de Nacimiento</p><input type="date" name="fnacimiento" placeholder="Fecha de Nacimiento" class="form-control mb-2" value="{{old('fNacimiento')}}"></label>
-                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Nacionalidad</p><input type="text" name="nacionalidad" placeholder="País de Nacimiento" class="form-control mb-2" value="{{old('nacionalidad')}}"></label>
+                        <label for=""><p class="text-center p-1 text-light" style="background-color: #002766;">Nacionalidad</p><input type="text" name="nacionalidad" placeholder="País de Nacimiento" class="form-control mb-2" value="{{old('nacionalidad', 'Uruguay')}}"></label>
                         <button type="submit" href="/jugadors/create" class="btn btn-primary ms-3"> Agregar Jugador </button>
                     </form>
                 </div>

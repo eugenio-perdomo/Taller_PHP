@@ -27,22 +27,27 @@ class EstadisticaController extends Controller
      */
     public function create($idPartido)
     {
-        $equipoLocal = Partido::join('estadistica_partido', 'partidos.id', '=', 'estadistica_partido.partido_id')
-            ->join('equipos', 'estadistica_partido.equipo_id', '=', 'equipos.id')
-            ->select('equipos.id', 'equipos.nombre')
-            ->where('estadistica_partido.partido_id', $idPartido)
-            ->where('estadistica_partido.estado', "Local")->first();
-
-        $equipoVisitante = Partido::join('estadistica_partido', 'partidos.id', '=', 'estadistica_partido.partido_id')
-            ->join('equipos', 'estadistica_partido.equipo_id', '=', 'equipos.id')
-            ->select('equipos.id', 'equipos.nombre')
-            ->where('estadistica_partido.partido_id', $idPartido)
-            ->where('estadistica_partido.estado', "Visitante")->first();
-
         $partido = Partido::where('id', $idPartido)->first();
+        // dd($partido);
 
-        return view('administrador/partidos/crearEstadisticaPartido', compact(['equipoLocal', 'equipoVisitante', 'partido']));
+        if ($partido->estadoPartido == "Finalizado") {
+            $equipoLocal = Partido::join('estadistica_partido', 'partidos.id', '=', 'estadistica_partido.partido_id')
+                ->join('equipos', 'estadistica_partido.equipo_id', '=', 'equipos.id')
+                ->select('equipos.id', 'equipos.nombre')
+                ->where('estadistica_partido.partido_id', $idPartido)
+                ->where('estadistica_partido.estado', "Local")->first();
 
+            $equipoVisitante = Partido::join('estadistica_partido', 'partidos.id', '=', 'estadistica_partido.partido_id')
+                ->join('equipos', 'estadistica_partido.equipo_id', '=', 'equipos.id')
+                ->select('equipos.id', 'equipos.nombre')
+                ->where('estadistica_partido.partido_id', $idPartido)
+                ->where('estadistica_partido.estado', "Visitante")->first();
+
+            return view('administrador/partidos/crearEstadisticaPartido', compact(['equipoLocal', 'equipoVisitante', 'partido']));
+        } else {
+            return redirect()->route('partidos.show', $idPartido)
+                ->with('estadoPartido', 'El estado de partido no permite cargar estadísticas.');
+        }
     }
 
     /**
@@ -98,7 +103,7 @@ class EstadisticaController extends Controller
             'golesV' => 'required',
         ]);
 
-        if (($request->Input('posesionL') + $request->Input('posesionV')) == 100 ) {
+        if (($request->Input('posesionL') + $request->Input('posesionV')) == 100) {
             $equipoEstadisticaL = estadistica_partido::where('partido_id', $idPartido)
                 ->where('equipo_id', $idLocal)->first();
 
@@ -132,10 +137,10 @@ class EstadisticaController extends Controller
             $partido->save();
 
             return redirect()->route('partidos.show', $idPartido)
-            ->with('estadistica', 'Estadística creada con éxito');
+                ->with('estadistica', 'Estadística creada con éxito');
         } else {
             return redirect()->route('crearEstadistica', $idPartido)
-            ->with('posesion', 'La posesion de ambos equipos debe sumar 100');
+                ->with('posesion', 'La posesion de ambos equipos debe sumar 100');
         }
     }
 

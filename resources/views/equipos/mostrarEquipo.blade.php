@@ -11,6 +11,12 @@
 <body>
     @include('layouts/app')
     <div class="container mt-3 bg-light shadow-lg rounded pb-5">
+        @if(session()->has('estadoPartido'))
+        <div class="alert alert-warning alert-dismissible fade show shadow-lg rounded" role="alert">
+            <strong>{{ session()->get('estadoPartido') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show shadow-lg rounded" role="alert">
             <strong>{{ session()->get('success') }}</strong>
@@ -29,7 +35,8 @@
                 <a href="{{route('equipos.index')}}" class="btn btn-primary text-light fw-bolder">Volver a Equipos</a>
                 <h3>Lista de Jugadores</h3>
                 @can('jugadores.create')
-                <a href="{{ route('equipos.agregar', $equipo->id) }}" class="btn btn-primary text-light fw-bolder">Agregar Jugadores</a>
+                <a href="{{ route('equipos.agregar', $equipo->id) }}"
+                    class="btn btn-primary text-light fw-bolder">Agregar Jugadores</a>
                 @endcan
             </div>
             <div class="card-body">
@@ -48,12 +55,13 @@
                         <tr>
                             <th scope="row">{{ $jugador->nombre }}</th>
                             <td>{{ $jugador->apellido }}</td>
-                            <td>{{ $jugador->fnacimiento }}</td>
+                            <td>{{ $jugador->fnacimiento->format('d-m-Y') }}</td>
                             <td>{{ $jugador->nacionalidad }}</td>
                             @can('jugadores.create')
                             <td>
                                 <a class="btn btn-info" href="{{ route('jugadors.show',$jugador->id) }}">Perfil</a>
-                                <a class="btn btn-danger" href="{{ route('equipos.quitar',['idEquipo' => $equipo->id, 'idJugador' => $jugador->id]) }}">Quitar</a>
+                                <a class="btn btn-danger"
+                                    href="{{ route('equipos.quitar',['idEquipo' => $equipo->id, 'idJugador' => $jugador->id]) }}">Quitar</a>
                             </td>
                             @endcan
                         </tr>

@@ -43,20 +43,19 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Participantes:</strong>
-                <input type="text" name="participantes" class="form-control"value="{{$liga->participantes}}" placeholder="Ingrese apellido">
+                <input type="number" name="participantes" class="form-control"value="{{$liga->participantes}}" placeholder="Cantidad de Participantes">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Sistema de Juego:</strong>
-                <input type="text" name="sistemaDeJuego" class="form-control" value="{{$liga->sistemaDeJuego}}" placeholder="Ingrese nacionalidad">
+                <input type="text" name="sistemaDeJuego" class="form-control" value="{{$liga->sistemaDeJuego}}" placeholder="Sistema de Juego">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Aceptar</button>
         </div>
     </div>
-   
 </form>
 </div>
 </body>

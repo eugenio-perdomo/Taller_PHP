@@ -18,7 +18,7 @@
                         <div class="container d-flex">
                             <div class="col-4">
                                 <article>
-                                    Fecha del Partido: {{ $partido->fecha }}
+                                    Fecha del Partido: {{ $partido->fecha->format('d-m-Y') }}
                                 </article>
                             </div>
                             <div class="col-4">

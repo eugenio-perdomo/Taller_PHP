@@ -28,41 +28,46 @@ class AccionPartidoController extends Controller
      */
     public function create($idPartido)
     {
-        $jugadoresLocales = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
+        $partido = Partido::where('id', $idPartido)->first();
+        if($partido->estadoPartido == 'Finalizado' || $partido->estadoPartido == 'En_disputa')
+        {
+
+            $jugadoresLocales = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
             ->join('estadistica_partido', 'estadistica_partido.equipo_id', '=', 'equipos.id')
             ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido')
             ->where('estadistica_partido.partido_id', $idPartido)
             ->where('estadistica_partido.estado', "Local")->get();
-
-        $jugadoresVisitantes = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
+            
+            $jugadoresVisitantes = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
             ->join('estadistica_partido', 'estadistica_partido.equipo_id', '=', 'equipos.id')
             ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido')
             ->where('estadistica_partido.partido_id', $idPartido)
             ->where('estadistica_partido.estado', "Visitante")->get();
-
-        $equipoLocal = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
+            
+            $equipoLocal = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
             ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
             ->select('equipos.*')
             ->where('estadistica_partido.partido_id', $idPartido)
             ->where('estadistica_partido.estado', 'Local')
             ->first();
-
-        $equipoVisitante = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
+            
+            $equipoVisitante = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
             ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
             ->select('equipos.*')
             ->where('estadistica_partido.partido_id', $idPartido)
             ->where('estadistica_partido.estado', 'Visitante')
             ->first();
-
-        $partido = Partido::where('id', $idPartido)->first();
-
-        $acciones = Jugador::join('accion_partido', 'jugadors.id', '=', 'accion_partido.jugador_id')
+            
+            $acciones = Jugador::join('accion_partido', 'jugadors.id', '=', 'accion_partido.jugador_id')
             ->join('partidos', 'accion_partido.partido_id', '=', 'partidos.id')
             ->select('accion_partido.*', 'jugadors.nombre', 'jugadors.apellido')
             ->where('accion_partido.partido_id', $partido->id)
             ->orderBy('minuto', 'asc')
             ->get();
-
+        } else {
+            return redirect()->route('partidos.show', $idPartido)
+                ->with('estadoPartido', 'El estado del partido no deja crear acciones por el momento');
+        }   
         if($acciones == null) {
             return view('administrador/partidos/crearAccionPartido', compact(['jugadoresLocales', 'jugadoresVisitantes', 'equipoLocal', 'equipoVisitante', 'partido']));
         } else {

@@ -21,14 +21,14 @@ class JugadorController extends Controller
     {
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
         ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
-        ->get();
-        $jugadoresLibres = Jugador::whereNull('equipo_id')->get();
+        ->paginate(10);
+        $jugadoresLibres = Jugador::whereNull('equipo_id')->paginate(10);
         return view("administrador.jugadors.lista", compact(["jugadores", "jugadoresLibres"]));
     }
 
     public function listaJugadores()
     {
-        $jugadores = Jugador::all();
+        $jugadores = Jugador::paginate(10);
         return view("jugadors.lista", compact("jugadores"));
     }
 
@@ -124,6 +124,6 @@ class JugadorController extends Controller
     {
         $jugador->delete();
         return redirect()->route('jugadors.index')
-            ->with('success', 'Se elimino correctamente');
+            ->with('destroy', 'Se elimino correctamente');
     }
 }
