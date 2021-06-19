@@ -18,6 +18,7 @@
 				<div class="card-body w-full h-80">
 					<h1>
 						{{ $noticia->copeteNoticia }}
+						{{ $noticia->tipoNoticia }}
 					</h1>
 				</div>
 				<div class="card-body w-full h-80">

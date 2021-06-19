@@ -62,9 +62,8 @@ class NoticiaController extends Controller
     public function show($id)
     {
         $noticia = Noticias::where('id',$id)->first();
-        /*var_dump( $noticia);
-        dd( $noticia);*/
-        return view('noticias.show', compact('noticia'));
+        $listaRelacionada = Noticias::where('tipoNoticia', $noticia->tipoNoticia)->orderBy('updated_at', 'desc')->get();
+        return view('noticias.show', compact('noticia','listaRelacionada'));
     }
 
     public function edit($id)
