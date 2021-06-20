@@ -1,9 +1,9 @@
 @include('layouts/app')
 <div class="container d-flex">
-	<section class="d-flex flex-column align-items-start" style="margin-left: -4em;">
+	<section class="d-flex flex-column align-items-start" style="margin-left: -6em;">
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<div class="form-group">
-				<span style="padding:1.2em;">Categoria: {{ $noticia->tipoNoticia }}</span>
+				<span >Categoria: {{ $noticia->tipoNoticia }} <br> Fecha: {{$noticia->created_at->format('d/m/Y')}}</span>
 			</div>
 		</div>
 		<div class="p-3 mt-2">
@@ -31,7 +31,7 @@
 		</div>
 	</section>
 	<div class="b-example-divider"></div>
-	<section>
+	<section style="margin-left: 15em;">
 		<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
 			<br>
 			<span class="fs-5 fw-semibold">Noticias relacionadas de tipo {{ $noticia->tipoNoticia }}</span>
@@ -42,6 +42,7 @@
 					class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
 					<div class="d-flex w-100 align-items-center justify-content-between">
 						<strong class="mb-1">{{ $nota->tituloNoticia }}</strong>
+						{{$nota->created_at->format('d/m/Y')}}
 					</div>
 					<div class="col-10 mb-1 small">{{ $nota->copeteNoticia }}</div>
 				</a>

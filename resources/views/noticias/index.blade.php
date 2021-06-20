@@ -8,8 +8,9 @@
 	@endif
 	<div class="row flex flex-row justify-content-center">
 		@foreach ($noticias as $noticia)
-		<div class="card col-3 m-2 text-center">
+		<div class="card col-md-5 m-2 text-center">
 			<div class="card-header">
+				<small>{{$noticia->created_at->format('d/m/Y')}}</small>
 				<h1><a class="text-reset text-decoration-none" href="{{ route('noticias.show',$noticia->id) }}">
 						{{ $noticia->tituloNoticia }}
 					</a>
