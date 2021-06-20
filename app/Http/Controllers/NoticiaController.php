@@ -58,12 +58,13 @@ class NoticiaController extends Controller
     public function show($id)
     {
         $noticia = Noticias::where('id', $id)->first();
+        Noticias::find($id)->increment('cantVisual', 1);
+        $noticiaUpdateTime = $noticia->updated_at;
+        Noticias::where('id', $id)->update(['updated_at' => $noticiaUpdateTime]);
         $listaRelacionada = Noticias::where([
             ['tipoNoticia', $noticia->tipoNoticia],
-            ['id', '<>', $id]
-        ])
-            ->orderBy('created_at', 'desc')->paginate(8);
-        Noticias::find($id)->increment('cantVisual', 1);
+            ['id', '<>', $id]])
+            ->orderBy('updated_at', 'desc')->paginate(8);
         return view('noticias.show', compact('noticia', 'listaRelacionada'));
     }
 

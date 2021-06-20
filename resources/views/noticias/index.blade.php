@@ -10,7 +10,10 @@
 		@foreach ($noticias as $noticia)
 		<div class="card col-md-5 m-2 text-center">
 			<div class="card-header">
-				<small>{{$noticia->created_at->format('d/m/Y')}}</small>
+				<span>
+					<small style="float: left">{{$noticia->created_at->format('d/m/Y')}}</small>
+					<small style="float: right"><i class="fa fa-eye" aria-hidden="true"> {{$noticia->cantVisual}}</i></small>
+				</span>
 				<h1><a class="text-reset text-decoration-none" href="{{ route('noticias.show',$noticia->id) }}">
 						{{ $noticia->tituloNoticia }}
 					</a>
@@ -19,7 +22,6 @@
 				<div class="card-body w-full h-80">
 					<h1>
 						{{ $noticia->copeteNoticia }}
-						{{ $noticia->tipoNoticia }}
 					</h1>
 				</div>
 				<div class="card-body w-full h-80">
