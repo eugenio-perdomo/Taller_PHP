@@ -8,9 +8,15 @@ use App\Models\Administrador;
 use App\Models\Editor;
 use App\Models\Noticias;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class NoticiaController extends Controller
 {
+    public function __construct()
+    {
+        Carbon::setLocale('es');
+    }
+
     public function index()
     {
         $noticias = Noticias::orderBy('updated_at', 'desc')->paginate(45);

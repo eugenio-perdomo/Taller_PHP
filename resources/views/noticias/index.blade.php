@@ -11,7 +11,7 @@
 		<div class="card col-md-5 m-2 text-center">
 			<div class="card-header">
 				<span>
-					<small style="float: left">{{$noticia->created_at->format('d/m/Y')}}</small>
+					<small style="float: left">{{$noticia->updated_at->diffForHumans()}}</small>
 					<small style="float: right"><i class="fa fa-eye" aria-hidden="true"> {{$noticia->cantVisual}}</i></small>
 				</span>
 				<h1><a class="text-reset text-decoration-none" href="{{ route('noticias.show',$noticia->id) }}">

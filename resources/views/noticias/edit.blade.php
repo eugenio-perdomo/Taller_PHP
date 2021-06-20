@@ -47,9 +47,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-8">
 				<div class="form-group">
 					<strong>Cuerpo de la noticia:</strong>
-					<textarea type="text" name="cuerpoNoticia" placeholder="Cuerpo" class="form-control mb-2"
-						value="{{$noticia->cuerpoNoticia}}" rows="5">
-					</textarea>
+					<textarea type="text" name="cuerpoNoticia" class="form-control mb-2" rows="5">{{$noticia->cuerpoNoticia}}</textarea>
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-10">

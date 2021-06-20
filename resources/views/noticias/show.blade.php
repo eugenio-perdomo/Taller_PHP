@@ -1,9 +1,21 @@
 @include('layouts/app')
-<div class="container d-flex">
-	<section class="d-flex flex-column align-items-start" style="margin-left: -5em;">
+<div class="container d-flex bg-light mt-4">
+	<section class="d-flex flex-column align-items-start">
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<div class="form-group">
-				<span >Categoria: {{ $noticia->tipoNoticia }} <br> Fecha: {{$noticia->updated_at->format('d/m/Y')}}</span>
+				@if($noticia->tipoNoticia == 'DatoColor')
+				<span class="bg-primary rounded-pill p-2">Dato Color</span>
+				@endif
+				@if($noticia->tipoNoticia == 'Información')
+				<span class="bg-secondary rounded-pill p-2">Información</span>
+				@endif
+				@if($noticia->tipoNoticia == 'Analisis')
+				<span class="bg-warning rounded-pill p-2">Analisis</span>
+				@endif
+				@if($noticia->tipoNoticia == 'Fichaje')
+				<span class="bg-danger rounded-pill p-2">Fichajes</span>
+				@endif
+				<p class="lead mt-2">Última edición: {{$noticia->updated_at->format('d/m/Y')}}</p>
 			</div>
 		</div>
 		<div class="p-3 mt-2">
