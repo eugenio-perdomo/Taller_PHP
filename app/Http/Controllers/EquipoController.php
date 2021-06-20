@@ -28,6 +28,11 @@ class EquipoController extends Controller
         return view("equipos.lista", compact("equipos"));
     }
 
+    public static function buscarEquipo($busqueda){
+        $equipos = Equipo::where("nombre","LIKE",$busqueda)->get();
+        return $equipos;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

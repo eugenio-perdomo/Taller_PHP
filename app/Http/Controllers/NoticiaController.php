@@ -29,6 +29,11 @@ class NoticiaController extends Controller
         return view('noticias.lista', compact("noticias"));
     }
 
+    public static function buscarNoticia($busqueda){
+        $noticias = Noticias::where("tituloNoticia","LIKE",$busqueda)->get();
+        return $noticias;
+    }
+
     public function create()
     {
         return view('noticias.create');

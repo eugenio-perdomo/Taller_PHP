@@ -25,6 +25,11 @@ class LigaController extends Controller
         return view("ligas.lista", compact("ligas"));
     }
 
+    public static function buscarLiga($busqueda){
+        $ligas = Liga::where("nombreLiga","LIKE",$busqueda)->get();
+        return $ligas;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
