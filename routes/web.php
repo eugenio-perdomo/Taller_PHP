@@ -4,6 +4,7 @@ use App\Http\Controllers\AccionPartidoController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\LigaController;
+use App\Http\Controllers\BuscadorController;
 use App\Http\Controllers\PartidoController;
 use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\Admin\RolesController;
@@ -28,6 +29,8 @@ Route::resource('/jugadors', JugadorController::class);
 
 Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
 Route::resource('/ligas', LigaController::class)->names('ligas');
+
+Route::get('/buscar', [BuscadorController::class,'buscar']);
 
 Route::get('/partidos/lista', [PartidoController::class,'listaPartidos']);
 Route::resource('/partidos', PartidoController::class);
