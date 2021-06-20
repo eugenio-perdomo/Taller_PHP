@@ -41,10 +41,12 @@
                                                 <td>
                                                     <form action="{{ route('partidos.destroy',$partido->id) }}" method="POST">
                                                         <a class="btn btn-info" href="{{ route('partidos.show',$partido->id) }}">Mostrar</a>
+                                                        @can('partidos.create')
                                                         <a class="btn btn-primary" href="{{ route('partidos.edit',$partido->id) }}">Editar</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('¿Desea eliminar la liga: {{$partido->id}}?')">Eliminar</button>
+                                                        @endcan
                                                     </form>
                                                 </td>
                                             </tr>

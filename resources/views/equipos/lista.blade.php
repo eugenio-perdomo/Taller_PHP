@@ -35,7 +35,7 @@
                                             <tbody>
                                                 @foreach ($equipos as $equipo)
                                                 <tr>
-                                                    <th scope="row">{{ $equipo->nombre }}</th>
+                                                    <th scope="row"><a class="text-decoration-none text-dark" href="{{ route('equipos.show', $equipo->id) }}">{{ $equipo->nombre }}</a></th>
                                                     <td>{{ $equipo->nomCorto }}</td>
                                                     <td>{{ $equipo->tresLetras }}</td>
                                                 </tr>

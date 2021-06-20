@@ -28,7 +28,6 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Nombre</th>
-                                                    <th scope="col">Apellido</th>
                                                     <th scope="col">Nacimiento</th>
                                                     <th scope="col">Nacionalidad</th>
                                                 </tr>
@@ -36,9 +35,8 @@
                                             <tbody>
                                                 @foreach ($jugadores as $jugador)
                                                 <tr>
-                                                    <th scope="row">{{ $jugador->nombre }}</th>
-                                                    <td>{{ $jugador->apellido }}</td>
-                                                    <td>{{ $jugador->fnacimiento }}</td>
+                                                    <th scope="row"><a class="text-decoration-none text-dark" href="{{ route('jugadors.show', $jugador->id) }}">{{ $jugador->nombre }} {{ $jugador->apellido }}</a></th>
+                                                    <td>{{ $jugador->fnacimiento->format('d-m-Y') }}</td>
                                                     <td>{{ $jugador->nacionalidad }}</td>
                                                 </tr>
                                                 @endforeach

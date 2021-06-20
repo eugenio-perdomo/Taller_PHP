@@ -35,7 +35,7 @@
                                         <tbody>
                                             @foreach ($ligas as $liga)
                                             <tr>
-                                                <th scope="row">{{ $liga->nombreLiga }}</th>
+                                                <th scope="row"><a class="text-decoration-none" href="{{ route('ligas.show', $liga->id) }}">{{ $liga->nombreLiga }}</th></a>
                                                 <td>{{ $liga->participantes }}</td>
                                                 <td>{{ $liga->sistemaDeJuego }}</td>
                                                 <td>

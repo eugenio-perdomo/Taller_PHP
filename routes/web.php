@@ -27,7 +27,7 @@ Route::get('/jugadors/lista', [JugadorController::class,'listaJugadores']);
 Route::resource('/jugadors', JugadorController::class);
 
 Route::get('/ligas/lista', [LigaController::class,'listaLigas']);
-Route::resource('/ligas', LigaController::class);
+Route::resource('/ligas', LigaController::class)->names('ligas');
 
 Route::get('/partidos/lista', [PartidoController::class,'listaPartidos']);
 Route::resource('/partidos', PartidoController::class);
