@@ -19,8 +19,8 @@ class CreateAccionPartidoTable extends Migration
             $table->integer("minuto");
             $table->unsignedBigInteger("jugador_id");
             $table->unsignedBigInteger("partido_id");
-            $table->foreign("jugador_id")->references("id")->on("jugadors")->onDelete("cascade");
-            $table->foreign("partido_id")->references("id")->on("partidos")->onDelete("cascade");
+            $table->foreign("jugador_id")->references("id")->on("jugadors")->onDelete("cascade")->onUpdate('cascade');
+            $table->foreign("partido_id")->references("id")->on("partidos")->onDelete("cascade")->onUpdate('cascade');
             $table->timestamps();
         });
     }

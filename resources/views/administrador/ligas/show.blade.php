@@ -15,23 +15,23 @@
     @include('layouts/app')
     <div class="container bg-light mt-5 shadow-lg">
         <section class="d-flex flex-column align-items-start">
-            <div class="p-1 mt-1">
+            <div class="p-1 m-4">
                 <h1> {{ $liga->nombreLiga }}</h1>
             </div>
-            <div class="p-4 mb-3 d-flex justify-content-beetwen">
+            <div class="p-2 m-4 d-flex justify-content-beetwen">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong class="display-4">Sistema de juego:</strong>
+                        <strong class="fw-bolder h2">Sistema de juego</strong>
                         <p class="display-6">{{ $liga->sistemaDeJuego  }}</p>
                     </div>
                     <div class="form-group">
-                        <strong>Cantidad de participantes:</strong>
-                        {{ $liga->participantes  }}
+                        <strong class="fw-bolder h2">Cantidad participantes</strong>
+                        <p class="display-6">{{ $liga->participantes  }}</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                     <div class="card shadow-lg">
-                        <div class="card-header" style="background-color: #002766">
+                        <div class="card-header mt-2" style="background-color: #002766">
                             <div class="lead text-white fw-bolder text-center">Equipos Participantes</div>
                         </div>
                         <div class="card-body">

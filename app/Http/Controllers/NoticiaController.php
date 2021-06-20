@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -13,13 +14,13 @@ class NoticiaController extends Controller
     public function index()
     {
         $noticias = Noticias::orderBy('updated_at', 'desc')->paginate(45);
-        return view('noticias.index',compact("noticias"));
+        return view('noticias.index', compact("noticias"));
     }
 
     public function listaNoticias()
     {
         $noticias = Noticias::orderBy('updated_at', 'desc')->paginate(45);
-        return view('noticias.lista',compact("noticias"));
+        return view('noticias.lista', compact("noticias"));
     }
 
     public function create()
@@ -41,7 +42,7 @@ class NoticiaController extends Controller
             $url = Storage::put('posts', $request->file('direccion'));
             $nota->direccion = $url;
         }
-        
+
         $request->validate([
             'tituloNoticia' => 'required',
             'copeteNoticia' => 'required',
@@ -56,26 +57,25 @@ class NoticiaController extends Controller
 
     public function show($id)
     {
-        $noticia = Noticias::where('id',$id)->first();
+        $noticia = Noticias::where('id', $id)->first();
         $listaRelacionada = Noticias::where([
             ['tipoNoticia', $noticia->tipoNoticia],
-            ['id', '<>', $id]])
+            ['id', '<>', $id]
+        ])
             ->orderBy('created_at', 'desc')->paginate(8);
-
-        // Noticias::increment('cantVisual', 1,['id' => $id]);
-        // dd($noticia->cantVisual);
-        return view('noticias.show', compact('noticia','listaRelacionada'));
+        Noticias::find($id)->increment('cantVisual', 1);
+        return view('noticias.show', compact('noticia', 'listaRelacionada'));
     }
 
     public function edit($id)
     {
-        $noticia = Noticias::where('id',$id)->first();
+        $noticia = Noticias::where('id', $id)->first();
 
         return view('noticias.edit', compact('noticia'));
     }
 
     public function update(Request $request, $idNoticias)
-    {   
+    {
         $request->validate([
             'tituloNoticia' => 'required',
             'copeteNoticia' => 'required',
@@ -83,13 +83,13 @@ class NoticiaController extends Controller
             'tipoNoticia' => 'required'
         ]);
 
-        
+
         $nota = Noticias::where('id', $idNoticias)->first();
         $nota->tituloNoticia = $request->input('tituloNoticia');
         $nota->copeteNoticia = $request->input('copeteNoticia');
         $nota->cuerpoNoticia = $request->input('cuerpoNoticia');
         $nota->tipoNoticia = $request->input('tipoNoticia');
-        
+
         if ($request->file('direccion')) {
             $url = Storage::put('posts', $request->file('direccion'));
             $nota->direccion = $url;

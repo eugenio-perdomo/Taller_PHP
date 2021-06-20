@@ -35,7 +35,7 @@
                                         <tbody>
                                             @foreach ($partidos as $partido)
                                             <tr>
-                                                <th scope="row"><a href="{{ route('equipos.show',$partido->local->id) }}">{{ $partido->local->nombre }}</a> vs. <a href="{{ route('equipos.show',$partido->visitante->id) }}">{{ $partido->visitante->nombre }}</a></th>
+                                                <th scope="row"><a class="text-decoration-none text-dark" href="{{ route('equipos.show',$partido->local->id) }}">{{ $partido->local->nombre }}</a> vs. <a class="text-decoration-none text-dark" href="{{ route('equipos.show',$partido->visitante->id) }}">{{ $partido->visitante->nombre }}</a></th>
                                                 <th scope="row">{{ $partido->estadoPartido }}</th>
                                                 <td>{{ $partido->fecha->format('d-m-Y') }}</td>
                                                 <td>

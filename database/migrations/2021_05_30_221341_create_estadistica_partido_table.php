@@ -27,8 +27,8 @@ class CreateEstadisticaPartidoTable extends Migration
             $table->string("estado");
             $table->unsignedBigInteger("equipo_id");
             $table->unsignedBigInteger("partido_id");
-            $table->foreign("equipo_id")->references("id")->on("equipos");
-            $table->foreign("partido_id")->references("id")->on("partidos");
+            $table->foreign("equipo_id")->references("id")->on("equipos")->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign("partido_id")->references("id")->on("partidos")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

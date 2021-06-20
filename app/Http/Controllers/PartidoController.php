@@ -17,21 +17,21 @@ class PartidoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function __construct()
-     {
+    public function __construct()
+    {
         Carbon::setLocale('es');
-     }
+    }
 
     public function index()
     {
         $partidos = Partido::orderBy('fecha', 'desc')->paginate(10);
-        foreach($partidos as $partido){
-            $l=Partido::join("estadistica_partido","partido_id","partidos.id")->where("partido_id",$partido->id)->where("estado","local")->first()->equipo_id; 
-            $v=Partido::join("estadistica_partido","partido_id","partidos.id")->where("partido_id",$partido->id)->where("estado","visitante")->first()->equipo_id; 
-            $partido["local"] = Equipo::where("id",$l)->select("nombre", "id")->first(); 
-            $partido["visitante"] = Equipo::where("id",$v)->select("nombre", "id")->first();
+        foreach ($partidos as $partido) {
+            $l = Partido::join("estadistica_partido", "partido_id", "partidos.id")->where("partido_id", $partido->id)->where("estado", "local")->first()->equipo_id;
+            $v = Partido::join("estadistica_partido", "partido_id", "partidos.id")->where("partido_id", $partido->id)->where("estado", "visitante")->first()->equipo_id;
+            $partido["local"] = Equipo::where("id", $l)->select("nombre", "id")->first();
+            $partido["visitante"] = Equipo::where("id", $v)->select("nombre", "id")->first();
         }
-    
+
         return view("administrador.partidos.lista", compact("partidos"));
     }
 
@@ -119,15 +119,15 @@ class PartidoController extends Controller
                 )
                 ->where('estadistica_partido.partido_id', $partido->id)
                 ->where('estadistica_partido.estado', "Visitante")->first();
-            
-            $acciones = Jugador::join('accion_partido', 'jugadors.id', '=', 'accion_partido.jugador_id')
-            ->join('partidos', 'accion_partido.partido_id', '=', 'partidos.id')
-            ->select('accion_partido.*', 'jugadors.nombre', 'jugadors.apellido')
-            ->where('accion_partido.partido_id', $partido->id)
-            ->orderBy('minuto', 'asc')
-            ->get();
 
-            if($acciones == null) {
+            $acciones = Jugador::join('accion_partido', 'jugadors.id', '=', 'accion_partido.jugador_id')
+                ->join('partidos', 'accion_partido.partido_id', '=', 'partidos.id')
+                ->select('accion_partido.*', 'jugadors.nombre', 'jugadors.apellido')
+                ->where('accion_partido.partido_id', $partido->id)
+                ->orderBy('minuto', 'asc')
+                ->get();
+
+            if ($acciones == null) {
                 return view('administrador.partidos.show', compact('partido', 'estadisticaLocal', 'estadisticaVisitante'));
             } else {
                 return view('administrador.partidos.show', compact('partido', 'estadisticaLocal', 'estadisticaVisitante', 'acciones'));
@@ -181,6 +181,24 @@ class PartidoController extends Controller
      */
     public function destroy(Partido $partido)
     {
+        $estadisticaLocal = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
+            ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
+            ->select(
+                'estadistica_partido.id'
+            )
+            ->where('estadistica_partido.partido_id', $partido->id)
+            ->where('estadistica_partido.estado', "Local")->first();
+        $estadisticaVisitante = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
+            ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
+            ->select(
+                'estadistica_partido.id'
+            )
+            ->where('estadistica_partido.partido_id', $partido->id)
+            ->where('estadistica_partido.estado', "Visitante")->first();
+        $estadisticaLocal = estadistica_partido::where('id', $estadisticaLocal->id)->first();
+        $estadisticaLocal->delete();
+        $estadisticaVisitante = estadistica_partido::where('id', $estadisticaVisitante->id)->first();
+        $estadisticaVisitante->delete();
         $partido->delete();
         return redirect()->route('partidos.index')
             ->with('success', 'Se elimino correctamente');
