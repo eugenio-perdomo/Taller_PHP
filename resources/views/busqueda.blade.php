@@ -9,13 +9,13 @@
                                 <div class="card mt-4 shadow-lg">
                                     Equipos:
                                     @foreach($equipos as  $equipo)
-                                        <div><a href="/equipos/{{$equipo->id}}">{{$equipo->nombre}}</a></div>
+                                        <div><a href="/equipos/{{$equipo->id}}">{{$equipo->nombre}} {{$equipo->nomCorto}} </a></div>
                                     @endforeach
                                 </div>
                                 <div class="card mt-4 shadow-lg">
                                    Jugadores:
                                    @foreach($jugadores as  $jugador)
-                                   <div><a href="/jugadores/{{$equipo->id}}">{{$jugador->nombre}}</a></div>
+                                   <div><a href="/jugadors/{{$jugador->id}}">{{$jugador->nombre}} {{$jugador->apellido}} </a></div>
                                     @endforeach
                                 </div>
                                 <div class="card mt-4 shadow-lg">
@@ -27,11 +27,10 @@
                                 <div class="card mt-4 shadow-lg">
                                     Noticias:
                                     @foreach($noticias as  $noticia)
-                                    <div><a href="/noticias/{{$equipo->id}}">{{$noticia->tituloNoticia}}</a></div>
+                                    <div>
+                                    <a href="/noticia/{{$noticia->id}}">{{$noticia->tituloNoticia}}</a> 
+                                    </div>
                                     @endforeach
-                                </div>
-                                <div class="card mt-4 shadow-lg">
-                                    {{$busqueda}}
                                 </div>
                             </div>
                         </div>

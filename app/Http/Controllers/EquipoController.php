@@ -29,7 +29,7 @@ class EquipoController extends Controller
     }
 
     public static function buscarEquipo($busqueda){
-        $equipos = Equipo::where("nombre","LIKE",$busqueda)->get();
+        $equipos = Equipo::where("nombre","LIKE","%$busqueda%")->get();
         return $equipos;
     }
 
