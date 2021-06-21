@@ -59,3 +59,4 @@ Route::resource('/estadisticas', EstadisticaController::class);
 
 Route::post('acciones/cargar/{idPartido}/{estado}', [AccionPartidoController::class, 'cargarAccion'])->name('cargarAccion');
 Route::get('acciones/create/{idPartido}', [AccionPartidoController::class, 'create'])->name('crearAcciones');
+Route::get('acciones/eliminar/{idAccion}', [AccionPartidoController::class, 'destroy'])->name('eliminarAccion');

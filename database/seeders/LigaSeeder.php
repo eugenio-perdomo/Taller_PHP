@@ -15,7 +15,7 @@ class LigaSeeder extends Seeder
      */
     public function run()
     {
-        $ligas = Liga::factory(3)->create();
+        $ligas = Liga::factory(5)->create();
         $equipos = Equipo::all();
         foreach($ligas as $liga){
             foreach($equipos as $equipo){

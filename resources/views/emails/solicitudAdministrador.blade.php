@@ -16,5 +16,6 @@
         <li>Username: {{ $usuario->username }}</li>
         <li>Email: {{ $usuario->email }}</li>
     </ul>
+    <p class="lead">Puedes aceptar o rechazar la solicitud pulsando <a href="http://127.0.0.1:8000/roles">aquí</a>.</p>
 </body>
 </html>

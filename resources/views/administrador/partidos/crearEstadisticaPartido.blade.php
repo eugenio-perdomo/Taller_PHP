@@ -27,66 +27,59 @@
                                 <label for="golesL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Goles</p>
                                     <input type="number" name="golesL" placeholder="Goles" class="form-control mb-2"
-                                        value="{{old('golesL')}}">
+                                        value="{{$equipoLocal->goles}}">
                                 </label>
                                 <br>
-
                                 <label for="posesionL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Posesion
                                     </p>
                                     <input type="number" name="posesionL" placeholder="Posesion"
-                                        class="form-control mb-2" value="{{old('posesionL')}}">
+                                        class="form-control mb-2" value="{{$equipoLocal->posesion}}">
                                 </label>
                                 <br>
-
                                 <label for="tirosTotalesL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
                                         Totales</p>
                                     <input type="number" name="tirosTotalesL" placeholder="Tiros Totales"
-                                        class="form-control mb-2" value="{{old('tirosTotalesL')}}">
+                                        class="form-control mb-2" value="{{$equipoLocal->tirosTotales}}">
                                 </label>
                                 <br>
-
                                 <label for="tirosPuertaL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
                                         Puerta</p>
                                     <input type="number" name="tirosPuertaL" placeholder="Tiros Puerta"
-                                        class="form-control mb-2" value="{{old('tirosPuertaL')}}">
+                                        class="form-control mb-2" value="{{$equipoLocal->tirosPuerta}}">
                                 </label>
                                 <br>
-
                                 <label for="cornerL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Corner</p>
                                     <input type="number" name="cornerL" placeholder="Corner" class="form-control mb-2"
-                                        value="{{old('cornerL')}}">
+                                        value="{{$equipoLocal->corner}}">
                                 </label>
                                 <br>
                                 <label for="offsideL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Offside</p>
                                     <input type="number" name="offsideL" placeholder="Offside" class="form-control mb-2"
-                                        value="{{old('offsideL')}}">
+                                        value="{{$equipoLocal->offside}}">
                                 </label>
                                 <br>
-
                                 <label for="faltasL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Faltas</p>
                                     <input type="number" name="faltasL" placeholder="Faltas" class="form-control mb-2"
-                                        value="{{old('faltasL')}}">
+                                        value="{{$equipoLocal->faltas}}">
                                 </label>
                                 <br>
-
                                 <label for="amarillasL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Amarillas
                                     </p>
                                     <input type="number" name="amarillasL" placeholder="Amarillas"
-                                        class="form-control mb-2" value="{{old('amarillasL')}}">
+                                        class="form-control mb-2" value="{{$equipoLocal->amarillas}}">
                                 </label>
                                 <br>
-
                                 <label for="rojasL">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Rojas</p>
                                     <input type="number" name="rojasL" placeholder="Rojas" class="form-control mb-2"
-                                        value="{{old('rojasL')}}">
+                                        value="{{$equipoLocal->rojas}}">
                                 </label>
                                 <br>
                             </div>
@@ -96,69 +89,61 @@
                                 <label for="golesV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Goles</p>
                                     <input type="number" name="golesV" placeholder="Goles" class="form-control mb-2"
-                                        value="{{old('golesV')}}">
+                                        value="{{$equipoVisitante->goles}}">
                                 </label>
                                 <br>
-
                                 <label for="posesionV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Posesion
                                     </p>
                                     <input type="number" name="posesionV" placeholder="Posesion"
-                                        class="form-control mb-2" value="{{old('posesionV')}}">
+                                        class="form-control mb-2" value="{{$equipoVisitante->posesion}}">
                                 </label>
                                 <br>
-
                                 <label for="tirosTotalesV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
                                         Totales</p>
                                     <input type="number" name="tirosTotalesV" placeholder="Tiros Totales"
-                                        class="form-control mb-2" value="{{old('tirosTotalesV')}}">
+                                        class="form-control mb-2" value="{{$equipoVisitante->tirosTotales}}">
                                 </label>
                                 <br>
-
                                 <label for="tirosPuertaV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Tiros
                                         Puerta</p>
                                     <input type="number" name="tirosPuertaV" placeholder="Tiros Puerta"
-                                        class="form-control mb-2" value="{{old('tirosPuertaV')}}">
+                                        class="form-control mb-2" value="{{$equipoVisitante->tirosPuerta}}">
                                 </label>
                                 <br>
-
                                 <label for="cornerV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Corner</p>
                                     <input type="number" name="cornerV" placeholder="Corner" class="form-control mb-2"
-                                        value="{{old('cornerV')}}">
+                                        value="{{$equipoVisitante->corner}}">
                                 </label>
                                 <br>
                                 <label for="offsideV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Offside</p>
                                     <input type="number" name="offsideV" placeholder="Offside" class="form-control mb-2"
-                                        value="{{old('offsideV')}}">
+                                        value="{{$equipoVisitante->offside}}">
                                 </label>
                                 <br>
-
                                 <label for="faltasV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Faltas</p>
                                     <input type="number" name="faltasV" placeholder="Faltas" class="form-control mb-2"
-                                        value="{{old('faltasV')}}">
+                                        value="{{$equipoVisitante->faltas}}">
                                 </label>
                                 <br>
-
                                 <label for="amarillasV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Amarillas
                                     </p>
                                     <input type="number" name="amarillasV" placeholder="Amarillas"
-                                        class="form-control mb-2" value="{{old('amarillasV')}}">
+                                        class="form-control mb-2" value="{{$equipoVisitante->amarillas}}">
                                 </label>
                                 <br>
-
                                 <label for="rojasV">
                                     <p class="text-center p-1 text-light" style="background-color: #002766;">Rojas</p>
                                     <input type="number" name="rojasV" placeholder="Rojas" class="form-control mb-2"
-                                        value="{{old('rojasV')}}">
+                                        value="{{$equipoVisitante->rojas}}">
                                 </label>
                                 <br>
-
                                 <button type="submit" class="btn btn-primary mt-4"> Agregar las
                                     estadisticas </button>
                             </div>

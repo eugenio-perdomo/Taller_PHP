@@ -28,18 +28,17 @@ class EstadisticaController extends Controller
     public function create($idPartido)
     {
         $partido = Partido::where('id', $idPartido)->first();
-        // dd($partido);
 
         if ($partido->estadoPartido == "Finalizado") {
             $equipoLocal = Partido::join('estadistica_partido', 'partidos.id', '=', 'estadistica_partido.partido_id')
                 ->join('equipos', 'estadistica_partido.equipo_id', '=', 'equipos.id')
-                ->select('equipos.id', 'equipos.nombre')
+                ->select('estadistica_partido.*', 'equipos.id', 'equipos.nombre')
                 ->where('estadistica_partido.partido_id', $idPartido)
                 ->where('estadistica_partido.estado', "Local")->first();
 
             $equipoVisitante = Partido::join('estadistica_partido', 'partidos.id', '=', 'estadistica_partido.partido_id')
                 ->join('equipos', 'estadistica_partido.equipo_id', '=', 'equipos.id')
-                ->select('equipos.id', 'equipos.nombre')
+                ->select('estadistica_partido.*', 'equipos.id', 'equipos.nombre')
                 ->where('estadistica_partido.partido_id', $idPartido)
                 ->where('estadistica_partido.estado', "Visitante")->first();
 

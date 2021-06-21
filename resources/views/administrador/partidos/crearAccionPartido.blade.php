@@ -7,6 +7,12 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+@if(session()->has('elimina'))
+<div class="alert alert-danger alert-dismissible fade show shadow-lg rounded" role="alert">
+    <strong>{{ session()->get('elimina') }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="col-5 mx-auto">
     <a class="btn btn-primary" href="{{ route('partidos.show',$partido->id) }}">Volver al Partido</a>
     <div class="card mx-auto mt-3 shadow-lg">
@@ -35,8 +41,11 @@
                         @endif
                         @endif
                         @endif
-                        {{$accion->minuto}}'
-                        {{$accion->nombre}} {{$accion->apellido}}
+                        <span class="h5">{{$accion->minuto}}'</span>
+                        <span class="h5">{{$accion->nombre}} {{$accion->apellido}}</span>
+                        <form class="d-md-flex justify-content-md-end" action="{{ route('eliminarAccion', $accion->id) }}">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        </form>
                     </div>
                     <br>
                     @endif

@@ -181,24 +181,6 @@ class PartidoController extends Controller
      */
     public function destroy(Partido $partido)
     {
-        $estadisticaLocal = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
-            ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
-            ->select(
-                'estadistica_partido.id'
-            )
-            ->where('estadistica_partido.partido_id', $partido->id)
-            ->where('estadistica_partido.estado', "Local")->first();
-        $estadisticaVisitante = Equipo::join('estadistica_partido', 'equipos.id', '=', 'estadistica_partido.equipo_id')
-            ->join('partidos', 'estadistica_partido.partido_id', '=', 'partidos.id')
-            ->select(
-                'estadistica_partido.id'
-            )
-            ->where('estadistica_partido.partido_id', $partido->id)
-            ->where('estadistica_partido.estado', "Visitante")->first();
-        $estadisticaLocal = estadistica_partido::where('id', $estadisticaLocal->id)->first();
-        $estadisticaLocal->delete();
-        $estadisticaVisitante = estadistica_partido::where('id', $estadisticaVisitante->id)->first();
-        $estadisticaVisitante->delete();
         $partido->delete();
         return redirect()->route('partidos.index')
             ->with('success', 'Se elimino correctamente');

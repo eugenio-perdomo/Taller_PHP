@@ -157,8 +157,13 @@ class AccionPartidoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idAccion)
     {
-        //
+        $accion = accion_partido::where('id', $idAccion)->first();
+        $idPartido = $accion->partido_id;
+        // dd($accion);
+        $accion->delete();
+        return redirect()->route('crearAcciones', $idPartido)
+                ->with('elimina', '¡Acción eliminada con éxito!');
     }
 }
