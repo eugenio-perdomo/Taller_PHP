@@ -30,7 +30,7 @@ class NoticiaController extends Controller
     }
 
     public static function buscarNoticia($busqueda){
-        $noticias = Noticias::where("tituloNoticia","LIKE",$busqueda)->get();
+        $noticias = Noticias::where("tituloNoticia","LIKE","%$busqueda%")->get();
         return $noticias;
     }
 

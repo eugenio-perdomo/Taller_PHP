@@ -26,7 +26,7 @@ class LigaController extends Controller
     }
 
     public static function buscarLiga($busqueda){
-        $ligas = Liga::where("nombreLiga","LIKE",$busqueda)->get();
+        $ligas = Liga::where("nombreLiga","LIKE","%$busqueda%")->get();
         return $ligas;
     }
 

@@ -32,8 +32,8 @@ class JugadorController extends Controller
         return view("jugadors.lista", compact("jugadores"));
     }
 
-    public static function buscarJugador($busqueda){
-        $jugadores = Jugador::where("nombre","LIKE",$busqueda)->get();
+    public static function buscarJugador($busquedas){
+        $jugadores = Jugador::where("nombre","LIKE","%$busquedas%")->orwhere("apellido","LIKE","%$busquedas%")->get();
         return $jugadores;
     }
 
