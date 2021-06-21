@@ -44,7 +44,7 @@
                                                                 <form class='form-inline' action="{{ route('roles.update', $editor->editor_id) }}" method="POST">
                                                                     @method('PUT')
                                                                     @csrf
-                                                                    <button name="rechazar" class="btn btn-success" type="submit" value="rechazar">Confirmar</button>
+                                                                    <button name="confirmar" class="btn btn-success" type="submit" value="confirmar">Confirmar</button>
                                                                 </form>
                                                             </div>
                                                             <div class="col-md-6">

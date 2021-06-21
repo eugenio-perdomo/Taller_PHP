@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\mailConfirmacion;
 use App\Models\Administrador;
 use App\Models\Editor;
 use App\Models\Usuario;
 use App\Models\Normal;
 use Illuminate\Http\Request;
 use Spatie\Permission\Traits\HasRoles;
+use App\Mail\mailController;
+use Illuminate\Support\Facades\Mail;
+
 
 class RolesController extends Controller
 {
@@ -92,6 +96,10 @@ class RolesController extends Controller
             $user = Usuario::where('id', $id)->first();
             $user->roles()->detach();
             $user->assignRole('Editor');
+            $destinos = Usuario::join('administrador', 'usuarios.id', "administrador.administrador_id")
+                ->where('administrador.confirmado', true)
+                ->pluck("usuarios.email");
+            Mail::to($user->email)->send(new mailConfirmacion($user, 'Editor', true));
         } else {
             if ($administrador->count() > 0) {
                 $administrador->update(['confirmado' => true]);
@@ -100,6 +108,7 @@ class RolesController extends Controller
                 $user->roles()->detach();
                 $user->assignRole('Admin');
             }
+            Mail::to($user->email)->send(new mailConfirmacion($user, 'Administrador', true));
         }
         return redirect()->route('roles.index')
             ->with('success', 'Se confirmó correctamente');
@@ -122,6 +131,7 @@ class RolesController extends Controller
             Normal::create([
                 'normal_id' => $user->id,
             ]);
+            Mail::to($user->email)->send(new mailConfirmacion($user, 'Editor', false));
         } else {
             if ($administrador->count() > 0) {
                 $administrador->delete();
@@ -129,6 +139,7 @@ class RolesController extends Controller
                 Normal::create([
                     'normal_id' => $user->id,
                 ]);
+                Mail::to($user->email)->send(new mailConfirmacion($user, 'Administrador', false));
             }
         }
         return redirect()->route('roles.index')

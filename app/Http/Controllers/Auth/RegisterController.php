@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\mailController;
 use DateTime;
 use App\Providers\RouteServiceProvider;
 use App\Models\Usuario;
@@ -14,6 +15,7 @@ use Illuminate\Database\Schema\ForeignKeyDefinition;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -45,6 +47,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        Carbon::setLocale('es');
     }
 
     /**
@@ -85,10 +88,18 @@ class RegisterController extends Controller
             $editor = Editor::create([
                 'editor_id' => $user->id,
             ]);
+            $destinos = Usuario::join('administrador', 'usuarios.id', "administrador.administrador_id")
+            ->where('administrador.confirmado', true)
+            ->pluck("usuarios.email");
+            Mail::to($destinos)->send(new mailController($user, $tipoUsuario));
         } elseif ($tipoUsuario == 'admin') {
             $admin = Administrador::create([
                 'administrador_id' => $user->id,
             ]);
+            $destinos = Usuario::join('administrador', 'usuarios.id', "administrador.administrador_id")
+            ->where('administrador.confirmado', true)
+            ->pluck("usuarios.email");
+            Mail::to($destinos)->send(new mailController($user, $tipoUsuario));
         }
         $user->assignRole('Normal');
         return ($user);
