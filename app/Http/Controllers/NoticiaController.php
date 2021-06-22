@@ -76,7 +76,11 @@ class NoticiaController extends Controller
             ['tipoNoticia', $noticia->tipoNoticia],
             ['id', '<>', $id]])
             ->orderBy('updated_at', 'desc')->paginate(8);
-        return view('noticias.show', compact('noticia', 'listaRelacionada'));
+        $listaRelacionadaVistas = Noticias::where([
+            ['tipoNoticia', $noticia->tipoNoticia],
+            ['id', '<>', $id]])
+            ->orderBy('cantVisual', 'desc')->paginate(8);
+        return view('noticias.show', compact('noticia', 'listaRelacionada', 'listaRelacionadaVistas'));
     }
 
     public function edit($id)

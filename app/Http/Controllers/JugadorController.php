@@ -22,13 +22,13 @@ class JugadorController extends Controller
         $jugadores = Jugador::join('equipos', 'jugadors.equipo_id', '=', 'equipos.id')
         ->select('jugadors.id', 'jugadors.nombre', 'jugadors.apellido', 'jugadors.fnacimiento', 'jugadors.nacionalidad', 'equipos.nombre as teamName')
         ->paginate(10);
-        $jugadoresLibres = Jugador::whereNull('equipo_id')->paginate(10);
+        $jugadoresLibres = Jugador::whereNull('equipo_id')->paginate(20);
         return view("administrador.jugadors.lista", compact(["jugadores", "jugadoresLibres"]));
     }
 
     public function listaJugadores()
     {
-        $jugadores = Jugador::paginate(10);
+        $jugadores = Jugador::paginate(20);
         return view("jugadors.lista", compact("jugadores"));
     }
 
